@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Haml简介 | Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Haml是X HTML Abstraction Markup Language的缩写，用Ruby写成，可以将写成的模版转换为HTML代码。Haml的优点是简洁省去了HTML很多繁琐的标签。 安装Haml:1gem install haml Haml语法 HTML5 DOCTYPE1!!! 5   HTML：1&amp;lt;!DOCTYPE html&amp;gt;  XHTML Strict DOCTYPE1!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Haml简介">
+<meta property="og:url" content="https://josephok.github.io/2014/03/04/introduction-to-haml/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="Haml是X HTML Abstraction Markup Language的缩写，用Ruby写成，可以将写成的模版转换为HTML代码。Haml的优点是简洁省去了HTML很多繁琐的标签。 安装Haml:1gem install haml Haml语法 HTML5 DOCTYPE1!!! 5   HTML：1&amp;lt;!DOCTYPE html&amp;gt;  XHTML Strict DOCTYPE1!">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-30T09:24:46.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Haml简介">
+<meta name="twitter:description" content="Haml是X HTML Abstraction Markup Language的缩写，用Ruby写成，可以将写成的模版转换为HTML代码。Haml的优点是简洁省去了HTML很多繁琐的标签。 安装Haml:1gem install haml Haml语法 HTML5 DOCTYPE1!!! 5   HTML：1&amp;lt;!DOCTYPE html&amp;gt;  XHTML Strict DOCTYPE1!">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP -->
+  
+    <link rel="amphtml" href="https://josephok.github.io/2014/03/04/introduction-to-haml//amp/index.html"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-introduction-to-haml" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/03/04/introduction-to-haml/" class="article-date">
+  <time datetime="2014-03-04T19:47:00.000Z" itemprop="datePublished">2014-03-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Haml简介
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://haml.info/" target="_blank" rel="noopener">Haml</a>是X <strong>H</strong>TML <strong>A</strong>bstraction <strong>M</strong>arkup <strong>L</strong>anguage的缩写，用Ruby写成，可以将写成的模版转换为HTML代码。Haml的优点是简洁省去了HTML很多繁琐的标签。</p>
+<h3 id="安装Haml"><a href="#安装Haml" class="headerlink" title="安装Haml:"></a>安装Haml:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install haml</span><br></pre></td></tr></table></figure>
+<h3 id="Haml语法"><a href="#Haml语法" class="headerlink" title="Haml语法"></a>Haml语法</h3><ul>
+<li>HTML5 DOCTYPE<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!!! 5</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>HTML：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>XHTML Strict DOCTYPE<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!!! Strict</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>XML DOCTYPE<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!!!XML</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">'1.0'</span> encoding=<span class="string">'utf-8'</span> <span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>标签<br><code>%</code>开头表示标签，如<code>%html</code>, <code>%head</code>, <code>%body</code>等。<strong>代码块的层级关系用缩进表示。</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">!!!5</span><br><span class="line">%html</span><br><span class="line">	%head</span><br><span class="line">		%title Haml introduction</span><br><span class="line">	%body</span><br><span class="line">		give me five!</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出HTML为：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Haml introduction<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    give me five!</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>ID<br>在ID前加上<code>#</code>即可：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%div#mine</span><br><span class="line">%p#yours</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"mine"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"yours"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Class<br>在Class前加<code>.</code>：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%div.mine</span><br><span class="line">%p.yours</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"mine"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"yours"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>还可以添加多个Class:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%div.mine.yours</span><br></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"mine yours"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><code>div</code>是默认标签，如果只写ID或者Class，那么就默认是div标签：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#mine</span><br></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'mine'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>ID和Class可以混用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#mine.yours</span><br><span class="line">#mine.yours.his</span><br></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'yours'</span> <span class="attr">id</span>=<span class="string">'mine'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'yours his'</span> <span class="attr">id</span>=<span class="string">'mine'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>属性</li>
+</ul>
+<p>属性可以使用Ruby Hash语法表示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%a&#123;:href =&gt; &apos;http://hi.com&apos;&#125; hi</span><br><span class="line">%input&#123;:type =&gt; &apos;submit&apos;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'http://hi.com'</span>&gt;</span>hi<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'submit'</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>或者可以写成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%a(href=&apos;http://hi.com&apos;) hi</span><br><span class="line">%input(type=&apos;submit&apos;)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>使用数组表示ID和Class:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%p&#123;:class =&gt; [&apos;one&apos;,&apos;two&apos;]&#125; hi</span><br><span class="line">%p&#123;:id=&gt; [&apos;one&apos;,&apos;two&apos;]&#125; hi</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">'one two'</span>&gt;</span>hi<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">'one_two'</span>&gt;</span>hi<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>注释</li>
+</ul>
+<p>“/“起首的行表示HTML注释，”-#”起首的行表示Haml注释。还可以添加条件注释：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[if IE] %link &#123; :rel =&gt; &quot;stylesheet&quot;, :href =&gt; &quot;/css/ie.css&quot; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>HTML:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if IE]&gt; &lt;link href="/css/ie.css" rel="stylesheet"&gt; &lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">haml input.haml output.html</span><br></pre></td></tr></table></figure>
+<p>更详细语法的请参考：<br><a href="http://haml.info/docs/yardoc/file.REFERENCE.html" target="_blank" rel="noopener">http://haml.info/docs/yardoc/file.REFERENCE.html</a></p>
+<p><a href="http://www.cheatography.com/specialbrand/cheat-sheets/haml/" target="_blank" rel="noopener">HAML Cheat Sheet</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/03/04/introduction-to-haml/" data-id="cjtvalbqm001i54muabkelgf3" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/03/04/introduction-to-haml/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/03/14/dom-interchangeable-with-jquery-object/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          DOM与jQuery对象互换
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/02/28/javascript-data-type-conversions/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript数据类型转换</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  var disqus_url = 'https://josephok.github.io/2014/03/04/introduction-to-haml/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

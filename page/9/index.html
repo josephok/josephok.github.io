@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习技术过程中的笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Passion of life">
+<meta property="og:url" content="https://josephok.github.io/page/9/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="学习技术过程中的笔记">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Passion of life">
+<meta name="twitter:description" content="学习技术过程中的笔记">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-sed-and-awk" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/11/26/sed-and-awk/" class="article-date">
+  <time datetime="2013-11-26T21:36:00.000Z" itemprop="datePublished">2013-11-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Shell/">Shell</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/11/26/sed-and-awk/">sed and awk</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">list文件内容：</span><br><span class="line">$ cat list</span><br><span class="line">John Daggett, 341 King Road, Plymouth MA</span><br><span class="line">Alice Ford, 22 East Broadway, Richmond VA</span><br><span class="line">Orville Thomas, 11345 Oak Bridge Road, Tulsa OK</span><br><span class="line">Terry Kalkas, 402 Lans Road, Beaver Falls PA</span><br><span class="line">Eric Adams, 20 Post Road, Sudbury MA</span><br><span class="line">Hubert Sims, 328A Brook Road, Roanoke VA</span><br><span class="line">Amy Wilde, 334 Bayshore Pkwy, Mountain View CA</span><br><span class="line">Sal Carpenter, 73 6th Street, Boston MA</span><br><span class="line"></span><br><span class="line">将 MA替换成, Massachusetts:</span><br><span class="line"></span><br><span class="line">$ sed <span class="string">'s/ MA/, Massachusetts/'</span> list</span><br><span class="line">John Daggett, 341 King Road, Plymouth, Massachusetts</span><br><span class="line">Alice Ford, 22 East Broadway, Richmond VA</span><br><span class="line">Orville Thomas, 11345 Oak Bridge Road, Tulsa OK</span><br><span class="line">Terry Kalkas, 402 Lans Road, Beaver Falls PA</span><br><span class="line">Eric Adams, 20 Post Road, Sudbury, Massachusetts</span><br><span class="line">Hubert Sims, 328A Brook Road, Roanoke VA</span><br><span class="line">Amy Wilde, 334 Bayshore Pkwy, Mountain View CA</span><br><span class="line">Sal Carpenter, 73 6th Street, Boston, Massachusetts</span><br></pre></td></tr></table></figure>
+<p>Sed 参数总结：</p>
+<table>
+<thead>
+<tr>
+<th>-e</th>
+<th>后接命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-f</td>
+<td>后接脚本文件名</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>阻止自动输出</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="built_in">print</span> <span class="variable">$1</span>&#125;表示打印第一个字段到标准输出，字段是以空格或者制表符分割的；<span class="variable">$1</span>表示一个字段，</span><br><span class="line"><span class="variable">$2</span>表示第二个字段，<span class="variable">$3</span>表示第三个字段，...以此类推。<span class="variable">$0</span>表示所有字段。</span><br><span class="line">$ awk <span class="string">'&#123;print $1&#125;'</span> list</span><br><span class="line">John</span><br><span class="line">Alice</span><br><span class="line">Orville</span><br><span class="line">Terry</span><br><span class="line">Eric</span><br><span class="line">Hubert</span><br><span class="line">Amy</span><br><span class="line">Sal</span><br><span class="line"></span><br><span class="line">打印包含MA的行</span><br><span class="line">$ awk <span class="string">'/MA/'</span> list</span><br><span class="line">John Daggett, 341 King Road, Plymouth MA</span><br><span class="line">Eric Adams, 20 Post Road, Sudbury MA</span><br><span class="line">Sal Carpenter, 73 6th Street, Boston MA</span><br><span class="line"></span><br><span class="line">打印包含MA的所有行的第一个字段：</span><br><span class="line">$ awk <span class="string">'/MA/ &#123; print $1 &#125;'</span> list</span><br><span class="line">John</span><br><span class="line">Eric</span><br><span class="line">Sal</span><br></pre></td></tr></table></figure>
+<p>awk的-F参数可以设定字段分隔符：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">将字段分隔符改为`,`，然后打印第一个字段：</span><br><span class="line">$ awk -F, <span class="string">'/MA/&#123;print $1&#125;'</span> list</span><br><span class="line">John Daggett</span><br><span class="line">Eric Adams</span><br><span class="line">Sal Carpenter</span><br></pre></td></tr></table></figure></p>
+<p>awk还可以同时处理多个命令，他们之间有分号<code>;</code>隔开：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">打印1，2，3字段</span><br><span class="line">$ awk -F, <span class="string">'&#123; print $1; print $2; print $3 &#125;'</span> list</span><br><span class="line">John Daggett</span><br><span class="line"> 341 King Road</span><br><span class="line"> Plymouth MA</span><br><span class="line">Alice Ford</span><br><span class="line"> 22 East Broadway</span><br><span class="line"> Richmond VA</span><br><span class="line">Orville Thomas</span><br><span class="line"> 11345 Oak Bridge Road</span><br><span class="line"> Tulsa OK</span><br><span class="line">Terry Kalkas</span><br><span class="line"> 402 Lans Road</span><br><span class="line"> Beaver Falls PA</span><br><span class="line">Eric Adams</span><br><span class="line"> 20 Post Road</span><br><span class="line"> Sudbury MA</span><br><span class="line">Hubert Sims</span><br><span class="line"> 328A Brook Road</span><br><span class="line"> Roanoke VA</span><br><span class="line">Amy Wilde</span><br><span class="line"> 334 Bayshore Pkwy</span><br><span class="line"> Mountain View CA</span><br><span class="line">Sal Carpenter</span><br><span class="line"> 73 6th Street</span><br><span class="line"> Boston MA</span><br></pre></td></tr></table></figure></p>
+<p>awk 参数总结：</p>
+<table>
+<thead>
+<tr>
+<th>-F</th>
+<th>后接字段分隔符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-f</td>
+<td>后接脚本文件名</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>后接var=value</td>
+</tr>
+</tbody>
+</table>
+<p>可以使用管道操作将sed与awk联合起来操作文本：<br>假设sedscript脚本的内容是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cat sedscript</span><br><span class="line">s/ MA/, Massachusetts/</span><br><span class="line">s/ PA/, Pennsylvania/</span><br><span class="line">s/ CA/, California/</span><br><span class="line">s/ VA/, Virginia/</span><br><span class="line">s/ OK/, Oklahoma/</span><br></pre></td></tr></table></figure></p>
+<p>那么我们可以使用如下命令来打印州名：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sed -f sedscript list | awk -F <span class="string">', '</span> <span class="string">'&#123;print $4&#125;'</span></span><br><span class="line">Massachusetts</span><br><span class="line">Virginia</span><br><span class="line">Oklahoma</span><br><span class="line">Pennsylvania</span><br><span class="line">Massachusetts</span><br><span class="line">Virginia</span><br><span class="line">California</span><br><span class="line">Massachusetts</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/11/26/sed-and-awk/" data-id="cjtvalbpb000654muf6fwjuel" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/11/26/sed-and-awk/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-data-structure-study" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/11/24/data-structure-study/" class="article-date">
+  <time datetime="2013-11-24T21:39:00.000Z" itemprop="datePublished">2013-11-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/11/24/data-structure-study/">数据结构学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一些数学知识："><a href="#一些数学知识：" class="headerlink" title="一些数学知识："></a>一些数学知识：</h2><p>$$<br>x^ax^b = x^{a+b}<br>$$<br>$$<br>\frac{x^a}{x^b} = x^{a-b}<br>$$<br>$$<br>(x^a)^b = x^{ab}<br>$$<br>$$<br>x^n + x^n = 2x^n \ne x^{2n}<br>$$<br>$$<br>2^n + 2^n = 2^{n+1}<br>$$<br>$$<br>x^a = b =&gt; \log_x b = a<br>$$<br>$$<br>\log_a b = \frac{\log_c b} {\log_c a}<br>$$<br>$$<br>\log {ab}= \log a+ \log b<br>$$<br>$$<br>\log a/b = \log a- \log b<br>$$<br>$$<br>\log a^b = b\log a<br>$$<br>$$<br>\log x &lt; x  (x &gt; 0)<br>$$<br>$$<br> \sum_{i=0}^n 2^i = 2^{n + 1} -1<br>$$<br>$$<br>\sum_{i=0}^n a^i = \frac{a^{n+1}-1} {a-1}<br>$$<br>$$<br>\sum_{i=1}^N i^2 = \frac{N(N+1)(2N+1)} 6 \approx \frac {N^3} 3<br>$$<br>$$<br>\sum_{i=1}^N i^k \approx \frac {N^{k+1}} {| {k+1} | }(k\ne-1)<br>$$</p>
+<ul>
+<li>二叉树</li>
+</ul>
+<p>二叉树的每个结点至多只有二棵子树(不存在度大于2的结点)，二叉树的子树有左右之分，次序不能颠倒。二叉树的第i层至多有<br>$$<br>2^{i-1}<br>$$<br>个结点；深度为k的二叉树至多有<br>$$<br>2^{k-1}<br>$$<br>个结点；对任何一棵二叉树T，如果其终端结点数为$n_0$，度为2的结点数为$n_2$，则<br>$$<br>n_0=n_2+1<br>$$</p>
+<ul>
+<li>完全二叉树和满二叉树</li>
+</ul>
+<ol>
+<li><p>满二叉树：一棵深度为k，且有2^k-1个节点成为满二叉树</p>
+</li>
+<li><p>完全二叉树：深度为k，有n个节点的二叉树，当且仅当其每一个节点都与深度为k的满二叉树中序号为1至n的节点对应时，称之为完全二叉树</p>
+</li>
+</ol>
+<ul>
+<li>二叉查找树</li>
+</ul>
+<p>二叉查找树（Binary Search Tree），也称有序二叉树（ordered binary tree）,排序二叉树（sorted binary tree），是指一棵空树或者具有下列性质的二叉树：</p>
+<ol>
+<li>若任意节点的左子树不空，则左子树上所有结点的值均小于它的根结点的值；</li>
+<li>任意节点的右子树不空，则右子树上所有结点的值均大于它的根结点的值；</li>
+<li>任意节点的左、右子树也分别为二叉查找树。</li>
+<li>没有键值相等的节点（no duplicate nodes）。</li>
+</ol>
+<p>二叉查找树相比于其他数据结构的优势在于查找、插入的时间复杂度较低。为O(log n)。</p>
+<ul>
+<li>AVL树</li>
+</ul>
+<p>AVL树是最先发明的自平衡二叉查找树。在AVL树中任何节点的两个子树的高度最大差别为一，所以它也被称为高度平衡树。<br>查找、插入和删除在平均和最坏情况下都是O（log n）。增加和删除可能需要通过一次或多次树旋转来重新平衡这个树。<br>AVL树得名于它的发明者G.M. Adelson-Velsky和E.M. Landis，他们在1962年的论文《An algorithm for the organization of information》中发表了它。</p>
+<p>节点的平衡因子是它的左子树的高度减去它的右子树的高度（有时相反）。带有平衡因子1、0或 -1的节点被认为是平衡的。带有平衡因子 -2或2的节点被认为是不平衡的，并需要重新平衡这个树。平衡因子可以直接存储在每个节点中，或从可能存储在节点中的子树高度计算出来。</p>
+<p>AVL平衡二叉树的实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br></pre></td><td class="code"><pre><span class="line">avl.h:</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _AVL_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _AVL_H</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">Position</span>;</span></span><br><span class="line"><span class="keyword">typedef</span> Position AVLtree;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> height;</span><br><span class="line">	AVLtree left;</span><br><span class="line">	AVLtree right;</span><br><span class="line">	<span class="keyword">int</span> data;</span><br><span class="line">&#125;node;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Height</span><span class="params">(Position p)</span></span>; <span class="comment">//return the height of a node</span></span><br><span class="line"><span class="function">Position <span class="title">SingleRotateWithRight</span><span class="params">(Position k2)</span></span>; <span class="comment">//left rotate when in RR operation</span></span><br><span class="line"><span class="function">Position <span class="title">SingleRotateWithLeft</span><span class="params">(Position k2)</span></span>; <span class="comment">// LL</span></span><br><span class="line"><span class="function">Position <span class="title">DoubleRotateWithLeft</span><span class="params">(Position k3)</span></span>; <span class="comment">// LR</span></span><br><span class="line"><span class="function">Position <span class="title">DoubleRotateWithRight</span><span class="params">(Position k3)</span></span>; <span class="comment">// RL</span></span><br><span class="line"><span class="function">Position <span class="title">Rotate</span><span class="params">(Position k)</span></span>;</span><br><span class="line"><span class="function">AVLtree <span class="title">insert</span><span class="params">(AVLtree root, <span class="keyword">int</span> data)</span></span>; <span class="comment">//Insert operation</span></span><br><span class="line"><span class="function">Position <span class="title">search</span><span class="params">(AVLtree root, <span class="keyword">int</span> data)</span></span>;</span><br><span class="line"><span class="function">AVLtree <span class="title">delete</span><span class="params">(AVLtree root, <span class="keyword">int</span> data)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder_print</span><span class="params">(AVLtree root)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dispose</span><span class="params">(AVLtree root)</span></span>; <span class="comment">//free the tree</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">avl.c:</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX(a, b) ((a) &gt; (b) ? (a) : (b))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"avl.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	AVLtree root = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">char</span> choice;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Welcome to the AVL tree program\n"</span>);</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Please make a choice\n"</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"----------------------\n"</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"i. insert an element\n"</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"p. print the tree\n"</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"d. delete an element from the tree\n"</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"f. find an element \n"</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"q. quit the program\n"</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"----------------------\n"</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">/*get rid of '\n' in buffer*/</span></span><br><span class="line">		<span class="keyword">if</span> ((choice = getchar()) == <span class="string">'\n'</span>)</span><br><span class="line">			choice = getchar();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> number;</span><br><span class="line">		Position p;</span><br><span class="line">		<span class="keyword">switch</span> (choice) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'i'</span>:</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"Which number to insert?\n"</span>);</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;number);</span><br><span class="line">				root = insert(root, number);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'p'</span>:</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"The tree is \n"</span>);</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"######################\n"</span>);</span><br><span class="line">				inorder_print(root);</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"######################\n"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'d'</span>:</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"Which number to delete?\n"</span>);</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;number);</span><br><span class="line">				root = <span class="keyword">delete</span>(root, number);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'f'</span>:</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"Which number to find?\n"</span>);</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;number);</span><br><span class="line">				<span class="keyword">if</span> (p = search(root, number)) &#123;</span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"%d is found\n"</span>, number);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">"Not found\n"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'q'</span>:</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"Byebye!\n"</span>);</span><br><span class="line">				dispose(root);</span><br><span class="line">				<span class="keyword">goto</span> QUIT;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"Wrong choice! Please try again\n"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	QUIT: <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Height</span><span class="params">(Position p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> p-&gt;height;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Position <span class="title">SingleRotateWithRight</span><span class="params">(Position k2)</span> </span>&#123;</span><br><span class="line">	Position k1 = k2-&gt;right;</span><br><span class="line">	k2-&gt;right = k1-&gt;left;</span><br><span class="line">	k1-&gt;left = k2;</span><br><span class="line"></span><br><span class="line">	k1-&gt;height = MAX(Height(k1-&gt;left), Height(k1-&gt;right)) + <span class="number">1</span>;</span><br><span class="line">	k2-&gt;height = MAX(Height(k2-&gt;left), Height(k2-&gt;right)) + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> k1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Position <span class="title">SingleRotateWithLeft</span><span class="params">(Position k2)</span> </span>&#123;</span><br><span class="line">	Position k1 = k2-&gt;left;</span><br><span class="line">	k2-&gt;left = k1-&gt;right;</span><br><span class="line">	k1-&gt;right = k2;</span><br><span class="line"></span><br><span class="line">	k2-&gt;height = MAX(Height(k2-&gt;left), Height(k2-&gt;right)) + <span class="number">1</span>;</span><br><span class="line">	k1-&gt;height = MAX(Height(k1-&gt;left), Height(k1-&gt;right)) + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> k1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Position <span class="title">DoubleRotateWithLeft</span><span class="params">(Position k3)</span> </span>&#123;</span><br><span class="line">	k3-&gt;left = SingleRotateWithRight(k3-&gt;left);</span><br><span class="line">	<span class="keyword">return</span> SingleRotateWithLeft(k3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Position <span class="title">DoubleRotateWithRight</span><span class="params">(Position k3)</span> </span>&#123;</span><br><span class="line">	k3-&gt;right = SingleRotateWithLeft(k3-&gt;right);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> SingleRotateWithRight(k3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Position <span class="title">Rotate</span><span class="params">(Position k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (Height(k-&gt;left) - Height(k-&gt;right) == <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (Height(k-&gt;left-&gt;left) &gt;= Height(k-&gt;left-&gt;right)) &#123;</span><br><span class="line">			k = SingleRotateWithLeft(k);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			k = DoubleRotateWithLeft(k);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (Height(k-&gt;right) - Height(k-&gt;left) == <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (Height(k-&gt;right-&gt;right) &gt;= Height(k-&gt;right-&gt;left)) &#123;</span><br><span class="line">			k = SingleRotateWithRight(k);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			k = DoubleRotateWithRight(k);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">AVLtree <span class="title">insert</span><span class="params">(AVLtree root, <span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="comment">/*if the tree is empty then create a node*/</span></span><br><span class="line">		root = (node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">		root-&gt;left = root-&gt;right = <span class="literal">NULL</span>;</span><br><span class="line">		root-&gt;data = data;</span><br><span class="line">		root-&gt;height = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (data &lt; root-&gt;data) &#123;</span><br><span class="line">		root-&gt;left = insert(root-&gt;left, data);</span><br><span class="line">		<span class="keyword">if</span> (Height(root-&gt;left) - Height(root-&gt;right) == <span class="number">2</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (data &lt; root-&gt;left-&gt;data) &#123;</span><br><span class="line">				root = SingleRotateWithLeft(root);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				root = DoubleRotateWithLeft(root);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (data &gt; root-&gt;data) &#123;</span><br><span class="line">		root-&gt;right = insert(root-&gt;right, data);</span><br><span class="line">		<span class="keyword">if</span> (Height(root-&gt;right) - Height(root-&gt;left) == <span class="number">2</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (data &gt; root-&gt;right-&gt;data) &#123;</span><br><span class="line">				root = SingleRotateWithRight(root);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				root = DoubleRotateWithRight(root);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">/*data already exsits*/</span></span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%d exsits\n"</span>, data);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	root-&gt;height = MAX(Height(root-&gt;left), Height(root-&gt;right)) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Position <span class="title">search</span><span class="params">(AVLtree root, <span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> root;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (root-&gt;data == data)</span><br><span class="line">		<span class="keyword">return</span> root;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (root-&gt;data &lt; data) &#123;</span><br><span class="line">		<span class="keyword">return</span> search(root-&gt;right, data);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> search(root-&gt;left, data);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">AVLtree <span class="title">delete</span><span class="params">(AVLtree root, <span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Not found\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (data == root-&gt;data) &#123;</span><br><span class="line">		<span class="keyword">if</span> (root-&gt;right == <span class="literal">NULL</span>) &#123;</span><br><span class="line">			<span class="comment">/*if right child is NULL then delete it*/</span></span><br><span class="line">			Position temp = root;</span><br><span class="line">			root = root-&gt;left;</span><br><span class="line">			<span class="built_in">free</span>(temp);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d is deleted\n"</span>, data);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			Position temp = root-&gt;right;</span><br><span class="line">			<span class="keyword">while</span> (temp-&gt;left) &#123;</span><br><span class="line">				temp = temp-&gt;left;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			root-&gt;data = temp-&gt;data;</span><br><span class="line">			root-&gt;right = <span class="keyword">delete</span>(root-&gt;right, temp-&gt;data);</span><br><span class="line">			root-&gt;height = MAX(Height(root-&gt;left), Height(root-&gt;right)) + <span class="number">1</span>;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d is deleted\n"</span>, data);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> root;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (data &lt; root-&gt;data) &#123;</span><br><span class="line">		root-&gt;left = <span class="keyword">delete</span>(root-&gt;left, data);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		root-&gt;right = <span class="keyword">delete</span>(root-&gt;right, data);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (root-&gt;left) &#123;</span><br><span class="line">		root-&gt;left = Rotate(root-&gt;left);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (root-&gt;right) &#123;</span><br><span class="line">		root-&gt;right = Rotate(root-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	root = Rotate(root);</span><br><span class="line">	root-&gt;height = MAX(Height(root-&gt;left), Height(root-&gt;right)) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder_print</span><span class="params">(AVLtree root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		inorder_print(root-&gt;left);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, root-&gt;data);</span><br><span class="line">		inorder_print(root-&gt;right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dispose</span><span class="params">(AVLtree root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( root != <span class="literal">NULL</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        dispose( root-&gt;left );</span><br><span class="line">        dispose( root-&gt;right );</span><br><span class="line">        <span class="built_in">free</span>( root );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>B树</li>
+</ul>
+<p>A B-tree of order m is an m-way tree (i.e., a tree where each node may have up to m children) in which:</p>
+<ol>
+<li>the number of keys in each non-leaf node is one less than the number of its children and these<br>keys partition the keys in the children in the fashion of a search tree</li>
+<li>all leaves are on the same level</li>
+<li>all non-leaf nodes except the root have at least ceil(m / 2) children</li>
+<li>the root is either a leaf node, or it has from two to m children</li>
+<li>a leaf node contains no more than m – 1 keys</li>
+</ol>
+<ul>
+<li>Hash表</li>
+</ul>
+<p>散列表（Hash table，也叫哈希表），是根据关键字（Key value）而直接访问在内存存储位置的数据结构。也就是说，它通过把键值通过一个函数的计算，映射到表中一个位置来访问记录，这加快了查找速度。这个映射函数称做散列函数，存放记录的数组称做散列表。</p>
+<ul>
+<li>Hash表处理碰撞</li>
+</ul>
+<p>为了知道碰撞产生的相同散列函数地址所对应的关键字，必须选用另外的散列函数，或者对碰撞结果进行处理。而不发生碰撞的可能性是非常之小的，所以通常对碰撞进行处理。常用方法有以下几种：</p>
+<ul>
+<li>开放寻址法（open addressing）：</li>
+</ul>
+<p>$$<br>hash_i=(hash(key)+d_i) \,\bmod\, m, i=1,2…k\,(k \le m-1)<br>$$</p>
+<p>其中hash(key)为散列函数，m为散列表长，<br>$d_i$为增量序列，$i$为已发生碰撞的次数。增量序列可有下列取法：</p>
+<p>$$<br>d_i=1,2,3…(m-1)<br>$$</p>
+<p>称为线性探测；即 $d_i=i$ ，或者为其他线性函数。<br>相当于逐个探测存放地址的表，直到查找到一个空单元，把散列地址存放在该空单元。</p>
+<p>$$<br>d_i=\pm 1^2, \pm 2^2,\pm 3^2…\pm k^2 (k \le m/2)<br>$$<br>称为平方探测。相对线性探测，<br>相当于发生碰撞时探测间隔 $d_i=i^2$ 个单元的位置是否为空，如果为空，将地址存放进去。</p>
+<p>$d_i=$伪随机数序列，称为<code>伪随机探测</code>。</p>
+<ul>
+<li>Hash表载荷因子</li>
+</ul>
+<p>散列表的载荷因子定义为：<br>$\alpha = $填入表中的元素个数 / 散列表的长度。$\alpha$是散列表装满程度的标志因子。</p>
+<p>由于表长是定值，载荷因子与“填入表中的元素个数”成正比，所以，载荷因子越大，表明填入表中的元素越多，产生冲突的可能性就越大；反之，载荷因子越小，标明填入表中的元素越少，产生冲突的可能性就越小。实际上，散列表的平均查找长度是载荷因子载荷因子的函数，只是不同处理冲突的方法有不同的函数。</p>
+<p>对于开放寻址法，荷载因子是特别重要因素，应严格限制在0.7-0.8以下。超过0.8，查表时的CPU缓存不命中（cache missing）按照指数曲线上升。因此，一些采用开放寻址法的hash库，如Java的系统库限制了荷载因子为0.75，超过此值将resize散列表。</p>
+<p>To be continued…</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/11/24/data-structure-study/" data-id="cjtvalbp5000254mu351e2ebw" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/11/24/data-structure-study/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-php-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/11/15/php-notes/" class="article-date">
+  <time datetime="2013-11-15T17:37:00.000Z" itemprop="datePublished">2013-11-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/11/15/php-notes/">PHP Notes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>PHP 中的所有函数和类都具有全局作用域，而且函数和类可以在其声明之前调用，即函数和类声明会被提到作用域顶部(hoisted)。（注意：如果函数是定义在其他文件中，则必须先require进来而且require必须在调用之前。）而且嵌套的函数可以访问外围函数。下面这段代码是可以正确运行的：</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">foo();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"Hello World!"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$bar = <span class="keyword">new</span> Bar();</span><br><span class="line"><span class="keyword">echo</span> $bar-&gt;a;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> $a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//输出 Hello World!1</span></span><br></pre></td></tr></table></figure>
+<p>再看下面的例子：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">out</span><span class="params">($value=<span class="string">'25'</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"$value&lt;br /&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">inner</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">"I am inner function&lt;br /&gt;"</span>;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">innermost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			out();</span><br><span class="line">			inner();</span><br><span class="line">		&#125;</span><br><span class="line">	innermost();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	inner();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test();</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment">输出结果为：</span></span><br><span class="line"><span class="comment">I am inner function</span></span><br><span class="line"><span class="comment">25</span></span><br><span class="line"><span class="comment">I am inner function</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>静态变量可以分为：</li>
+</ul>
+<p>1.静态全局变量，PHP中的全局变量也可以理解为静态全局变量，因为除非明确unset释放，在程序运行过程中始终存在。</p>
+<p>2.静态局部变量，也就是在函数内定义的静态变量，函数在执行时对变量的操作会保持到下一次函数被调用。</p>
+<p>3.静态成员变量，这是在类中定义的静态变量，和实例变量相对应，静态成员变量可以在所有实例中共享。</p>
+<p>最常见的是静态局部变量及静态成员变量。局部变量只有在函数执行时才会存在。 通常，当一个函数执行完毕，它的局部变量的值就已经不存在，而且变量所占据的内存也被释放。 当下一次执行该过程时，它的所有局部变量将重新初始化。如果某个局部变量定义为静态的， 则它的值不会在函数调用结束后释放，而是继续保留变量的值。</p>
+<p>来看下面的例子：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> &amp;<span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> $a = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> ++$a;</span><br><span class="line">&#125;</span><br><span class="line">$b = &amp;test();</span><br><span class="line"><span class="keyword">echo</span> $b; <span class="comment">//2</span></span><br><span class="line"><span class="keyword">echo</span> test(); <span class="comment">//3</span></span><br><span class="line">$b = <span class="number">10</span>;</span><br><span class="line">$c = test();</span><br><span class="line"><span class="keyword">echo</span> $c; <span class="comment">//11</span></span><br><span class="line"><span class="keyword">echo</span> $b; <span class="comment">//11</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">static变量在函数内部只初始化一次，而且函数执行完毕后其值不会释放。第一次调用test()时返回值为2，</span></span><br><span class="line"><span class="comment">所以echo $b显示2；第二次调用test()时则返回3；如果将$b的值改为10，注意函数test()前有个&amp;符号，</span></span><br><span class="line"><span class="comment">在PHP中表示引用，变量$b是函数test()的引用，所以当$b的值改变时，它将改变return那个变量($a)的初始值，</span></span><br><span class="line"><span class="comment">所以返回11；函数调用也会改变$b的值，所以$b变为11。（注：如果返回值是个表达式则$b不会影响其值）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>exit()/die()用于中止脚本的执行。</li>
+</ul>
+<p>即脚本执行到exit()或die()那一行为止，如果在被包含文件中使用exit()或die()，则同时会中断包含文件的脚本执行。（但在exit()或die()之后声明的函数或类则可以被调用，因为它们会被hoisted到作用域顶部，见上面）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">test.php:</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">1</span>;</span><br><span class="line">test();</span><br><span class="line">$b = <span class="keyword">new</span> Bar();</span><br><span class="line"><span class="keyword">echo</span> $b-&gt;a;</span><br><span class="line"><span class="keyword">require</span> <span class="string">'test1.php'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">"hello"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> $a = <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">test1.php:</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">2</span>;</span><br><span class="line"><span class="keyword">require</span> <span class="string">'test2.php'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="number">4</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">test2.php</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">3</span>;</span><br><span class="line"><span class="keyword">exit</span>(<span class="string">"Nothing!"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*显示结果为：1hello923Nothing!*/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>声明类属性或方法为静态，就可以不实例化类而直接访问。静态属性不能通过一个类已实例化的对象来访问（但静态方法可以）。</p>
+</li>
+<li><p>urlencode()和rawurlencode()</p>
+</li>
+</ul>
+<p>返回字符串，此字符串中除了<code>-_.</code> 之外的所有非字母数字字符都将被替换成百分号（%）后跟两位十六进制数，urlencode()将空格则编码为加号（+），而rawurlencode()将空格编码为<code>%20</code>。<br>在编码时应该只对部分URL编码，否则URL中的冒号和反斜杠也会被转义。</p>
+<ul>
+<li>htmlentities 与 htmlspecialchars 的差別</li>
+</ul>
+<p>两者都会转换以下符号：</p>
+<p><code>&amp;</code> (ampersand) : <code>&amp;amp;</code></p>
+<p><code>&quot;</code> (double quote) : <code>&amp;quot;</code></p>
+<p><code>&#39;</code>(single quote) : <code>&#39;&amp;#039;</code> 或者 <code>&amp;apos;</code></p>
+<p><code>&lt;</code>(less than) : <code>&amp;lt;</code></p>
+<p><code>&gt;</code>(greater than) : <code>&amp;gt;</code></p>
+<ul>
+<li>htmlspecialchars 只转换以上的 HTML 符号</li>
+<li>htmlentities 除了转换以上的 HTML 符号, 也转换中文</li>
+<li>两者都不会转换英文、数字、括号及分号</li>
+<li><p>htmlspecialchars 速度比 htmlentities 快</p>
+</li>
+<li><p>静态成员变量通过继承在子类和父类中共享，子类可以改变父类中静态变量的值。</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $id = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">bar</span> <span class="keyword">extends</span> <span class="title">foo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> foo::$id; <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">echo</span> bar::$id; <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">bar::$id = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> foo::$id; <span class="comment">// 2</span></span><br><span class="line"><span class="keyword">echo</span> bar::$id; <span class="comment">// 2</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>PHP_INI_* 模式的定义</li>
+</ul>
+<p>PHP_INI_USER     可在用户脚本（例如 ini_set()）或 Windows 注册表（自 PHP 5.3 起）以及 .user.ini 中设定<br>PHP_INI_PERDIR    可在 php.ini，.htaccess 或 httpd.conf 中设定<br>PHP_INI_SYSTEM    可在 php.ini 或 httpd.conf 中设定<br>PHP_INI_ALL    可在任何地方设定</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/11/15/php-notes/" data-id="cjtvalbow000054mup1lfep4r" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/11/15/php-notes/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/8/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

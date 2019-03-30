@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>正则表达式语法 | Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="字符            描述                            \            将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，「n」匹配字符「n」。「\n」匹配一个换行符。序列「\」匹配「\」而「(」则匹配「(」。                            ^">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式语法">
+<meta property="og:url" content="https://josephok.github.io/2013/11/27/regular-expression-syntax/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="字符            描述                            \            将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，「n」匹配字符「n」。「\n」匹配一个换行符。序列「\」匹配「\」而「(」则匹配「(」。                            ^">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-30T09:24:46.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式语法">
+<meta name="twitter:description" content="字符            描述                            \            将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，「n」匹配字符「n」。「\n」匹配一个换行符。序列「\」匹配「\」而「(」则匹配「(」。                            ^">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP -->
+  
+    <link rel="amphtml" href="https://josephok.github.io/2013/11/27/regular-expression-syntax//amp/index.html"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-regular-expression-syntax" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/11/27/regular-expression-syntax/" class="article-date">
+  <time datetime="2013-11-27T18:21:00.000Z" itemprop="datePublished">2013-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Regex/">Regex</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      正则表达式语法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <table><br>    <tbody><br>        <tr><br>            <th>字符</th><br>            <th>描述</th><br>        </tr><br>        <tr><br>            <th>\</th><br>            <td>将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，「<code>n</code>」匹配字符「<code>n</code>」。「<code>\n</code>」匹配一个换行符。序列「<code>\</code>」匹配「<code>\</code>」而「<code>(</code>」则匹配「<code>(</code>」。</td><br>        </tr><br>        <tr><br>            <th>^</th><br>            <td>匹配输入字符串的开始位置。如果设置了RegExp对象的Multiline属性，^也匹配「<code>\n</code>」或「<code>\r</code>」之后的位置。</td><br>        </tr><br>        <tr><br>            <th>$</th><br>            <td>匹配输入字符串的结束位置。如果设置了RegExp对象的Multiline属性，$也匹配「<code>\n</code>」或「<code>\r</code>」之前的位置。</td><br>        </tr><br>        <tr><br>            <th><em></em></th><br>            <td>匹配前面的子表达式零次或多次。例如，zo能匹配「<code>z</code>」以及「<code>zoo</code>」。<em>等价于{0,}。</em></td><br>        </tr><br>        <tr><br>            <th>+</th><br>            <td>匹配前面的子表达式一次或多次。例如，「<code>zo+</code>」能匹配「<code>zo</code>」以及「<code>zoo</code>」，但不能匹配「<code>z</code>」。+等价于{1,}。</td><br>        </tr><br>        <tr><br>            <th>?</th><br>            <td>匹配前面的子表达式零次或一次。例如，「<code>do(es)?</code>」可以匹配「<code>do</code>」或「<code>does</code>」中的「<code>do</code>」。?等价于{0,1}。</td><br>        </tr><br>        <tr><br>            <th>{<em>n</em>}</th><br>            <td><em>n</em>是一个非负整数。匹配确定的<em>n</em>次。例如，「<code>o{2}</code>」不能匹配「<code>Bob</code>」中的「<code>o</code>」，但是能匹配「<code>food</code>」中的两个o。</td><br>        </tr><br>        <tr><br>            <th>{<em>n</em>,}</th><br>            <td><em>n</em>是一个非负整数。至少匹配<em>n</em>次。例如，「<code>o{2,}</code>」不能匹配「<code>Bob</code>」中的「<code>o</code>」，但能匹配「<code>foooood</code>」中的所有o。「<code>o{1,}</code>」等价于「<code>o+</code>」。「<code>o{0,}</code>」则等价于「<code>o</code>」。</td><br>        </tr><br>        <tr><br>            <th>{<em>n</em>,<em>m</em>}</th><br>            <td><em>m</em>和<em>n</em>均为非负整数，其中<em>n</em>&lt;=<em>m</em>。最少匹配<em>n</em>次且最多匹配<em>m</em>次。例如，「<code>o{1,3}</code>」将匹配「<code>fooooood</code>」中的前三个o。「<code>o{0,1}</code>」等价于「<code>o?</code>」。请注意在逗号和两个数之间不能有空格。</td><br>        </tr><br>        <tr><br>            <th>?</th><br>            <td>当该字符紧跟在任何一个其他限制符（*,+,?，{<em>n</em>}，{<em>n</em>,}，{<em>n</em>,<em>m</em>}）后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串「<code>oooo</code>」，「<code>o+?</code>」将匹配单个「<code>o</code>」，而「<code>o+</code>」将匹配所有「<code>o</code>」。</td><br>        </tr><br>        <tr><br>            <th>.</th><br>            <td>匹配除「<code>\</code><em><code>n</code></em>」之外的任何单个字符。要匹配包括「<code>\</code><em><code>n</code></em>」在内的任何字符，请使用像「<code>(.|\n)</code>」的模式。</td><br>        </tr><br>        <tr><br>            <th>(pattern)</th><br>            <td>匹配pattern并获取这一匹配的子字符串。该子字符串用于向后引用。所获取的匹配可以从产生的Matches集合得到，在VBScript中使用SubMatches集合，在JScript中则使用$0&hellip;$9属性。要匹配圆括號字符，请使用「<code>(</code>」或「<code>)</code>」。</td><br>        </tr><br>        <tr><br>            <th>(?:pattern)</th><br>            <td>匹配pattern但不获取匹配的子字符串，也就是说这是一个非获取匹配，不存储匹配的子字符串用于向后引用。这在使用或字符「<code>(|)</code>」来组合一个模式的各个部分是很有用。例如「<code>industr(?:y|ies)</code>」就是一个比「<code>industry|industries</code>」更简略的表达式。</td><br>        </tr><br>        <tr><br>            <th>(?=pattern)</th><br>            <td>正向肯定预查，在任何匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，「<code>Windows(?=95|98|NT|2000)</code>」能匹配「<code>Windows2000</code>」中的「<code>Windows</code>」，但不能匹配「<code>Windows3.1</code>」中的「<code>Windows</code>」。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</td><br>        </tr><br>        <tr><br>            <th>(?!pattern)</th><br>            <td>正向否定预查，在任何不匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如「<code>Windows(?!95|98|NT|2000)</code>」能匹配「<code>Windows3.1</code>」中的「<code>Windows</code>」，但不能匹配「<code>Windows2000</code>」中的「<code>Windows</code>」。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始</td><br>        </tr><br>        <tr><br>            <th>(?&lt;=pattern)</th><br>            <td>反向肯定预查，与正向肯定预查类似，只是方向相反。例如，「<code>(?&lt;=95|98|NT|2000)Windows</code>」能匹配「<code>2000Windows</code>」中的「<code>Windows</code>」，但不能匹配「<code>3.1Windows</code>」中的「<code>Windows</code>」。</td><br>        </tr><br>        <tr><br>            <th>(?&lt;!pattern)</th><br>            <td>反向否定预查，与正向否定预查类似，只是方向相反。例如「<code>(?&lt;!95|98|NT|2000)Windows</code>」能匹配「<code>3.1Windows</code>」中的「<code>Windows</code>」，但不能匹配「<code>2000Windows</code>」中的「<code>Windows</code>」。</td><br>        </tr><br>        <tr><br>            <th>x|y</th><br>            <td>匹配x或y。例如，「<code>z|food</code>」能匹配「<code>z</code>」或「<code>food</code>」。「<code>(z|f)ood</code>」则匹配「<code>zood</code>」或「<code>food</code>」。</td><br>        </tr><br>        <tr><br>            <th>[xyz]</th><br>            <td>字符集合（character class）。匹配所包含的任意一个字符。例如，「<code>[abc]</code>」可以匹配「<code>plain</code>」中的「<code>a</code>」。特殊字符仅有反斜线 \ 保持特殊含义，用于转义字符。其它特殊字符如星号、加号、各种括号等均作为普通字符。脱字符 ^ 如果出现在首位则表示负值字符集合；如果出现在字符串中间就仅作为普通字符。连字符 - 如果出现在字符串中间表示字符范围描述；如果如果出现在首位则仅作为普通字符。</td><br>        </tr><br>        <tr><br>            <th>[^xyz]</th><br>            <td>排除型（negate）字符集合。匹配未列出的任意字符。例如，「<code>[^abc]</code>」可以匹配「<code>plain</code>」中的「<code>plin</code>」。</td><br>        </tr><br>        <tr><br>            <th>[a-z]</th><br>            <td>字符范围。匹配指定范围内的任意字符。例如，「<code>[a-z]</code>」可以匹配「<code>a</code>」到「<code>z</code>」范围内的任意小写字母字符。</td><br>        </tr><br>        <tr><br>            <th>[^a-z]</th><br>            <td>排除型的字符范围。匹配任何不在指定范围内的任意字符。例如，「<code>[^a-z]</code>」可以匹配任何不在「<code>a</code>」到「<code>z</code>」范围内的任意字符。</td><br>        </tr><br>        <tr><br>            <th>\b</th><br>            <td>匹配一个单词边界，也就是指单词和空格间的位置。例如，「<code>er\b</code>」可以匹配「<code>never</code>」中的「<code>er</code>」，但不能匹配「<code>verb</code>」中的「<code>er</code>」。</td><br>        </tr><br>        <tr><br>            <th>\B</th><br>            <td>匹配非单词边界。「<code>er\B</code>」能匹配「<code>verb</code>」中的「<code>er</code>」，但不能匹配「<code>never</code>」中的「<code>er</code>」。</td><br>        </tr><br>        <tr><br>            <th>\cx</th><br>            <td>匹配由x指明的控制字符。例如，\cM匹配一个Control-M或回车符。x的值必须为A-Z或a-z之一。否则，将c视为一个原义的「<code>c</code>」字符。</td><br>        </tr><br>        <tr><br>            <th>\d</th><br>            <td>匹配一个数字字符。等价于[0-9]。</td><br>        </tr><br>        <tr><br>            <th>\D</th><br>            <td>匹配一个非数字字符。等价于[^0-9]。</td><br>        </tr><br>        <tr><br>            <th>\f</th><br>            <td>匹配一个换页符。等价于\x0c和\cL。</td><br>        </tr><br>        <tr><br>            <th>\n</th><br>            <td>匹配一个换行符。等价于\x0a和\cJ。</td><br>        </tr><br>        <tr><br>            <th>\r</th><br>            <td>匹配一个回车符。等价于\x0d和\cM。</td><br>        </tr><br>        <tr><br>            <th>\s</th><br>            <td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。</td><br>        </tr><br>        <tr><br>            <th>\S</th><br>            <td>匹配任何非空白字符。等价于[^ \f\n\r\t\v]。</td><br>        </tr><br>        <tr><br>            <th>\t</th><br>            <td>匹配一个制表符。等价于\x09和\cI。</td><br>        </tr><br>        <tr><br>            <th>\v</th><br>            <td>匹配一个垂直制表符。等价于\x0b和\cK。</td><br>        </tr><br>        <tr><br>            <th>\w</th><br>            <td>匹配包括下划线的任何单词字符。等价于「<code>[A-Za-z0-9_]</code>」。</td><br>        </tr><br>        <tr><br>            <th>\W</th><br>            <td>匹配任何非单词字符。等价于「<code>[^A-Za-z0-9_]</code>」。</td><br>        </tr><br>        <tr><br>            <th>\x<em>n</em></th><br>            <td>匹配<em>n</em>，其中<em>n</em>为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，「<code>\x41</code>」匹配「<code>A</code>」。「<code>\x041</code>」则等价于「<code>\x04&amp;1</code>」。正則表达式中可以使用ASCII编码。.</td><br>        </tr><br>        <tr><br>            <th>\<em>num</em></th><br>            <td>向后引用（back-reference）一个子字符串（substring），该子字符串与正则表达式的第num个用括号围起来的子表达式（subexpression）匹配。其中num是从1开始的正整数，其上限可能是99。例如：「<code>(.)\1</code>」匹配两个连续的相同字符。</td><br>        </tr><br>        <tr><br>            <th>\<em>n</em></th><br>            <td>标识一个八进制转义值或一个向后引用。如果\<em>n</em>之前至少<em>n</em>个获取的子表达式，则<em>n</em>为向后引用。否则，如果<em>n</em>为八进制数字（0-7），则<em>n</em>为一个八进制转义值。</td><br>        </tr><br>        <tr><br>            <th>\<em>nm</em></th><br>            <td>标识一个八进制转义值或一个向后引用。如果\<em>nm</em>之前至少有<em>nm</em>个获得子表达式，则<em>nm</em>为向后引用。如果\<em>nm</em>之前至少有<em>n</em>个获取，则<em>n</em>为一个后跟文字<em>m</em>的向后引用。如果前面的条件都不满足，若<em>n</em>和<em>m</em>均为八进制数字（0-7），则\<em>nm</em>将匹配八进制转义值<em>nm</em>。</td><br>        </tr><br>        <tr><br>            <th>\<em>nml</em></th><br>            <td>如果<em>n</em>为八进制数字（0-3），且<em>m和l</em>均为八进制数字（0-7），则匹配八进制转义值<em>nm</em>l。</td><br>        </tr><br>        <tr><br>            <th>\u<em>n</em></th><br>            <td>匹配<em>n</em>，其中<em>n</em>是一个用四个十六进制数字表示的Unicode字符。例如，\u00A9匹配版权符号（&copy;）。</td><br>        </tr><br>    </tbody><br></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/11/27/regular-expression-syntax/" data-id="cjtvalbpd000754munts5o9j2" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/11/27/regular-expression-syntax/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/12/02/c-language-pointers-plus-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          c语言指针加1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/11/26/sed-and-awk/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">sed and awk</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  var disqus_url = 'https://josephok.github.io/2013/11/27/regular-expression-syntax/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

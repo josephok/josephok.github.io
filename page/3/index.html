@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习技术过程中的笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Passion of life">
+<meta property="og:url" content="https://josephok.github.io/page/3/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="学习技术过程中的笔记">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Passion of life">
+<meta name="twitter:description" content="学习技术过程中的笔记">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-rule-of-72" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/17/rule-of-72/" class="article-date">
+  <time datetime="2014-04-17T00:14:00.000Z" itemprop="datePublished">2014-04-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/17/rule-of-72/">72法则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>72法则又叫69法则，是金融学上用作估计将投资倍增或减半所需的时间。<br>72法则有如下公式：<br>Years to double = 72 / Interest Rate</p>
+<p>比如我有10万块现金，要去作一笔投资，年利率是10%，那么多少年可以使我的资本翻番(变成20万)呢？<br>根据72法则，year = 72 / 10 = 7.2。也就是说大概7.2年可以使我的资产变为20万。</p>
+<ul>
+<li>72法则的原理</li>
+</ul>
+<p>72法则是怎么来的呢？<br>假设我们的初始资本是A, 投资年利率是r, 投资时间是t(年), 那么我们的资本翻番为2A的公式为:<br>$$<br>2A=A(1+r)^t<br>$$<br>即<br>$$2=(1+r)^t$$<br>两边取对数：<br>$$<br>ln2=tln(1+r),<br>t=\frac {ln2} {ln(1+r)},<br>t=\frac {0.693} {r}<br>$$<br>($ln2=0.693$, $ln(1+r)=r$, 当$r$很小时(使用泰勒级数展开))</p>
+<p>$t=\frac {0.693} {r}$即是72法则的公式。$r$一般用%百分比表示，所以：$t=\frac {69.3} {r}$</p>
+<p>69.3虽然是精确结果，但是无法被整除，所以选择相近的72，而且72能被(2, 3, 4, 6, 12…)整除。这就是72法则的由来。</p>
+<p>附注：泰勒级数<br>$$<br>\ln(1+x) = \sum^{\infty}_{n=1} \frac{(-1)^{n+1}}n x^n\quad \forall x\in (-1,1]<br>$$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/04/17/rule-of-72/" data-id="cjtvalbr5002754muw8xd75ug" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/04/17/rule-of-72/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-newton-sqrt-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/15/newton-sqrt-2/" class="article-date">
+  <time datetime="2014-04-15T00:38:00.000Z" itemprop="datePublished">2014-04-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/15/newton-sqrt-2/">利用牛顿法求2的平方根</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>牛顿法（Newton’s method）又称为牛顿-拉弗森方法（Newton-Raphson method），它是一种在实数域和复数域上近似求解方程的方法。方法使用函数f(x)的泰勒级数的前面几项来寻找方程f(x)=0的根。</p>
+<p>牛顿法的步骤：</p>
+<ol>
+<li>猜方程$f(x)=0$的解的第一个近似值</li>
+<li>利用公式</li>
+</ol>
+<p>$$<br>x_{n+1} = x_n - \frac{f(x_n)}{f’(x_n)}<br>$$<br>从第一次近似求得第二次近似，再从第二次近似求得第三次近似…，迭代下去就可以求出比较精确的值。</p>
+<h2 id="例子-求2的平方根"><a href="#例子-求2的平方根" class="headerlink" title="例子(求2的平方根)"></a>例子(求2的平方根)</h2><p>求方程$f(x)=x^2-2=0$的正根</p>
+<p>解：由于<br>$$<br>f(x)=x^2-2, f’(x)=2x =&gt;<br>x_{n+1} = x_n - \frac{f(x_n)}{f’(x_n)}=x_n-\frac {x_n^2-2}{2x_n}<br>$$<br>$$<br>x_{n+1}=x_n-\frac{x_n}2+\frac 1 x_n=\frac{x_n} 2 + \frac 1 x_n<br>$$</p>
+<p>我们从$x_0=1$开始迭代：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x0 = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span><span class="number">.10</span>]</span><br><span class="line">    x = x0/<span class="number">2.0</span> + <span class="number">1.0</span>/x0</span><br><span class="line">    x0 = x</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log x</span><br></pre></td></tr></table></figure></p>
+<p>求得结果为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ coffee newton.coffee</span><br><span class="line">1.414213562373095</span><br></pre></td></tr></table></figure></p>
+<p>更一般的可以推广到求$\sqrt[b]{a}$的值。</p>
+<p>$$<br>f(x)=x^b-a, \\<br>f’(x)=bx^{b-1}, \\<br>x_{n+1}=x_n - \frac {x_n^b-a}{bx_n^{b-1}}=\frac{b-1}bx_n+\frac a{bx_n^{b-1}}<br>$$</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">nth_root</span> = <span class="params">(a, b)</span> -&gt;</span></span><br><span class="line">    x0 = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span><span class="number">.10</span>]</span><br><span class="line">        x = (b<span class="number">-1.0</span>)<span class="regexp">/b * x0 + a/</span>(b*Math.pow(x0, b<span class="number">-1</span>))</span><br><span class="line">        x0 = x</span><br><span class="line">    x</span><br><span class="line"><span class="comment"># sqrt(3)</span></span><br><span class="line"><span class="built_in">console</span>.log nth_root(<span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment"># output: 1.7320508075688772</span></span><br><span class="line"><span class="comment"># 3^(1/3)</span></span><br><span class="line"><span class="built_in">console</span>.log nth_root(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line"><span class="comment"># output: 1.4422495703074083</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/04/15/newton-sqrt-2/" data-id="cjtvalbr2002554mu6ywqmsd6" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/04/15/newton-sqrt-2/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css-rotation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/13/css-rotation/" class="article-date">
+  <time datetime="2014-04-13T22:10:00.000Z" itemprop="datePublished">2014-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/13/css-rotation/">好玩：旋转的八卦</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>利用CSS动画可以制作一个旋转的八卦：</p>
+<p></p><p class="sassmeister" data-gist-id="10622268" data-height="480"><a href="http://sassmeister.com/gist/10622268" target="_blank" rel="noopener">Play with this gist on SassMeister.</a></p><script src="http://static.sassmeister.com/js/embed.js" async></script><p></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/04/13/css-rotation/" data-id="cjtvalbr1002354mur16mlqcv" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/04/13/css-rotation/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-binomial-distribution-and-poisson-distribution" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/13/binomial-distribution-and-poisson-distribution/" class="article-date">
+  <time datetime="2014-04-13T19:08:00.000Z" itemprop="datePublished">2014-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/13/binomial-distribution-and-poisson-distribution/">二项分布与泊松分布</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>二项分布</li>
+</ul>
+<p>在概率论和统计学中，二项分布是n个 <strong>独立</strong> 的 <strong>是/非</strong> 试验中成功的次数的离散概率分布，其中每次试验的成功概率为p。这样的单次成功/失败试验又称为 <strong>伯努利试验</strong> 。</p>
+<p>在n次独立的伯努利试验中有k次成功的概率为：(<code>$q=1-p$</code>)<br>$$<br>P(X=k)=\dbinom{n}{k}p^kq^{n-k}<br>$$<br>其中${n\choose k}=\frac{n!}{k!(n-k)!}$是二项式系数（这就是二项分布的名称的由来）</p>
+<h2 id="例1："><a href="#例1：" class="headerlink" title="例1："></a>例1：</h2><p>一枚硬币是不均匀的，出现头像(H)的概率是2/3，假定每次掷硬币是独立的，当掷7次硬币恰好4次出现头像的概率是多少？<br>此例属于伯努利试验，我们用p=2/3表示出现头像的概率，q表示出现反面的概率(T)，则q=1-p=1/3, 随机变量X表示出现k次头像<br>$$<br>P(X=4)=\dbinom{7}{4}\left(\frac{2}{3}\right)^4\left(\frac{1}{3}\right)^3<br>$$</p>
+<ul>
+<li>泊松分布</li>
+</ul>
+<p>泊松分布是一种统计与概率学里常见到的离散概率分布。泊松分布可以看成是二项分布的一种极限情形。</p>
+<p>泊松分布的概率质量函数为：<br>$$<br>P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!}<br>$$<br>泊松分布的参数λ是单位时间(或单位面积)内随机事件的平均发生率。</p>
+<ul>
+<li>泊松分布使用范围</li>
+</ul>
+<ol>
+<li>给定区域内的特定事件产生的次数，可以是根据时间，长度，面积来定义；</li>
+<li>各段相等区域内的特定事件产生的概率是一样的；</li>
+<li>各区域内，事件发生的概率是相互独立的；</li>
+<li>当给定区域变得非常小时，两次以上事件发生的概率趋向于0。</li>
+</ol>
+<ul>
+<li>泊松分布的来源</li>
+</ul>
+<p>在二项分布的伯努利试验中，如果试验次数n很大，二项分布的概率p很小，且乘积λ= n p比较适中，则事件出现的次数的概率可以用泊松分布来逼近。事实上，二项分布可以看作泊松分布在离散时间上的对应物。</p>
+<p>首先，回顾$e$的定义：<br>$$<br>\lim_{n\to\infty}\left(1-{\lambda \over n}\right)^n=e^{-\lambda}<br>$$</p>
+<p>二项分布的定义：<br>$$<br>P(X=k)={n \choose k} p^k (1-p)^{n-k}.<br>$$</p>
+<h2 id="例2："><a href="#例2：" class="headerlink" title="例2："></a>例2：</h2><p>有一繁忙的汽车站，每天有大量汽车通过，设每辆汽车，在一天的某段时间内出事故的概率为0.0001，在每天的该段时间内有1000辆汽车通过，问出事故的次数不小于2的概率是多少?</p>
+<p>由于p=0.0001很小，n=1000很大，而且事故发生的概率是相互独立的，所以满足泊松分布条件。我们先计算出现0，1次事故的概率：($\lambda=np=0.1$)<br>$$<br>P(X=0)=\frac{e^{-0.1}0.1^0}{0!}=e^{-0.1}=0.9048374180359595<br>$$<br>$$<br>P(X=1)=\frac{e^{-0.1}0.1^1}{1!}=0.1e^{-0.1}=0.0904837418035959<br>$$<br>所以出事故的次数不小于2的概率是$1-P(X=0)-P(X=1)=0.0046788401604445085$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/04/13/binomial-distribution-and-poisson-distribution/" data-id="cjtvalbqz001z54mul7cun6zo" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/04/13/binomial-distribution-and-poisson-distribution/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python-en-cn-dictionary" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/10/python-en-cn-dictionary/" class="article-date">
+  <time datetime="2014-04-10T06:32:00.000Z" itemprop="datePublished">2014-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/10/python-en-cn-dictionary/">用python实现查单词小程序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Linux下查询单词一直不太方便，现在利用python写一个简单爬虫，到<s><a href="http://dict.youdao.com/" target="_blank" rel="noopener">有道词典</a></s><a href="http://cn.bing.com/dict/" target="_blank" rel="noopener">Bing</a>上去查询英文单词。<br>实现英翻汉。</p>
+<script src="https://gist.github.com/josephok/10435492.js"></script>
+
+
+<p><img src="http://ww3.sinaimg.cn/large/90b90757gw1eg8ddcb9y7j20dz04l3yx.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/04/10/python-en-cn-dictionary/" data-id="cjtvalbqy001x54mu2pt8zf5c" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/04/10/python-en-cn-dictionary/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

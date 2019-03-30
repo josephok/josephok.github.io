@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习技术过程中的笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Passion of life">
+<meta property="og:url" content="https://josephok.github.io/page/7/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="学习技术过程中的笔记">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Passion of life">
+<meta name="twitter:description" content="学习技术过程中的笔记">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-python-study-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/02/11/python-study-notes/" class="article-date">
+  <time datetime="2014-02-11T17:48:00.000Z" itemprop="datePublished">2014-02-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/02/11/python-study-notes/">Python学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>内置数据类型</li>
+</ul>
+<ol>
+<li>Booleans【布尔型】 或为 True［真］ 或为 False［假］。</li>
+<li>Numbers【数值型】 可以是 Integers【整数】（1 和 2）、Floats【浮点数】（1.1 和 1.2）、Fractions【分数】（1/2 和 2/3）；甚至是 Complex Number【复数】。</li>
+<li>Strings【字符串型】 是 Unicode 字符序列，例如： 一份 html 文档。</li>
+<li>Bytes【字节】 和 Byte Arrays【字节数组】， 例如: 一份 jpeg 图像文件。</li>
+<li>Lists【列表】 是值的有序序列。</li>
+<li>Tuples【元组】 是有序而不可变的值序列。</li>
+<li>Sets【集合】 是装满无序值的包裹。</li>
+<li>Dictionaries【字典】 是键值对的无序包裹。</li>
+</ol>
+<ul>
+<li>内置异常类型</li>
+</ul>
+<ol>
+<li><strong>BaseException</strong>: 所有内建异常的基础类。</li>
+<li><strong>Exception</strong>: 所有的内建的、非系统预置的异常均继承这个类，所有用户定义的异常也应该继承这个类。</li>
+<li><strong>StandardError</strong>: 所有内建异常的基础类，除了StopIteration, GeneratorExit, KeyboardInterrupt和SystemExit。 StandardError 是继承Exception而来的。</li>
+<li><strong>ArithmeticError</strong>: 一些内建算术错误异常的基类，如： OverflowError, ZeroDivisionError,FloatingPointError.</li>
+<li><strong>LookupError</strong>: 当一个键值或索引在数组或序列中无效时所触发的所有异常的基类: IndexError,KeyError. 它也会由sys.setdefaultencoding()直接触发。</li>
+<li><strong>EnvironmentError</strong>: 所有能发生在Python系统之外的异常的基类:IOError, OSError.</li>
+<li><strong>AssertionError</strong>: 当判定条件失败时，触发此异常。</li>
+<li><strong>AttributeError</strong>: 当一个属性被引用或赋值时出现错误会引发此异常（当一个对象不支持属性被引用或赋值时，会触发TypeError异常）</li>
+<li><strong>EOFError</strong>: 当内建函数(<code>input() 或 raw_input()</code>) 达到文件尾时触发此异常。</li>
+<li><strong>FloatingPointError</strong>: 浮点操作失败时触发此异常。</li>
+<li><strong>GeneratorExit</strong>: 当调用生成器的close() 方法时，触发此异常。它直接继承了Exception 用于替代 StandardError ，毕竟这是一个技术手段并不是一个错误异常。</li>
+<li><strong>IOError</strong>: 当I/O操作(如一个 print 语句、内建 open()函 数或调用文件对象的某个方法)因为I/O相关的问题而失败时触发此异常，例如：“无此文件”或“没有足够的磁盘空间”。这个类继承于EnvironmentError。</li>
+<li><strong>ImportError</strong>: 当 import 语句无法找到对应的模块定义或from…import 无法找到对应名字的内容时触发此异常。</li>
+<li><strong>IndexError</strong>: 当一个序列子集超出范围时触发此异常。(索引会被截取以保证在合理的范围内； 如果索引x不是一个整数， TypeError异常会被触发)</li>
+<li><strong>KeyError</strong>: 当键值并不存在于图（字典）中，会触发此异常。</li>
+<li><strong>KeyboardInterrupt</strong>: 当用户按下终止键时触发此异常（通常是Ctrl+C或者Delete键）。</li>
+<li><strong>MemoryError:</strong> 当某些操作导致内存耗尽但应能恢复的情况下（通过删除一些对象来释放内存），触发此异常。</li>
+<li><strong>NameError</strong>: 当无法找到对应名字的本地变量或全局变量时，触发此异常。这只针对无效的名字。 附带参数是包含了无法找到的名字的错误信息。</li>
+<li><strong>NotImplementedError</strong>: 这个异常继承于 RuntimeError. 用户定义基类后，抽象方法可以触发这个异常来要求派生类必须实现该抽象方法。</li>
+<li><strong>OSError</strong>: 这个类继承于 EnvironmentError ，主要用于os模块的os.error异常。</li>
+<li><strong>OverflowError</strong>: 当一个算术运算太大导致数值溢出时触发此异常。</li>
+<li><strong>ReferenceError</strong>: weakref.proxy()函数产生一个弱引用代理时，此异常被触发。弱引用代理通常访问一个被引用对象的属性，但这个对象已经被垃圾回收。更多的弱引用信息，请参考weakref模块。</li>
+<li><strong>RuntimeError</strong>: 当一个无法分类的错误发生时，触发该异常。</li>
+<li><strong>StopIteration</strong>: 当一个迭代器的next()方法无法获得更多的值时，触发该异常。</li>
+<li><strong>SyntaxError</strong>: 当语法解析器遇到语法错误时触发此异常。</li>
+<li><strong>SystemError</strong>: 当解释程序遇到一个内部错误，但是情况看来可以纠正，不需要放弃退出。辅助参数是一个字符串，标明在更顶层什么出错了。</li>
+<li><strong>SystemExit</strong>: 这个异常被 sys.exit() 函数触发。当这个异常没有被有效处理，Python终止程序并退出；没有堆栈信息打印。如果辅助参数是整数，它表示系统退出状态（和C语言的exit() 函数类似）；如果它是空则退出状态为0；如果它是其它类型（例如字符串），这个对象会被打印输出，并且退出状态为1。</li>
+<li><strong>TypeError</strong>: 当一个操作或函数调用一个不恰当的对象类型时，触发此异常。附带参数是一个字符串，表明具体的不匹配的类型。</li>
+<li><strong>UnboundLocalError</strong>: 当在一个函数或方法内引用本地变量但变量并没有赋值时，触发此异常。</li>
+<li><strong>UnicodeDecodeError</strong>: 当一个Unicode相关的编码、解码错误发生时，触发此异常。它是ValueError的子类。</li>
+<li><strong>UnicodeEncodeError</strong>: 在文字编码时发生一个Unicode相关的错误则触发此异常。它是UnicodeError的子类。</li>
+<li><strong>UnicodeError</strong>: 在文字解码时发生一个Unicode相关的错误则触发此异常。它是UnicodeError的子类。</li>
+<li><strong>UnicodeTranslateError</strong>: 在转换文字编码时，当一个Unicode相关的错误发生，触发此异常。它是UnicodeError的子类。</li>
+<li><strong>ValueError</strong>: 当一个内建操作或函数接收了参数，参数的类型是对的但值并不符合并且无法匹配一个更加精准的异常（例如：IndexError）， 触发此异常。</li>
+<li><strong>WindowsError</strong>: 当Windows系统下特定的错误发生或当错误编号无法映射 errno值时，触发此异常。</li>
+<li><strong>ZeroDivisionError</strong>: 当除法或取余操作分母为0时，触发此异常。附带的参数是一个文字信息，标明了运算类型和具体运算数据。</li>
+</ol>
+<p>异常处理详解：<a href="http://www.w3cschool.cc/python/python-exceptions.html" target="_blank" rel="noopener">http://www.w3cschool.cc/python/python-exceptions.html</a></p>
+<ul>
+<li>Python yield</li>
+</ul>
+<p>带有 yield 的函数在 Python 中被称之为 generator（生成器）。<br>用yield生成Fibonacci序列：</p>
+<figure class="highlight python"><figcaption><span>fibonacci.py</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(max)</span>:</span> </span><br><span class="line">    n, a, b = <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span> </span><br><span class="line">    <span class="keyword">while</span> n &lt; max: </span><br><span class="line">        <span class="keyword">yield</span> b </span><br><span class="line">        a, b = b, a + b </span><br><span class="line">        n = n + <span class="number">1</span></span><br><span class="line">        </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> fib(<span class="number">5</span>):</span><br><span class="line">	print(i)</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>yield 的作用就是把一个函数变成一个 generator，带有 yield 的函数不再是一个普通函数，Python 解释器会将其视为一个 generator，调用 fib(5) 不会执行 fib 函数，而是返回一个 iterable 对象！在 for 循环执行时，每次循环都会执行 fib 函数内部的代码，执行到 yield b 时，fib 函数就返回一个迭代值，下次迭代时，代码从 yield b 的下一条语句继续执行，而函数的本地变量看起来和上次中断执行前是完全一样的，于是函数继续执行，直到再次遇到 yield。<br>调用fib函数可以看到其返回一个generator object:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>fab(<span class="number">5</span>)</span><br><span class="line">&lt;generator object fib at <span class="number">0x010DEE40</span>&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>import</li>
+</ul>
+<p>使用import导入模块，可以自定义模块，模块名即文件名不含后缀。在程序中使用import时，Python解释器会依照特定路径搜索。可以使用sys.path查看：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> sys</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sys.path</span><br><span class="line">[<span class="string">''</span>, <span class="string">'C:\\Python33\\Lib\\idlelib'</span>, <span class="string">'C:\\WINDOWS\\system32\\python33.zip'</span>, <span class="string">'C:\\Python33\\DLLs'</span>, <span class="string">'C:\\Python33\\lib'</span>, <span class="string">'C:\\Python33'</span>, <span class="string">'C:\\Python33\\lib\\site-packages'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sys.path[<span class="number">0</span>]</span><br><span class="line"><span class="string">''</span></span><br></pre></td></tr></table></figure></p>
+<p>sys.path[0]表示当前目录。</p>
+<ul>
+<li><code>__name__</code> 变量</li>
+</ul>
+<p>由于主程序代码无论模块是被导入还是被直接执行都会运行，我们必须知道模块如何决定运行方向。一个应用程序可能需要导入另一个应用程序的一个模块，以便重用一些有用的代码。如果模块是被导入， <code>__name__</code> 的值为模块名字；如果模块是被直接执行， <code>__name__</code> 的值为 ‘<strong>main</strong>‘ </p>
+<ul>
+<li>运算符优先级(从高到低)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>(...), [...], {...}</code></td>
+<td>创建元组,列表,字典</td>
+</tr>
+<tr>
+<td>`…`</td>
+<td>字符串转换</td>
+</tr>
+<tr>
+<td><code>s[i]</code>, <code>s[i:j]</code>, <code>.attr</code></td>
+<td>索引,切片,属性</td>
+</tr>
+<tr>
+<td><code>f(...)</code></td>
+<td>函数调用</td>
+</tr>
+<tr>
+<td><code>+x</code> , <code>-x</code> , <code>~x</code></td>
+<td>一元运算符</td>
+</tr>
+<tr>
+<td><code>x ** y</code></td>
+<td>乘方</td>
+</tr>
+<tr>
+<td><code>x * y</code> , <code>x / y</code> , <code>x % y</code></td>
+<td>乘,除,取模</td>
+</tr>
+<tr>
+<td><code>x + y</code> , <code>x - y</code></td>
+<td>加,减</td>
+</tr>
+<tr>
+<td><code>x &lt;&lt; y</code> , <code>x &gt;&gt; y</code></td>
+<td>移位</td>
+</tr>
+<tr>
+<td><code>x &amp; y</code></td>
+<td>按位与</td>
+</tr>
+<tr>
+<td><code>x ^ y</code></td>
+<td>按位异或</td>
+</tr>
+<tr>
+<td>按位或</td>
+<td>按位或</td>
+</tr>
+<tr>
+<td><code>in</code>, <code>not in</code>, <code>is</code>, <code>is not</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code>, <code>==</code></td>
+<td>比较,身份,序列成员检测</td>
+</tr>
+<tr>
+<td><code>not x</code></td>
+<td>逻辑非</td>
+</tr>
+<tr>
+<td><code>x and y</code></td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td><code>x or y</code></td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td><code>lambda args : expr</code></td>
+<td>lambda函数表达式</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>类成员访问控制</li>
+</ul>
+<p>Python并不支持正式的访问控制。但是有一个惯例，那就是以单下划线<code>_</code>开头的成员被认为是protected的(本类和子类是可以访问的)，以双下划线<code>__</code>开头的成员被认为是private的(只在本类可以访问)。</p>
+<ul>
+<li><code>__slots__</code>用法</li>
+</ul>
+<p>一般来说，一个实例可以动态地添加任意新的属性，Python中每个实例均有一个<code>__dict__</code>属性，其为字典类型，它保存着实例的所有属性。如果不想在实例化时生成<code>__dict__</code>，我们可以使用<code>__slots__</code>。具体做法是在类中申明<code>__slots__ = (属性1, 属性2, 属性3...)</code>，那么类的实例对象便不能再添加新的属性。<br>举例说明：<br>先不用<code>__slots__</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age, height)</span>:</span></span><br><span class="line">		self._name = name</span><br><span class="line">		self._age = age</span><br><span class="line">		self._height = height</span><br><span class="line"></span><br><span class="line">zhangsan = Person(<span class="string">'zhangsan'</span>, <span class="number">21</span>, <span class="number">180</span>)</span><br></pre></td></tr></table></figure></p>
+<p>查看<code>__dict__</code>：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>zhangsan.__dict__</span><br><span class="line">&#123;<span class="string">'_name'</span>: <span class="string">'zhangsan'</span>, <span class="string">'_height'</span>: <span class="number">180</span>, <span class="string">'_age'</span>: <span class="number">21</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>动态添加成员变量：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>zhangsan._weight = <span class="number">65</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>zhangsan.__dict__</span><br><span class="line">&#123;<span class="string">'_name'</span>: <span class="string">'zhangsan'</span>, <span class="string">'_weight'</span>: <span class="number">65</span>, <span class="string">'_height'</span>: <span class="number">180</span>, <span class="string">'_age'</span>: <span class="number">21</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果使用<code>__slots__</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line">	__slots__ = (<span class="string">'_name'</span>, <span class="string">'_age'</span>, <span class="string">'_height'</span>)</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age, height)</span>:</span></span><br><span class="line">		self._name = name</span><br><span class="line">		self._age = age</span><br><span class="line">		self._height = height</span><br><span class="line"></span><br><span class="line">zhangsan = Person(<span class="string">'zhangsan'</span>, <span class="number">21</span>, <span class="number">180</span>)</span><br></pre></td></tr></table></figure>
+<p>再来查看<code>__dict__</code>：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>zhangsan.__dict__</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;pyshell#20&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    zhangsan.__dict__</span><br><span class="line">AttributeError: <span class="string">'Person'</span> object has no attribute <span class="string">'__dict__'</span></span><br></pre></td></tr></table></figure></p>
+<p>添加成员变量：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>zhangsan._weight = <span class="number">65</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;pyshell#21&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    zhangsan._weight = <span class="number">65</span></span><br><span class="line">AttributeError: <span class="string">'Person'</span> object has no attribute <span class="string">'_weight'</span></span><br></pre></td></tr></table></figure></p>
+<p>可见使用<code>__slots__</code>之后类中的成员变量便不可再更改。<br>什么时候使用<code>__slots__</code>？<br>一般情况下不使用<code>__slots__</code>，只有在生成大量实例并且实例的成员变量固定的情况下使用<code>__slots__</code>可以节约内存。(不用保存<code>__dict__</code>)<br>这里有一个例子来说明节约内存的情况：<a href="http://tech.oyster.com/save-ram-with-python-slots/" target="_blank" rel="noopener">http://tech.oyster.com/save-ram-with-python-slots/</a></p>
+<p>文章结尾有一条：<br><strong>Warning: </strong> Don’t prematurely optimize and use this everywhere! It’s not great for code maintenance, andit really only saves you when you have thousands of instances.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/02/11/python-study-notes/" data-id="cjtvalbpy000t54mueygiohzj" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/02/11/python-study-notes/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-yupoo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/16/yupoo/" class="article-date">
+  <time datetime="2014-01-16T22:15:00.000Z" itemprop="datePublished">2014-01-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Miscellaneous/">Miscellaneous</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/01/16/yupoo/">来自又拍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://pic.yupoo.com/josephok/D8PwbJ60/medish.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/01/16/yupoo/" data-id="cjtvalbpw000r54musjlecdqw" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/01/16/yupoo/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dijkstras-shortest-path-algorithm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/31/dijkstras-shortest-path-algorithm/" class="article-date">
+  <time datetime="2013-12-31T01:39:00.000Z" itemprop="datePublished">2013-12-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/31/dijkstras-shortest-path-algorithm/">最短路径算法(Dijkstra’s shortest path algorithm)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>算法描述：</p>
+<p>给定一个图和一个起点，找出该起点到图中其他各顶点的最短路径。Dijkstra算法是一种<a href="http://en.wikipedia.org/wiki/Greedy_algorithm" target="_blank" rel="noopener">贪心算法</a>。</p>
+<p>Dijkstra算法和<a href="http://en.wikipedia.org/wiki/Prim%27s_algorithm" target="_blank" rel="noopener">Prim算法</a>非常相似。我们可以生成一棵以起点为根的最短路径树(shortest path tree)。然后我们维护2个集合：一个集合是最短路径树中的所有顶点(假设为A)；另一个集合是其他顶点(假设为B)。<br>通过迭代，每次在B中找一个到起点距离最短的顶点，加入到A中；当B为空集时，算法结束。</p>
+<p>下面是具体的算法：</p>
+<p>(1) 创建一个sptSet (最短路径树集合)，初始化该集合为空集。<br>(2) 给图中所有顶点赋值一个距离，初始化起点为0，其他顶点为INFINITE(无穷大&#8734;)<br>(3)只要sptSet没有包含所有顶点：<br>a)从B中选一个顶点u, u的距离值最小。<br>b)将u加入sptSet.<br>c)更新u的邻接顶点的距离值，对于每一个邻接顶点v, 如果u的距离值加上边u-v的权值小于v的距离值，那么就更新v的距离值。(更新为u的距离值加上u-v的权值)</p>
+<p>来看一个具体的例子:</p>
+<p>选取顶点0为起始点。sptSet现在是空集，各顶点的距离值分别是{0, &#8734;, &#8734;, &#8734;, &#8734;, &#8734;, &#8734;, &#8734;}<br>顶点0加入到sptSet集合中，sptSet为{0}，然后更新顶点0的邻接顶点1和7，此时1的距离值为4, 7的距离值为8。<br>sptSet中的顶点显示为绿色：(&#8734;的顶点未予显示)<br>选取距离值最小但不在sptSet集合中的顶点，因为1的距离值最小，所以将1加入sptSet中，现在sptSet变为{0, 1}。更新1的邻接顶点的距离值：2的距离值变为4+8=12<br> 现在继续选取距离值最小但不在sptSet集合中的顶点，此时7为最小，所以选取7，sptSet变为{0, 1, 7}。接着更新7的邻接顶点：6的距离值变为8+1=9，8的距离值变为8+7=15<br>现在选取顶点6，sptSet变为{0, 1, 7, 6}。接着更新6的邻接顶点：5的距离值变为9+2=11，8的距离值为9+6=15<br>现在选取顶点5，sptSet变为{0, 1, 7, 6, 5}，更新5的邻接顶点：2为11+4=15&gt;12故不更新，3为11+14=25，4为11+10=21<br><img src="http://ww3.sinaimg.cn/large/90b90757gw1ec50hbzue9j20hl08k74j.jpg" alt=""><br>现在选取顶点2，sptSet变为{0, 1, 7, 6, 5, 2}，更新2的邻接顶点：3为12+7=19\&lt;25 故更新3的距离值为19，8为12+2=14\<15 故更新8的距离值为14，5为12+4="16">11故不更新。<br><img src="https://ww1.sinaimg.cn/large/90b90757gw1ec50rnhr0vj20hl08kglv.jpg" alt=""><br>现在选取顶点8，sptSet变为{0, 1, 7, 6, 5, 2, 8}，8的邻接顶点：2, 7, 6不用更新。<br><img src="https://ww1.sinaimg.cn/large/90b90757gw1ec50wqfo85j20hl08kmxf.jpg" alt=""><br>现在选取顶点3，sptSet变为{0, 1, 7, 6, 5, 2, 8, 3}，3的邻接顶点2, 5, 4不用更新。<br><img src="http://ww3.sinaimg.cn/large/90b90757gw1ec511amgwbj20hl08kq37.jpg" alt=""><br>最后选取顶点4，sptSet变为{0, 1, 7, 6, 5, 2, 8, 3, 4}，此时已经包含图中所有顶点，故为最终结果。<br><img src="https://ww1.sinaimg.cn/large/90b90757gw1ec511vb6c5j20hl08kq37.jpg" alt=""></15></p>
+<p>C语言实现：<br>我们使用一个boolean数组sptSet[]表示SPT中的顶点，如果stpSet[v]=true, 则顶点v在SPT中。数组dist[]存贮所有顶点的最短路径值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A C / C++ program for Dijkstra's single source shortest path algorithm.</span></span><br><span class="line"><span class="comment">// The program is for adjacency matrix representation of the graph</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;<span class="literal">false</span>, <span class="literal">true</span>&#125;<span class="keyword">bool</span>;</span><br><span class="line"><span class="comment">// Number of vertices in the graph</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> V 9</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// A utility function to find the vertex with minimum distance value, from</span></span><br><span class="line"><span class="comment">// the set of vertices not yet included in shortest path tree</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(<span class="keyword">int</span> dist[], <span class="keyword">bool</span> sptSet[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">// Initialize min value</span></span><br><span class="line">   <span class="keyword">int</span> min = INT_MAX, min_index;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; V; v++)</span><br><span class="line">     <span class="keyword">if</span> (sptSet[v] == <span class="literal">false</span> &amp;&amp; dist[v] &lt;= min)</span><br><span class="line">         min = dist[v], min_index = v;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> min_index;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// A utility function to print the constructed distance array</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printSolution</span><span class="params">(<span class="keyword">int</span> dist[], <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"Vertex   Distance from Source\n"</span>);</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++)</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d \t\t %d\n"</span>, i, dist[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Funtion that implements Dijkstra's single source shortest path algorithm</span></span><br><span class="line"><span class="comment">// for a graph represented using adjacency matrix representation</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> graph[V][V], <span class="keyword">int</span> src)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> dist[V];     <span class="comment">// The output array.  dist[i] will hold the shortest</span></span><br><span class="line">                      <span class="comment">// distance from src to i</span></span><br><span class="line"></span><br><span class="line">     <span class="keyword">bool</span> sptSet[V]; <span class="comment">// sptSet[i] will true if vertex i is included in shortest</span></span><br><span class="line">                     <span class="comment">// path tree or shortest distance from src to i is finalized</span></span><br><span class="line"></span><br><span class="line">     <span class="comment">// Initialize all distances as INFINITE and stpSet[] as false</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++)</span><br><span class="line">        dist[i] = INT_MAX, sptSet[i] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Distance of source vertex from itself is always 0</span></span><br><span class="line">     dist[src] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Find shortest path for all vertices</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> count = <span class="number">0</span>; count &lt; V<span class="number">-1</span>; count++)</span><br><span class="line">     &#123;</span><br><span class="line">       <span class="comment">// Pick the minimum distance vertex from the set of vertices not</span></span><br><span class="line">       <span class="comment">// yet processed. u is always equal to src in first iteration.</span></span><br><span class="line">       <span class="keyword">int</span> u = minDistance(dist, sptSet);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// Mark the picked vertex as processed</span></span><br><span class="line">       sptSet[u] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// Update dist value of the adjacent vertices of the picked vertex.</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; V; v++)</span><br><span class="line"></span><br><span class="line">         <span class="comment">// Update dist[v] only if is not in sptSet, there is an edge from</span></span><br><span class="line">         <span class="comment">// u to v, and total weight of path from src to  v through u is</span></span><br><span class="line">         <span class="comment">// smaller than current value of dist[v]</span></span><br><span class="line">         <span class="keyword">if</span> (!sptSet[v] &amp;&amp; graph[u][v] &amp;&amp; dist[u] != INT_MAX</span><br><span class="line">                                       &amp;&amp; dist[u]+graph[u][v] &lt; dist[v])</span><br><span class="line">            dist[v] = dist[u] + graph[u][v];</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// print the constructed distance array</span></span><br><span class="line">     printSolution(dist, V);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// driver program to test above function</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">/* Let us create the example graph discussed above */</span></span><br><span class="line">   <span class="keyword">int</span> graph[V][V] = &#123;&#123;<span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">0</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">4</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">11</span>, <span class="number">0</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">14</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">14</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">6</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">8</span>, <span class="number">11</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">7</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">0</span>&#125;</span><br><span class="line">                     &#125;;</span><br><span class="line"></span><br><span class="line">    dijkstra(graph, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Vertex   Distance from Source</span><br><span class="line">0                0</span><br><span class="line">1                4</span><br><span class="line">2                12</span><br><span class="line">3                19</span><br><span class="line">4                21</span><br><span class="line">5                11</span><br><span class="line">6                9</span><br><span class="line">7                8</span><br><span class="line">8                14</span><br></pre></td></tr></table></figure>
+<p>时间复杂度是\( O(V^2)\)，Dijkstra算法不适用于带负权值的图。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/12/31/dijkstras-shortest-path-algorithm/" data-id="cjtvalbpv000o54mu0wssno9w" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/12/31/dijkstras-shortest-path-algorithm/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-modular-exponentiation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/09/modular-exponentiation/" class="article-date">
+  <time datetime="2013-12-09T01:41:00.000Z" itemprop="datePublished">2013-12-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/09/modular-exponentiation/">同余幂求解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在密码学中重要的是能有效地求$ b^n mod (m) $, 其中$b, n, m$都是大整数。先计算$b^n$，再求$b^n$除以$m$的余数是不可行的，因为$b^n$是非常大的数。可行的是一种利用指数n的二进制展开的算法。这个算法依次求<br>$$<br>b mod (m), b^2 mod (m), b^4 mod (m), …, b^{2^{k-1}} mod (m)<br>$$<br>把其中$a_j = 1$的那些项$b^{2^j} mod(m)$相乘，在每次乘法后求乘积除以m的余数。</p>
+<p>算法伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = 1</span><br><span class="line">power = b mod(m)</span><br><span class="line">for i = 0 to k-1</span><br><span class="line">begin</span><br><span class="line">if a_i = 1 then x = x * power mod(m)</span><br><span class="line">power = power * power mod(m)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/12/09/modular-exponentiation/" data-id="cjtvalbpt000m54muxsk645q4" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/12/09/modular-exponentiation/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-logical-equivalence" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/05/logical-equivalence/" class="article-date">
+  <time datetime="2013-12-05T22:42:00.000Z" itemprop="datePublished">2013-12-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/05/logical-equivalence/">逻辑等价</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果p ↔ q是永真式，命题p和q称为是逻辑等价的。记号p≡q表示p和q逻辑等价。</p>
+<ul>
+<li>逻辑等价公式</li>
+</ul>
+<ol>
+<li><p>Identity laws 恒等律：</p>
+<blockquote>
+<p>p∧T≡p<br>p∨F≡P</p>
+</blockquote>
+</li>
+<li><p>Domination laws 支配律：</p>
+<blockquote>
+<p>p∨T≡T<br>p∧F≡F</p>
+</blockquote>
+</li>
+<li><p>Idempotent laws 幂等律:</p>
+<blockquote>
+<p>p∨p≡p<br>p∧p≡p</p>
+</blockquote>
+</li>
+<li><p>Double negation laws 双非律:</p>
+<blockquote>
+<p>﹁(﹁p)≡p</p>
+</blockquote>
+</li>
+<li><p>Commutative laws 交换律:</p>
+<blockquote>
+<p>p∨q≡q∨p<br>p∧q≡q∧p</p>
+</blockquote>
+</li>
+<li><p>Assocative laws 结合律:</p>
+<blockquote>
+<p>(p∨q)∨r≡p∨(q∨r)<br>(p∧q)∧r≡p∧(q∧r)</p>
+</blockquote>
+</li>
+<li><p>Distributive laws 分配律:</p>
+<blockquote>
+<p>p∨(q∧r)≡(p∨q)∧(p∨r)<br>p∧(q∧r)≡(p∧q)∨(p∧r)</p>
+</blockquote>
+</li>
+<li><p>De Morgan’s laws 德摩根律:</p>
+<blockquote>
+<p>﹁(p∧q)≡﹁p∨﹁q<br>﹁(p∨q)≡﹁p∧﹁q</p>
+</blockquote>
+</li>
+<li><p>Absorption laws 吸收律:</p>
+<blockquote>
+<p>p∨(p∧q)≡p<br>p∧(p∨q)≡p</p>
+</blockquote>
+</li>
+<li><p>Negation laws 否定律:</p>
+<blockquote>
+<p>p∨﹁p≡T<br>p∧﹁p≡F</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>包括蕴涵的逻辑等价：</li>
+</ul>
+<ol>
+<li>p→q≡﹁p∨q</li>
+<li>p→q≡﹁q→﹁p</li>
+<li>p∨q≡﹁p→q</li>
+<li>p∧q≡﹁(p→﹁q)</li>
+<li>﹁(p→q)≡p∧﹁q</li>
+<li>(p→q)∧(p→r)≡p→(q∧r)</li>
+<li>(p→q)∨(p→r)≡p→(q∨r)</li>
+<li>(p→r)∧(q→r)≡(p∧q)→r</li>
+<li>(p→r)∨(q→r)≡(p∨q)→r</li>
+</ol>
+<ul>
+<li>包含双蕴涵（逻辑双条件）的逻辑等价：</li>
+</ul>
+<ol>
+<li>p↔q≡(p→q)∧(q→p)</li>
+<li>p↔q≡﹁p↔﹁q</li>
+<li>p↔q≡(p∧q)∨(﹁p∧﹁q)</li>
+<li>﹁(p↔q)≡p↔﹁q</li>
+</ol>
+<h3 id="证明-p∧q-→q为永真式"><a href="#证明-p∧q-→q为永真式" class="headerlink" title="证明(p∧q)→q为永真式:"></a>证明(p∧q)→q为永真式:</h3><p>证明：(p∧q)→q ⇔ ﹁(p∧q)∨q<br>                     ⇔ (﹁p∨﹁q)∨q (根据德摩根律)<br>             ⇔ ﹁p∨(﹁q∨q) (根据结合律)<br>             ⇔ ﹁p∨T (根据否定律)<br>             ⇔ T (根据支配律)<br>由此得证。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/12/05/logical-equivalence/" data-id="cjtvalbpq000i54muxiicm6bv" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/12/05/logical-equivalence/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

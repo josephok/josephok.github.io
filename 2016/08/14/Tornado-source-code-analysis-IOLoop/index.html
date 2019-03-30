@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Tornado源码解析之IOLoop | Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="0. 简介Tornado是一个用Python语言写成的Web服务器兼Web应用框架，由FriendFeed公司在自己的网站FriendFeed中使用，被Facebook收购以后框架以开源软件形式开放给大众。 tornado最大的特点就是其支持异步IO，所以它有着优异的性能。下表是和一些其他Web框架与服务器的对比:(处理器为 AMD Opteron, 主频2.4GHz, 4核) (来源wikipe">
+<meta name="keywords" content="Python,Tornado">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tornado源码解析之IOLoop">
+<meta property="og:url" content="https://josephok.github.io/2016/08/14/Tornado-source-code-analysis-IOLoop/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="0. 简介Tornado是一个用Python语言写成的Web服务器兼Web应用框架，由FriendFeed公司在自己的网站FriendFeed中使用，被Facebook收购以后框架以开源软件形式开放给大众。 tornado最大的特点就是其支持异步IO，所以它有着优异的性能。下表是和一些其他Web框架与服务器的对比:(处理器为 AMD Opteron, 主频2.4GHz, 4核) (来源wikipe">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/90b90757gy1fql867ghr9j20xc0gowf7.jpg">
+<meta property="og:updated_time" content="2019-03-30T09:24:46.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tornado源码解析之IOLoop">
+<meta name="twitter:description" content="0. 简介Tornado是一个用Python语言写成的Web服务器兼Web应用框架，由FriendFeed公司在自己的网站FriendFeed中使用，被Facebook收购以后框架以开源软件形式开放给大众。 tornado最大的特点就是其支持异步IO，所以它有着优异的性能。下表是和一些其他Web框架与服务器的对比:(处理器为 AMD Opteron, 主频2.4GHz, 4核) (来源wikipe">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/90b90757gy1fql867ghr9j20xc0gowf7.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP -->
+  
+    <link rel="amphtml" href="https://josephok.github.io/2016/08/14/Tornado-source-code-analysis-IOLoop//amp/index.html"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Tornado-source-code-analysis-IOLoop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/" class="article-date">
+  <time datetime="2016-08-14T14:33:57.000Z" itemprop="datePublished">2016-08-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="https://ws1.sinaimg.cn/large/90b90757gy1fql867ghr9j20xc0gowf7.jpg" rel="gallery_cjtvalbrg002n54mun259ecb9">
+        <img src="https://ws1.sinaimg.cn/large/90b90757gy1fql867ghr9j20xc0gowf7.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tornado源码解析之IOLoop
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0. 简介"></a>0. 简介</h1><p><a href="https://github.com/tornadoweb/tornado" target="_blank" rel="noopener">Tornado</a>是一个用Python语言写成的Web服务器兼Web应用框架，由FriendFeed公司在自己的网站FriendFeed中使用，被Facebook收购以后框架以开源软件形式开放给大众。</p>
+<p>tornado最大的特点就是其支持异步IO，所以它有着优异的性能。下表是和一些其他Web框架与服务器的对比:(处理器为 AMD Opteron, 主频2.4GHz, 4核) (来源<a href="https://zh.wikipedia.org/wiki/Tornado" target="_blank" rel="noopener">wikipedia</a>)</p>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>部署</th>
+<th>请求/每秒</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tornado</td>
+<td>nginx, 4进程</td>
+<td>8213</td>
+</tr>
+<tr>
+<td>Tornado</td>
+<td>1个单线程进程</td>
+<td>3353</td>
+</tr>
+<tr>
+<td>Django</td>
+<td>Apache/mod_wsgi</td>
+<td>2223</td>
+</tr>
+<tr>
+<td>web.py</td>
+<td>Apache/mod_wsgi</td>
+<td>2066</td>
+</tr>
+<tr>
+<td>CherryPy</td>
+<td>独立</td>
+<td>785</td>
+</tr>
+</tbody>
+</table>
+<p>先来看看<code>hello world</code>的例子。^_^</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tornado.httpserver</span><br><span class="line"><span class="keyword">import</span> tornado.ioloop</span><br><span class="line"><span class="keyword">import</span> tornado.options</span><br><span class="line"><span class="keyword">import</span> tornado.web</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tornado.options <span class="keyword">import</span> define, options</span><br><span class="line"></span><br><span class="line">define(<span class="string">"port"</span>, default=<span class="number">8888</span>, help=<span class="string">"run on the given port"</span>, type=int)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainHandler</span><span class="params">(tornado.web.RequestHandler)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.write(<span class="string">"Hello, world"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    tornado.options.parse_command_line()</span><br><span class="line">    application = tornado.web.Application([</span><br><span class="line">        (<span class="string">r"/"</span>, MainHandler),</span><br><span class="line">    ])</span><br><span class="line">    http_server = tornado.httpserver.HTTPServer(application)</span><br><span class="line">    http_server.listen(options.port)</span><br><span class="line">    tornado.ioloop.IOLoop.current().start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python3 helloworld.py</span><br></pre></td></tr></table></figure></p>
+<p>我们就得到一个web server监听在8888端口。用curl命令get一下，就返回了”Hello, world”。</p>
+<p>tornado的代码结构可以在其官网了解，本文着重分析IOLoop的实现。</p>
+<h1 id="1-IOLoop"><a href="#1-IOLoop" class="headerlink" title="1. IOLoop"></a>1. IOLoop</h1><h2 id="1-1-http交互的大致过程"><a href="#1-1-http交互的大致过程" class="headerlink" title="1.1 http交互的大致过程"></a>1.1 http交互的大致过程</h2><p>介绍IOLoop之前我们先看看http server和http client交互的一个大致过程。</p>
+<p><img src="https://sfault-image.b0.upaiyun.com/108/489/1084890514-57b00bc69d907_articlex" alt="http"></p>
+<p>server端监听在某个端口，client端发送请求过来，server处理后返回，然后继续等待下一个请求，周而复始。如果用socket那一坨来描述的话就是：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> server.py</span><br><span class="line">================================================================</span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">s.bind(address)</span><br><span class="line">s.listen(backlog)</span><br><span class="line">While <span class="keyword">True</span>:</span><br><span class="line">    connection = s.accept()</span><br><span class="line">    do_something()</span><br><span class="line">    connection.send()</span><br><span class="line">    connection.close()</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> client.py</span><br><span class="line">=================================================================</span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">s.connect()</span><br><span class="line">s.send()</span><br><span class="line">s.recv()</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-2-聊聊阻塞与非阻塞"><a href="#1-2-聊聊阻塞与非阻塞" class="headerlink" title="1.2 聊聊阻塞与非阻塞"></a>1.2 聊聊阻塞与非阻塞</h2><p>所谓阻塞，就是进程正在等待某些资源（如IO），而处于等待运行的状态（不占用CPU资源）。比如connect((“google.com”, 80))返回之前进程都是阻塞的，在它下面的语句得不到执行，除非connect返回。</p>
+<p>很显然阻塞式的IO模型有个缺点就是并发量不大，试想如果server进程在<code>do_something()</code>处阻塞，而这时另外有个客户端试图连进来，则可能得不到响应。</p>
+<p>提高并发量有几种实现方式：多线程（一个连接fork一个线程去处理）；多进程（一个连接fork一个子进程去处理）(apache)；事件驱动(nginx, epoll)等。tornado就是基于epoll(Linux)事件驱动模型实现的。</p>
+<p>当然它们有各自的优缺点，此文不详述，有兴趣的读者可以自行google之。^_^</p>
+<p>关于IO模型，epoll, 同步，异步，阻塞，非阻塞的概念，可以参考这两篇文章：<br><a href="https://segmentfault.com/a/1190000003063859" target="_blank" rel="noopener">https://segmentfault.com/a/1190000003063859</a></p>
+<p><a href="http://blog.csdn.net/historyasamirror/article/details/5778378" target="_blank" rel="noopener">http://blog.csdn.net/historyasamirror/article/details/5778378</a></p>
+<h2 id="1-3-IOLoop实现"><a href="#1-3-IOLoop实现" class="headerlink" title="1.3 IOLoop实现"></a>1.3 IOLoop实现</h2><h3 id="1-3-1-IOLoop配置"><a href="#1-3-1-IOLoop配置" class="headerlink" title="1.3.1 IOLoop配置"></a>1.3.1 IOLoop配置</h3><p>前文说到tornado是基于epoll事件驱动模型，也不完全正确，tornado实际上是根据平台选择底层驱动。请看IOLoop类的<code>configurable_default</code>方法：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@classmethod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">configurable_default</span><span class="params">(cls)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> hasattr(select, <span class="string">"epoll"</span>):</span><br><span class="line">        <span class="keyword">from</span> tornado.platform.epoll <span class="keyword">import</span> EPollIOLoop</span><br><span class="line">        <span class="keyword">return</span> EPollIOLoop</span><br><span class="line">    <span class="keyword">if</span> hasattr(select, <span class="string">"kqueue"</span>):</span><br><span class="line">        <span class="comment"># Python 2.6+ on BSD or Mac</span></span><br><span class="line">        <span class="keyword">from</span> tornado.platform.kqueue <span class="keyword">import</span> KQueueIOLoop</span><br><span class="line">        <span class="keyword">return</span> KQueueIOLoop</span><br><span class="line">    <span class="keyword">from</span> tornado.platform.select <span class="keyword">import</span> SelectIOLoop</span><br><span class="line">    <span class="keyword">return</span> SelectIOLoop</span><br></pre></td></tr></table></figure></p>
+<p>这里的IOLoop实际上是个通用接口，根据不同平台选择：linux-&gt;epoll，BSD-&gt;kqueue，如果epoll和kqueue都不支持则选择select(性能要差些)。</p>
+<p><code>class IOLoop(Configurable):</code>IOLoop继承了Configurable类，Configurable类的<code>__new__</code>方法调用了<code>configured_class</code>方法：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *args, **kwargs)</span>:</span></span><br><span class="line">    base = cls.configurable_base()</span><br><span class="line">    init_kwargs = &#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> cls <span class="keyword">is</span> base:</span><br><span class="line">        impl = cls.configured_class()</span><br><span class="line">        <span class="keyword">if</span> base.__impl_kwargs:</span><br><span class="line">            init_kwargs.update(base.__impl_kwargs)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        impl = cls</span><br><span class="line">    init_kwargs.update(kwargs)</span><br><span class="line">    instance = super(Configurable, cls).__new__(impl)</span><br><span class="line">    <span class="comment"># initialize vs __init__ chosen for compatibility with AsyncHTTPClient</span></span><br><span class="line">    <span class="comment"># singleton magic.  If we get rid of that we can switch to __init__</span></span><br><span class="line">    <span class="comment"># here too.</span></span><br><span class="line">    instance.initialize(*args, **init_kwargs)</span><br><span class="line">    <span class="keyword">return</span> instance</span><br></pre></td></tr></table></figure>
+<p><code>configured_class</code>方法又调用了<code>configurable_default</code>方法：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@classmethod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">configured_class</span><span class="params">(cls)</span>:</span></span><br><span class="line">    <span class="comment"># type: () -&gt; type</span></span><br><span class="line">    <span class="string">"""Returns the currently configured class."""</span></span><br><span class="line">    base = cls.configurable_base()</span><br><span class="line">    <span class="keyword">if</span> cls.__impl_class <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        base.__impl_class = cls.configurable_default()</span><br><span class="line">    <span class="keyword">return</span> base.__impl_class</span><br></pre></td></tr></table></figure>
+<p>所以当初始化一个IOLoop实例的时候就给IOLoop做了配置，根据不同平台选择合适的驱动。</p>
+<h3 id="1-3-2-IOLoop实例化"><a href="#1-3-2-IOLoop实例化" class="headerlink" title="1.3.2 IOLoop实例化"></a>1.3.2 IOLoop实例化</h3><p>下面我们来看IOLoop的实例化函数：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Global lock for creating global IOLoop instance</span></span><br><span class="line">_instance_lock = threading.Lock()</span><br><span class="line"><span class="meta">@staticmethod</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">instance</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> hasattr(IOLoop, <span class="string">"_instance"</span>):</span><br><span class="line">        <span class="keyword">with</span> IOLoop._instance_lock:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> hasattr(IOLoop, <span class="string">"_instance"</span>):</span><br><span class="line">                <span class="comment"># New instance after double check</span></span><br><span class="line">                IOLoop._instance = IOLoop()</span><br><span class="line">    <span class="keyword">return</span> IOLoop._instance</span><br></pre></td></tr></table></figure></p>
+<p>很显然，这里是实现了一个全局的单例模式。确保多个线程也只有一个IOLoop实例。(思考一下：为什要double check？<code>if not hasattr(IOLoop, &quot;_instance&quot;)</code> ^_^)</p>
+<h3 id="1-3-3-实现epoll的接口-假设是在Linux平台"><a href="#1-3-3-实现epoll的接口-假设是在Linux平台" class="headerlink" title="1.3.3 实现epoll的接口(假设是在Linux平台)"></a>1.3.3 实现epoll的接口(假设是在Linux平台)</h3><p>我们知道epoll支持3种操作：<br>    EPOLL_CTL_ADD    添加一个新的epoll事件<br>    EPOLL_CTL_DEL    删除一个epoll事件<br>    EPOLL_CTL_MOD    改变一个事件的监听方式<br>分别对应tornado.IOLoop里面的三个函数：<code>add_handler</code>, <code>remove_handler</code>, <code>update_handler</code></p>
+<p>下面看看这三个函数：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_handler</span><span class="params">(self, fd, handler, events)</span>:</span></span><br><span class="line">    fd, obj = self.split_fd(fd)</span><br><span class="line">    self._handlers[fd] = (obj, stack_context.wrap(handler))</span><br><span class="line">    self._impl.register(fd, events | self.ERROR)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_handler</span><span class="params">(self, fd, events)</span>:</span></span><br><span class="line">    fd, obj = self.split_fd(fd)</span><br><span class="line">    self._impl.modify(fd, events | self.ERROR)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_handler</span><span class="params">(self, fd)</span>:</span></span><br><span class="line">    fd, obj = self.split_fd(fd)</span><br><span class="line">    self._handlers.pop(fd, <span class="keyword">None</span>)</span><br><span class="line">    self._events.pop(fd, <span class="keyword">None</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        self._impl.unregister(fd)</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        gen_log.debug(<span class="string">"Error deleting fd from IOLoop"</span>, exc_info=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
+<p>这里的<code>self._impl</code>就是<code>select.epoll()</code>，使用方法可以参考epoll接口。</p>
+<h3 id="1-3-4-事件驱动模型的大致思路"><a href="#1-3-4-事件驱动模型的大致思路" class="headerlink" title="1.3.4 事件驱动模型的大致思路"></a>1.3.4 事件驱动模型的大致思路</h3><p>IOLoop的<code>start()</code>方法用于启动事件循环（Event Loop）。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(部分源码)</span><br><span class="line"><span class="keyword">while</span> self._events:</span><br><span class="line">    fd, events = self._events.popitem()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        fd_obj, handler_func = self._handlers[fd]</span><br><span class="line">        handler_func(fd_obj, events)</span><br><span class="line">    <span class="keyword">except</span> (OSError, IOError) <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">if</span> errno_from_exception(e) == errno.EPIPE:</span><br><span class="line">            <span class="comment"># Happens when the client closes the connection</span></span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.handle_callback_exception(self._handlers.get(fd))</span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line">        self.handle_callback_exception(self._handlers.get(fd))</span><br></pre></td></tr></table></figure>
+<p>大致的思路是：有连接进来（client端请求），就丢给epoll，顺便注册一个事件和一个回调函数，我们主线程还是继续监听请求；然后在事件循环中，如果发生了某种事件（如socket可读，或可写），则调用之前注册的回调函数去处理。这和Node.js的思路是一致的。</p>
+<h3 id="1-3-5-关于cpu-bound任务"><a href="#1-3-5-关于cpu-bound任务" class="headerlink" title="1.3.5 关于cpu bound任务"></a>1.3.5 关于cpu bound任务</h3><p>tornado很适合处理IO bound的任务，如果遇到cpu bound的任务，则还是会阻塞整个进程。这个时候就必须将耗时的任务丢到另一个worker，或者队列中去处理（如celery）。</p>
+<h3 id="1-3-6-其他"><a href="#1-3-6-其他" class="headerlink" title="1.3.6 其他"></a>1.3.6 其他</h3><p>IOLoop类还有其他一些方法，多为辅助函数，读者可以自行参考，此处不详述。</p>
+<p>行文比较草率，如有错误和不足之处，敬请指正。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2016/08/14/Tornado-source-code-analysis-IOLoop/" data-id="cjtvalbrg002n54mun259ecb9" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2016/08/14/Tornado-source-code-analysis-IOLoop/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tornado/">Tornado</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/06/06/bash-shortcuts/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Bash 快捷键</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  var disqus_url = 'https://josephok.github.io/2016/08/14/Tornado-source-code-analysis-IOLoop/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

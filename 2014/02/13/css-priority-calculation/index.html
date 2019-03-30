@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>CSS优先级计算 | Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我们知道，当css样式同时作用于某个元素时，会产生层叠。浏览器层叠各个来源样式的顺序为： 1.浏览器默认样式表 2.用户样式表 3.作者链接样式表（按照它们链接到页面的先后顺序） 4.作者嵌入样式 5.作者行内样式 浏览器会按照上述顺序依次检查每个来源的样式，并在有定义的情况下，更新对每个标签属性值的设定。整个检查更新过程结束后，再将每个标签以最终设定的样式显示出来。 浏览器层叠还有一套层叠机制来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS优先级计算">
+<meta property="og:url" content="https://josephok.github.io/2014/02/13/css-priority-calculation/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="我们知道，当css样式同时作用于某个元素时，会产生层叠。浏览器层叠各个来源样式的顺序为： 1.浏览器默认样式表 2.用户样式表 3.作者链接样式表（按照它们链接到页面的先后顺序） 4.作者嵌入样式 5.作者行内样式 浏览器会按照上述顺序依次检查每个来源的样式，并在有定义的情况下，更新对每个标签属性值的设定。整个检查更新过程结束后，再将每个标签以最终设定的样式显示出来。 浏览器层叠还有一套层叠机制来">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://liunian.info/img/images/2010/08/specificity-calculationbase.png">
+<meta property="og:image" content="http://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-1.png">
+<meta property="og:image" content="http://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-2.png">
+<meta property="og:image" content="http://cdn.css-tricks.com/wp-content/uploads/2010/05/cssspecificity-calc-3v2.jpg">
+<meta property="og:image" content="http://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-4.png">
+<meta property="og:image" content="http://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-5.png">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/90b90757gw1ea1x3f4dyaj209w058a9w.jpg">
+<meta property="og:updated_time" content="2019-03-30T09:24:46.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS优先级计算">
+<meta name="twitter:description" content="我们知道，当css样式同时作用于某个元素时，会产生层叠。浏览器层叠各个来源样式的顺序为： 1.浏览器默认样式表 2.用户样式表 3.作者链接样式表（按照它们链接到页面的先后顺序） 4.作者嵌入样式 5.作者行内样式 浏览器会按照上述顺序依次检查每个来源的样式，并在有定义的情况下，更新对每个标签属性值的设定。整个检查更新过程结束后，再将每个标签以最终设定的样式显示出来。 浏览器层叠还有一套层叠机制来">
+<meta name="twitter:image" content="http://liunian.info/img/images/2010/08/specificity-calculationbase.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP -->
+  
+    <link rel="amphtml" href="https://josephok.github.io/2014/02/13/css-priority-calculation//amp/index.html"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-css-priority-calculation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/02/13/css-priority-calculation/" class="article-date">
+  <time datetime="2014-02-13T00:11:00.000Z" itemprop="datePublished">2014-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS优先级计算
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们知道，当css样式同时作用于某个元素时，会产生层叠。浏览器层叠各个来源样式的顺序为：</p>
+<p>1.浏览器默认样式表</p>
+<p>2.用户样式表</p>
+<p>3.作者链接样式表（按照它们链接到页面的先后顺序）</p>
+<p>4.作者嵌入样式</p>
+<p>5.作者行内样式</p>
+<p>浏览器会按照上述顺序依次检查每个来源的样式，并在有定义的情况下，更新对每个标签属性值的设定。整个检查更新过程结束后，再将每个标签以最终设定的样式显示出来。</p>
+<p>浏览器层叠还有一套层叠机制来计算优先级。</p>
+<ul>
+<li>!important</li>
+</ul>
+<p>如果某个声明后面加上<code>!important</code>则表明此样式具有最高权重。如果有多个声明使用<code>!important</code>则按照下面的规则来计算优先级。</p>
+<ul>
+<li>计算特指度(Specificity)</li>
+</ul>
+<p>我们使用<code>style属性-I-C-E</code>来表示特指度。这里<code>style属性</code>表示行内样式。比如：</p>
+<p><code>&lt;p style=&quot;color: #ffffff&quot;&gt;&lt;/p&gt;</code></p>
+<p><code>I</code> 表示id，<code>C</code>表示class，<code>E</code>表示element。</p>
+<p>下面这个图很好的诠释了CSS特指度：（来自<a href="http://css-tricks.com/specifics-on-css-specificity/）" target="_blank" rel="noopener">http://css-tricks.com/specifics-on-css-specificity/）</a></p>
+<p><img src="http://liunian.info/img/images/2010/08/specificity-calculationbase.png" alt=""></p>
+<p>1.某个元素使用行内样式，则在<code>style属性</code>的位置上加1；</p>
+<p>2.选择符中有一个ID，就在I的位置上加1；</p>
+<p>3.选择符中有一个类，就在C的位置上加1；</p>
+<p>4.选择符中有一个元素（标签）名，就在E的位置上加1；</p>
+<p>我们通过一些例子来说明：（来自<a href="http://css-tricks.com/specifics-on-css-specificity/）" target="_blank" rel="noopener">http://css-tricks.com/specifics-on-css-specificity/）</a></p>
+<p><img src="http://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-1.png" alt=""><br><img src="http://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-2.png" alt=""><br><img src="http://cdn.css-tricks.com/wp-content/uploads/2010/05/cssspecificity-calc-3v2.jpg" alt=""><br><img src="http://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-4.png" alt=""><br><img src="http://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-5.png" alt=""></p>
+<p>注意：</p>
+<p>1.(*) 选择符没有特指度 (0,0,0,0)</p>
+<p>2.伪元素 (e.g. ::first-line) 在<code>E</code>上加1，而不是在<code>C</code>上加1</p>
+<p>3.伪类选择器:not()本身不加特指度，只是在括号里面的元素加上特指度</p>
+<p>举个例子来说明：</p>
+<p>我们创建这样一个html文档：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS特指度计算<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">stylesheet</span> <span class="attr">href</span>=<span class="string">"style.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-tag">em</span> &#123;<span class="attribute">color</span>: blue;&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">article</span> <span class="attr">id</span>=<span class="string">"first"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"odd"</span>&gt;</span><span class="tag">&lt;<span class="name">em</span> <span class="attr">style</span>=<span class="string">"color: black"</span>&gt;</span>第一段文字<span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>第二段文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>style.css内容如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">article</span><span class="selector-id">#first</span> <span class="selector-tag">p</span><span class="selector-class">.odd</span> <span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里为<code>&lt;em&gt;</code>设定了3个样式：分别是行内样式，嵌入样式和外部样式表。因为行内样式的特指度最高，所以应用行内样式，结果显示为<code>&lt;em&gt;</code>标签下的文字颜色为黑色。</p>
+<p></p><p class="sassmeister" data-gist-id="10694291" data-height="480"><a href="http://sassmeister.com/gist/10694291" target="_blank" rel="noopener">Play with this gist on SassMeister.</a></p><script src="http://static.sassmeister.com/js/embed.js" async></script><p></p>
+<p>如果去掉行内样式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS特指度计算<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">stylesheet</span> <span class="attr">href</span>=<span class="string">"style.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-tag">em</span> &#123;<span class="attribute">color</span>: blue;&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">article</span> <span class="attr">id</span>=<span class="string">"first"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"odd"</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span>第一段文字<span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>第二段文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>则<code>&lt;em&gt;</code>标签下的文字颜色为红色，因为外部样式表中特指度比嵌入样式高。</p>
+<p><img src="http://ww3.sinaimg.cn/large/90b90757gw1ea1x3f4dyaj209w058a9w.jpg" alt=""></p>
+<p>如果在嵌入样式上加上<code>!important</code>则文字显示为蓝色。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS特指度计算<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">stylesheet</span> <span class="attr">href</span>=<span class="string">"style.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-tag">em</span> &#123;<span class="attribute">color</span>: blue <span class="meta">!important</span>;&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">article</span> <span class="attr">id</span>=<span class="string">"first"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"odd"</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span>第一段文字<span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>第二段文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p></p><p class="sassmeister" data-gist-id="10694435" data-height="480"><a href="http://sassmeister.com/gist/10694435" target="_blank" rel="noopener">Play with this gist on SassMeister.</a></p><script src="http://static.sassmeister.com/js/embed.js" async></script><p></p>
+<ul>
+<li>设定的样式胜过继承的样式</li>
+</ul>
+<p>设定的样式胜过继承的样式，此时不用考虑特指度（即显式设定优先）。下面简单解释一下，比如下面的标记</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"cascade_demo"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"inheritance_fact"</span>&gt;</span>Inheritance is <span class="tag">&lt;<span class="name">em</span>&gt;</span>weak<span class="tag">&lt;/<span class="name">em</span>&gt;</span> in the Cascade<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>和下面的规则</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-id">#cascade_demo</span> <span class="selector-tag">p</span><span class="selector-id">#inheritance_fact</span> &#123;<span class="attribute">color</span>:blue;&#125;</span><br><span class="line">2 <span class="selector-tag">-</span> 0 <span class="selector-tag">-</span> 2 （高特指度）</span><br></pre></td></tr></table></figure>
+<p>会导致单词“weak”变成蓝色，因为它从父元素p那里继承了这个颜色值。</p>
+<p>但是，只要我们再给em添加一条规则</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">em</span> &#123;<span class="attribute">color</span>:red;&#125;</span><br><span class="line">0 <span class="selector-tag">-</span> 0 <span class="selector-tag">-</span> 1 （低特指度）</span><br></pre></td></tr></table></figure>
+<p>em就会变成红色。因为，虽然它的特指度低（0-0-1），但em继承的颜色值，会被为它明确（显式）指定的颜色值覆盖，就算（隐式）遗传该颜色值的规则的特指度高（2-0-2）也没有用。</p>
+<p><strong>参考</strong>：</p>
+<p>1.<a href="http://css-tricks.com/specifics-on-css-specificity/" target="_blank" rel="noopener">http://css-tricks.com/specifics-on-css-specificity/</a></p>
+<p>2.《CSS设计指南》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/02/13/css-priority-calculation/" data-id="cjtvalbq4001154muqqsgn036" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/02/13/css-priority-calculation/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/02/13/jquery-n-javascript/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          jQuery与JavaScript写法对比
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/02/13/css-position/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">css position</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  var disqus_url = 'https://josephok.github.io/2014/02/13/css-priority-calculation/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习技术过程中的笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Passion of life">
+<meta property="og:url" content="https://josephok.github.io/page/8/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="学习技术过程中的笔记">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Passion of life">
+<meta name="twitter:description" content="学习技术过程中的笔记">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-graph" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/05/graph/" class="article-date">
+  <time datetime="2013-12-05T18:25:00.000Z" itemprop="datePublished">2013-12-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/05/graph/">图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>图的定义</li>
+</ul>
+<p>图(Graph)是一个顶点(vertex)集合加上一个连接不同顶点对的边(edge)集合。</p>
+<ul>
+<li>连通图</li>
+</ul>
+<p>如果在图中，从每个顶点到其他每个顶点之间都存在一条路径，则此图为连通图(connected graph)。非连通图包含一些连通分量，它们是最大连通子图(maximal connected subgraph)。<br>无环连通图称为树，树的集合称为森林。连通图的生成树(spanning tree)是包括该图所有顶点的一个子图，是一颗单一树。图的生成森林是包括该图所有顶点的一个子图，是一个森林。</p>
+<ul>
+<li>简单图</li>
+</ul>
+<p>一个图如果同时满足下面2个条件：</p>
+<ol>
+<li>没有两条边，它们所关联的两个点都相同（在有向图中，没有两条边的起点终点都分别相同）；</li>
+<li>每条边所关联的是两个不同的顶点<br>则称为简单图（Simple graph）。</li>
+</ol>
+<p>V个顶点的任何无环连通图均有V-1条边（简单图）<br>V个顶点的图至多有V(V - 1)/2条边。</p>
+<ul>
+<li>二分图(Bipartite graph)</li>
+</ul>
+<p>二分图(Bipartite graph)指图中的顶点可以分为两个集合，所有边连通一个集合中的顶点与另一个集合中的顶点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/12/05/graph/" data-id="cjtvalbpo000g54muy6vh5t71" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/12/05/graph/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-sorting-algorithms" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/04/sorting-algorithms/" class="article-date">
+  <time datetime="2013-12-04T19:40:00.000Z" itemprop="datePublished">2013-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/04/sorting-algorithms/">排序算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>插入排序（Insertion Sort）</li>
+</ul>
+<p>具体算法描述如下：</p>
+<ol>
+<li><p>从第一个元素开始，该元素可以认为已经被排序</p>
+</li>
+<li><p>取出下一个元素，在已经排序的元素序列中从后向前扫描</p>
+</li>
+<li><p>如果该元素（已排序）大于新元素，将该元素移到下一位置</p>
+</li>
+<li><p>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置</p>
+</li>
+<li><p>将新元素插入到该位置后</p>
+</li>
+</ol>
+<p>重复步骤2~5</p>
+<p>平均时间复杂度为$O(N^2)$</p>
+<p>C代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*Insertion sort algorithm</span></span><br><span class="line"><span class="comment">*Time complexity O(N^2)</span></span><br><span class="line"><span class="comment">*@param int a[], the array beening sorted</span></span><br><span class="line"><span class="comment">*@param unsigned int n, number of array</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertion_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertion_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> i = <span class="number">1</span>, j;</span><br><span class="line">	<span class="keyword">for</span> (; i &lt; n; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> temp = a[i];</span><br><span class="line">		<span class="keyword">for</span> (j = i; j &gt; <span class="number">0</span> &amp;&amp; a[j<span class="number">-1</span>] &gt; temp; j--) &#123;</span><br><span class="line">			a[j] = a[j<span class="number">-1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		a[j] = temp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>希尔排序（Shell Sort）</li>
+</ul>
+<p>希尔排序，也称递减增量排序算法，是插入排序的一种更高效的改进版本。希尔排序是非稳定排序算法。原始的算法实现在最坏的情况下需要进行\(O(n^2)\)的比较和交换。V. Pratt的书对算法进行了少量修改，可以使得性能提升至\(O(nlog^2n)\)。这比最好的比较算法的\(O(nlogn)\)要差一些。</p>
+<p>假设有这样一组数[ 13 14 94 33 82 25 59 94 65 23 45 27 73 25 39 10 ]，如果我们以步长为5开始进行排序，我们可以通过将这列表放在有5列的表中来更好地描述算法，这样他们就应该看起来是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">13 14 94 33 82</span><br><span class="line">25 59 94 65 23</span><br><span class="line">45 27 73 25 39</span><br><span class="line">10</span><br></pre></td></tr></table></figure></p>
+<p>然后我们对每列进行排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10 14 73 25 23</span><br><span class="line">13 27 94 33 39</span><br><span class="line">25 59 94 65 82</span><br><span class="line">45</span><br></pre></td></tr></table></figure></p>
+<p>将上述四行数字，依序接在一起时我们得到：[ 10 14 73 25 23 13 27 94 33 39 25 59 94 65 82 45 ]。这时10已经移至正确位置了，然后再以3为步长进行排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">10 14 73</span><br><span class="line">25 23 13</span><br><span class="line">27 94 33</span><br><span class="line">39 25 59</span><br><span class="line">94 65 82</span><br><span class="line">45</span><br></pre></td></tr></table></figure></p>
+<p>排序之后变为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">10 14 13</span><br><span class="line">25 23 33</span><br><span class="line">27 25 59</span><br><span class="line">39 65 73</span><br><span class="line">45 94 82</span><br><span class="line">94</span><br></pre></td></tr></table></figure></p>
+<p>最后以1步长进行排序（此时就是简单的插入排序了）。</p>
+<p>步长的选择是希尔排序的重要部分。只要最终步长为1任何步长串行都可以工作。算法最开始以一定的步长进行排序。然后会继续以一定步长进行排序，最终算法以步长为1进行排序。当步长为1时，算法变为插入排序，这就保证了数据一定会被排序。<br>c语言实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shell_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> gap = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (gap &lt;= (<span class="keyword">signed</span>)n)</span><br><span class="line">		gap = gap * <span class="number">3</span> + <span class="number">1</span>; <span class="comment">//&#123;1, 4, 7, 10, 13, 16...&#125;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (gap &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = gap; i &lt; (<span class="keyword">signed</span>)n; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> j = i - gap;</span><br><span class="line">			<span class="keyword">int</span> temp = a[i];</span><br><span class="line">			<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; a[j] &gt; temp) &#123;</span><br><span class="line">				a[j+gap] = a[j];</span><br><span class="line">				j -= gap;</span><br><span class="line">			&#125;</span><br><span class="line">			a[j+gap] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">		gap = (gap - <span class="number">1</span>) / <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>堆排序（Heapsort）</li>
+</ul>
+<p>堆排序（Heapsort）是指利用堆这种数据结构所设计的一种排序算法。堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。</p>
+<p>通常堆是通过一维数组来实现的。在起始数组为 0 的情形中：</p>
+<blockquote>
+<p>父节点i的左子节点在位置 (2<em>i+1);<br>父节点i的右子节点在位置 (2</em>i+2);<br>子节点i的父节点在位置 floor((i-1)/2);</p>
+</blockquote>
+<p>在堆的数据结构中，堆中的最大值总是位于根节点。堆中定义以下几种操作：</p>
+<ol>
+<li><p>最大堆调整（Max_Heapify）：将堆的末端子节点作调整，使得子节点永远小于父节点</p>
+</li>
+<li><p>创建最大堆（Build_Max_Heap）：将堆所有数据重新排序</p>
+</li>
+<li><p>堆排序（HeapSort）：移除位在第一个数据的根节点，并做最大堆调整的递归运算</p>
+</li>
+</ol>
+<p>代码来自<a href="http://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F" target="_blank" rel="noopener">wikipedia</a>:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">parent</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">left</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">right</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Max_Heapify</span><span class="params">(<span class="keyword">int</span> [], <span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Build_Max_Heap</span><span class="params">(<span class="keyword">int</span> [], <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> [], <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">(<span class="keyword">int</span> [], <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*父結點*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">parent</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)<span class="built_in">floor</span>((i - <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*左子結點*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">left</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="number">2</span> * i + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*右子結點*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">right</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="number">2</span> * i + <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*單一子結點最大堆積樹調整*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Max_Heapify</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> i, <span class="keyword">int</span> heap_size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = left(i);</span><br><span class="line">    <span class="keyword">int</span> r = right(i);</span><br><span class="line">    <span class="keyword">int</span> largest;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">if</span>(l &lt; heap_size &amp;&amp; A[l] &gt; A[i])</span><br><span class="line">    &#123;</span><br><span class="line">        largest = l;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        largest = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(r &lt; heap_size &amp;&amp; A[r] &gt; A[largest])</span><br><span class="line">    &#123;</span><br><span class="line">        largest = r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(largest != i)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = A[i];</span><br><span class="line">        A[i] = A[largest];</span><br><span class="line">        A[largest] = temp;</span><br><span class="line">        Max_Heapify(A, largest, heap_size);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*建立最大堆積樹*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Build_Max_Heap</span><span class="params">(<span class="keyword">int</span> A[]，<span class="keyword">int</span> heap_size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = (heap_size<span class="number">-2</span>)/<span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        Max_Heapify(A, i, heap_size);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*印出樹狀結構*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> A[]， <span class="keyword">int</span> heap_size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; heap_size;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, A[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*堆積排序程序碼*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> heap_size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Build_Max_Heap(A, heap_size);</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = heap_size - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = A[<span class="number">0</span>];</span><br><span class="line">        A[<span class="number">0</span>] = A[i];</span><br><span class="line">        A[i] = temp;</span><br><span class="line">        Max_Heapify(A, <span class="number">0</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    print(A, heap_size);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>快速排序</li>
+</ul>
+<p>快速排序使用分治法（Divide and conquer）策略来把一个串行（list）分为两个子串行（sub-lists）。<br>步骤为：</p>
+<ol>
+<li><p>从数列中挑出一个元素，称为 “基准”（pivot）。</p>
+</li>
+<li><p>重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。</p>
+</li>
+<li><p>递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。</p>
+</li>
+</ol>
+<p>递归的最底部情形，是数列的大小是零或一，也就是永远都已经被排序好了。虽然一直递归下去，但是这个算法总会退出，因为在每次的迭代（iteration）中，它至少会把一个元素摆到它最后的位置去。</p>
+<p>快速排序的平均时间复杂度为$O(nlogn)$</p>
+<p>实现代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MAX_SIZE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_SIZE 1000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (low &lt; high) &#123;</span><br><span class="line">		<span class="keyword">int</span> i, j, pivot, key;</span><br><span class="line">		pivot = (low + high) / <span class="number">2</span>;</span><br><span class="line">		key = a[pivot];</span><br><span class="line">		<span class="comment">/*put the key in the first*/</span></span><br><span class="line">		swap(a, low, pivot);</span><br><span class="line">		i = low + <span class="number">1</span>;</span><br><span class="line">		j = high;</span><br><span class="line">		<span class="keyword">while</span> (i &lt;= j) &#123;</span><br><span class="line">			<span class="keyword">while</span> (i &lt;= high &amp;&amp; a[i] &lt;= key) i++;</span><br><span class="line">			<span class="keyword">while</span> (j &gt;= low &amp;&amp; a[j] &gt; key) j--;</span><br><span class="line">			<span class="keyword">if</span> (i &lt; j)</span><br><span class="line">				swap(a, i, j);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		swap(a, low, j);</span><br><span class="line">		quicksort(a, low, j - <span class="number">1</span>);</span><br><span class="line">		quicksort(a, j + <span class="number">1</span>, high);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = a[i];</span><br><span class="line">	a[i] = a[j];</span><br><span class="line">	a[j] = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[MAX_SIZE] = &#123;INT_MAX&#125;;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	FILE* fp1 = fopen(<span class="string">"data1.txt"</span>, <span class="string">"wa"</span>);</span><br><span class="line">	FILE* fp2 = fopen(<span class="string">"data2.txt"</span>, <span class="string">"wa"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (; i &lt; MAX_SIZE; i++) &#123;</span><br><span class="line">		a[i] = rand();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; MAX_SIZE; i++) &#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(fp1, <span class="string">"%d\t"</span>, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	quicksort(a, <span class="number">0</span>, MAX_SIZE - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; MAX_SIZE; i++) &#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(fp2, <span class="string">"%d\t"</span>, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里随机产生1000个数字的数组，然后排序。<br>data1.txt:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">41	18467	6334	26500	19169	15724	11478	29358	26962	24464	5705	28145	23281	16827	9961	491	2995	11942	4827	5436	32391	14604	3902	153	292	12382	17421	18716	19718	19895	5447	21726	14771	11538	1869	19912	25667	26299	17035	9894	28703	23811	31322	30333	17673	4664	15141	7711	28253	6868	25547	27644	32662	32757	20037	12859	8723	9741	27529	778	12316	3035	22190	1842	288	30106	9040	8942	19264	22648	27446	23805	15890	6729	24370	15350	15006	31101	24393	3548	19629	12623	24084	19954	18756	11840	4966	7376	13931	26308	16944	32439	24626	11323	5537	21538	16118	2082	22929	16541	4833	31115	4639	29658	22704	9930	13977	2306	31673	22386	5021	28745	26924	19072	6270	5829	26777	15573	5097	16512	23986	13290	9161	18636	22355	24767	23655	15574	4031	12052	27350	1150	16941	21724	13966	3430	31107	30191	18007	11337	15457	12287	27753	10383	14945	8909	32209	9758	24221	18588	6422	24946	27506	13030	16413	29168	900	32591	18762	1655	17410	6359	27624	20537	21548	6483	27595	4041	3602	24350	10291	30836	9374	11020	4596	24021	27348	23199	19668	24484	8281	4734	53	1999	26418	27938	6900	3788	18127	467	3728	14893	24648	22483	17807	2421	14310	6617	22813	9514	14309	7616	18935	17451	20600	5249	16519	31556	22798	30303	6224	11008	5844	32609	14989	32702	3195	20485	3093	14343	30523	1587	29314	9503	7448	25200	13458	6618	20580	19796	14798	15281	19589	20798	28009	27157	20472	23622	18538	12292	6038	24179	18190	29657	7958	6191	19815	22888	19156	11511	16202	2634	24272	20055	20328	22646	26362	4886	18875	28433	29869	20142	23844	1416	21881	31998	10322	18651	10021	5699	3557	28476	27892	24389	5075	10712	2600	2510	21003	26869	17861	14688	13401	9789	15255	16423	5002	10585	24182	10285	27088	31426	28617	23757	9832	30932	4169	2154	25721	17189	19976	31329	2368	28692	21425	10555	3434	16549	7441	9512	30145	18060	21718	3753	16139	12423	16279	25996	16687	12529	22549	17437	19866	12949	193	23195	3297	20416	28286	16105	24488	16282	12455	25734	18114	11701	31316	20671	5786	12263	4313	24355	31185	20053	912	10808	1832	20945	4313	27756	28321	19558	23646	27982	481	4144	23196	20222	7129	2161	5535	20450	11173	10466	12044	21659	26292	26439	17253	20024	26154	29510	4745	20649	13186	8313	4474	28022	2168	14018	18787	9905	17958	7391	10202	3625	26477	4414	9314	25824	29334	25874	24372	20159	11833	28070	7487	28297	7518	8177	17773	32270	1763	2668	17192	13985	3102	8480	29213	7627	4802	4099	30527	2625	1543	1924	11023	29972	13061	14181	31003	27432	17505	27593	22725	13031	8492	142	17222	31286	13064	7900	19187	8360	22413	30974	14270	29170	235	30833	19711	25760	18896	4667	7285	12550	140	13694	2695	21624	28019	2125	26576	21694	22658	26302	17371	22466	4678	22593	23851	25484	1018	28464	21119	23152	2800	18087	31060	1926	9010	4757	32170	20315	9576	30227	12043	22758	7164	5109	7882	17086	29565	3487	29577	14474	2625	25627	5629	31928	25423	28520	6902	14962	123	24596	3737	13261	10195	32525	1264	8260	6202	8116	5030	20326	29011	30771	6411	25547	21153	21520	29790	14924	30188	21763	4940	20851	18662	13829	30900	17713	18958	17578	8365	13007	11477	1200	26058	6439	2303	12760	19357	2324	6477	5108	21113	14887	19801	22850	14460	22428	12993	27384	19405	6540	31111	28704	12835	32356	6072	29350	18823	14485	20556	23216	1626	9357	8526	13357	29337	23271	23869	29361	12896	13022	29617	10112	12717	18696	11585	24041	24423	24129	24229	4565	6559	8932	22296	29855	12053	16962	3584	29734	6654	16972	21457	14369	22532	2963	2607	2483	911	11635	10067	22848	4675	12938	2223	22142	23754	6511	22741	20175	21459	17825	3221	17870	1626	31934	15205	31783	23850	17398	22279	22701	12193	12734	1637	26534	5556	1993	10176	25705	6962	10548	15881	300	14413	16641	19855	24855	13142	11462	27611	30877	20424	32678	1752	18443	28296	12673	10040	9313	875	20072	12818	610	1017	14932	28112	30695	13169	23831	20040	26488	28685	19090	19497	2589	25990	15145	19353	19314	18651	26740	22044	11258	335	8759	11192	7605	25264	12181	28503	3829	23775	20608	29292	5997	17549	29556	25561	31627	6467	29541	26129	31240	27813	29174	20601	6077	20215	8683	8213	23992	25824	5601	23392	15759	2670	26428	28027	4084	10075	18786	15498	24970	6287	23847	32604	503	21221	22663	5706	2363	9010	22171	27489	18240	12164	25542	7619	20913	7591	6704	31818	9232	750	25205	4975	1539	303	11422	21098	11247	13584	13648	2971	17864	22913	11075	21545	28712	17546	18678	1769	15262	8519	13985	28289	15944	2865	18540	23245	25508	28318	27870	9601	28323	21132	24472	27152	25087	28570	29763	29901	17103	14423	3527	11600	26969	14015	5565	28	21543	25347	2088	2943	12637	22409	26463	5049	4681	1588	11342	608	32060	21221	1758	29954	20888	14146	690	7949	12843	21430	25620	748	27067	4536	20783	18035	32226	15185	7038	9853	25629	11224	15748	19923	3359	32257	24766	4944	14955	23318	32726	25411	21025	20355	31001	22549	9496	18584	9515	17964	23342	8075	17913	16142	31196	21948	25072	20426	14606	26173	24429	32404	6705	20626	29812	19375	30093	16565	16036	14736	29141	30814	5994	8256	6652	23936	30838	20482	1355	21015	1131	18230	17841	14625	2011	32637	4186	19690	1650	5662	21634	10893	10353	21416	13452	14008	7262	22233	5454	16303	16634	26303	14256	148	11124	12317	4213	27109	24028	29200	21080	21318	16858	24050	24155	31361	15264	11903	3676	29643	26909	14902	3561	28489	24948	1282	13653	30674	2220	5402	6923	3831	19369	3878	20259	19008	22619	23971	30003	21945	9781	26504	12392	32685	25313	6698	5589	12722	5938	19037	6410	31461	6234	12508	9961	3959	6493	1515	25269	24937	28869	58	14700	13971	26264	15117	16215	24555	7815	18330	3039	30212	29288	28082	1954	16085	20710	24484	24774	8380	29815	25951	6541	18115	1679	17110	25898	23073	788	23977	18132	29956	28689	26113	10008	12941	15790	1723	21363	28	25184	24778	7200	5071	1885	21974	1071	11333	22867	26153	14295	32168	20825	9676	15629	28650	2598	3309	4693	4686	30080	10116	12249</span><br></pre></td></tr></table></figure></p>
+<p>data2.txt:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">28	28	41	53	58	123	140	142	148	153	193	235	288	292	300	303	335	467	481	491	503	608	610	690	748	750	778	788	875	900	911	912	1017	1018	1071	1131	1150	1200	1264	1282	1355	1416	1515	1539	1543	1587	1588	1626	1626	1637	1650	1655	1679	1723	1752	1758	1763	1769	1832	1842	1869	1885	1924	1926	1954	1993	1999	2011	2082	2088	2125	2154	2161	2168	2220	2223	2303	2306	2324	2363	2368	2421	2483	2510	2589	2598	2600	2607	2625	2625	2634	2668	2670	2695	2800	2865	2943	2963	2971	2995	3035	3039	3093	3102	3195	3221	3297	3309	3359	3430	3434	3487	3527	3548	3557	3561	3584	3602	3625	3676	3728	3737	3753	3788	3829	3831	3878	3902	3959	4031	4041	4084	4099	4144	4169	4186	4213	4313	4313	4414	4474	4536	4565	4596	4639	4664	4667	4675	4678	4681	4686	4693	4734	4745	4757	4802	4827	4833	4886	4940	4944	4966	4975	5002	5021	5030	5049	5071	5075	5097	5108	5109	5249	5402	5436	5447	5454	5535	5537	5556	5565	5589	5601	5629	5662	5699	5705	5706	5786	5829	5844	5938	5994	5997	6038	6072	6077	6191	6202	6224	6234	6270	6287	6334	6359	6410	6411	6422	6439	6467	6477	6483	6493	6511	6540	6541	6559	6617	6618	6652	6654	6698	6704	6705	6729	6868	6900	6902	6923	6962	7038	7129	7164	7200	7262	7285	7376	7391	7441	7448	7487	7518	7591	7605	7616	7619	7627	7711	7815	7882	7900	7949	7958	8075	8116	8177	8213	8256	8260	8281	8313	8360	8365	8380	8480	8492	8519	8526	8683	8723	8759	8909	8932	8942	9010	9010	9040	9161	9232	9313	9314	9357	9374	9496	9503	9512	9514	9515	9576	9601	9676	9741	9758	9781	9789	9832	9853	9894	9905	9930	9961	9961	10008	10021	10040	10067	10075	10112	10116	10176	10195	10202	10285	10291	10322	10353	10383	10466	10548	10555	10585	10712	10808	10893	11008	11020	11023	11075	11124	11173	11192	11224	11247	11258	11323	11333	11337	11342	11422	11462	11477	11478	11511	11538	11585	11600	11635	11701	11833	11840	11903	11942	12043	12044	12052	12053	12164	12181	12193	12249	12263	12287	12292	12316	12317	12382	12392	12423	12455	12508	12529	12550	12623	12637	12673	12717	12722	12734	12760	12818	12835	12843	12859	12896	12938	12941	12949	12993	13007	13022	13030	13031	13061	13064	13142	13169	13186	13261	13290	13357	13401	13452	13458	13584	13648	13653	13694	13829	13931	13966	13971	13977	13985	13985	14008	14015	14018	14146	14181	14256	14270	14295	14309	14310	14343	14369	14413	14423	14460	14474	14485	14604	14606	14625	14688	14700	14736	14771	14798	14887	14893	14902	14924	14932	14945	14955	14962	14989	15006	15117	15141	15145	15185	15205	15255	15262	15264	15281	15350	15457	15498	15573	15574	15629	15724	15748	15759	15790	15881	15890	15944	16036	16085	16105	16118	16139	16142	16202	16215	16279	16282	16303	16413	16423	16512	16519	16541	16549	16565	16634	16641	16687	16827	16858	16941	16944	16962	16972	17035	17086	17103	17110	17189	17192	17222	17253	17371	17398	17410	17421	17437	17451	17505	17546	17549	17578	17673	17713	17773	17807	17825	17841	17861	17864	17870	17913	17958	17964	18007	18035	18060	18087	18114	18115	18127	18132	18190	18230	18240	18330	18443	18467	18538	18540	18584	18588	18636	18651	18651	18662	18678	18696	18716	18756	18762	18786	18787	18823	18875	18896	18935	18958	19008	19037	19072	19090	19156	19169	19187	19264	19314	19353	19357	19369	19375	19405	19497	19558	19589	19629	19668	19690	19711	19718	19796	19801	19815	19855	19866	19895	19912	19923	19954	19976	20024	20037	20040	20053	20055	20072	20142	20159	20175	20215	20222	20259	20315	20326	20328	20355	20416	20424	20426	20450	20472	20482	20485	20537	20556	20580	20600	20601	20608	20626	20649	20671	20710	20783	20798	20825	20851	20888	20913	20945	21003	21015	21025	21080	21098	21113	21119	21132	21153	21221	21221	21318	21363	21416	21425	21430	21457	21459	21520	21538	21543	21545	21548	21624	21634	21659	21694	21718	21724	21726	21763	21881	21945	21948	21974	22044	22142	22171	22190	22233	22279	22296	22355	22386	22409	22413	22428	22466	22483	22532	22549	22549	22593	22619	22646	22648	22658	22663	22701	22704	22725	22741	22758	22798	22813	22848	22850	22867	22888	22913	22929	23073	23152	23195	23196	23199	23216	23245	23271	23281	23318	23342	23392	23622	23646	23655	23754	23757	23775	23805	23811	23831	23844	23847	23850	23851	23869	23936	23971	23977	23986	23992	24021	24028	24041	24050	24084	24129	24155	24179	24182	24221	24229	24272	24350	24355	24370	24372	24389	24393	24423	24429	24464	24472	24484	24484	24488	24555	24596	24626	24648	24766	24767	24774	24778	24855	24937	24946	24948	24970	25072	25087	25184	25200	25205	25264	25269	25313	25347	25411	25423	25484	25508	25542	25547	25547	25561	25620	25627	25629	25667	25705	25721	25734	25760	25824	25824	25874	25898	25951	25990	25996	26058	26113	26129	26153	26154	26173	26264	26292	26299	26302	26303	26308	26362	26418	26428	26439	26463	26477	26488	26500	26504	26534	26576	26740	26777	26869	26909	26924	26962	26969	27067	27088	27109	27152	27157	27348	27350	27384	27432	27446	27489	27506	27529	27593	27595	27611	27624	27644	27753	27756	27813	27870	27892	27938	27982	28009	28019	28022	28027	28070	28082	28112	28145	28253	28286	28289	28296	28297	28318	28321	28323	28433	28464	28476	28489	28503	28520	28570	28617	28650	28685	28689	28692	28703	28704	28712	28745	28869	29011	29141	29168	29170	29174	29200	29213	29288	29292	29314	29334	29337	29350	29358	29361	29510	29541	29556	29565	29577	29617	29643	29657	29658	29734	29763	29790	29812	29815	29855	29869	29901	29954	29956	29972	30003	30080	30093	30106	30145	30188	30191	30212	30227	30303	30333	30523	30527	30674	30695	30771	30814	30833	30836	30838	30877	30900	30932	30974	31001	31003	31060	31101	31107	31111	31115	31185	31196	31240	31286	31316	31322	31329	31361	31426	31461	31556	31627	31673	31783	31818	31928	31934	31998	32060	32168	32170	32209	32226	32257	32270	32356	32391	32404	32439	32525	32591	32604	32609	32637	32662	32678	32685	32702	32726	32757</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/12/04/sorting-algorithms/" data-id="cjtvalbpk000d54mu087tvav0" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/12/04/sorting-algorithms/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-computer-systems-a-programmers-perspective-reading-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/03/computer-systems-a-programmers-perspective-reading-notes/" class="article-date">
+  <time datetime="2013-12-03T06:13:00.000Z" itemprop="datePublished">2013-12-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/03/computer-systems-a-programmers-perspective-reading-notes/">Computer Systems A Programmer&#39;s Perspective读书笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>2的补码表示为：<br>$$B2T_w(x) = -x_{w-1}2^{w-1} + \sum_{i=0}^{w-2} x_i2^i$$<br>其中，w表示字长。</p>
+<p>将有符号数x转换为无符号数：<br>$$<br>T2U_w(x) =<br>\begin{cases}<br>x + 2^w, &amp; x &lt; 0\<br>x, &amp; x \ge 0<br>\end{cases}<br>$$</p>
+<p>将无符号数u转换为有符号数：<br>$$<br>U2T_w(u) =<br>\begin{cases}<br>u, &amp; u &lt; 2^{w-1}\<br>u - 2^w, &amp; u \ge 2^{w-1}<br>\end{cases}<br>$$</p>
+<p>计算机中浮点数的表示：<br>根据国际标准IEEE 754，任意一个二进制浮点数V可以表示成下面的形式：<br>$$<br>V = (-1)^s \times M \times 2^E<br>$$</p>
+<p>（1）\((-1)^s\)表示符号位，当s=0，V为正数；当s=1，V为负数。<br>（2）M表示有效数字，大于等于1，小于2。<br>（3）\(2^E\)表示指数位。</p>
+<p>举例来说，十进制的5.0，写成二进制是101.0，相当于1.01×2^2。那么，按照上面V的格式，可以得出s=0，M=1.01，E=2。<br>十进制的-5.0，写成二进制是-101.0，相当于-1.01×2^2。那么，s=1，M=1.01，E=2。</p>
+<p>IEEE 754规定，对于32位的浮点数，最高的1位是符号位s，接着的8位是指数E，剩下的23位为有效数字M。<br><img src="https://ws1.sinaimg.cn/large/90b90757gy1fqmcv9ktthj20dw02tjr7.jpg" alt=""></p>
+<p>对于64位的浮点数，最高的1位是符号位S，接着的11位是指数E，剩下的52位为有效数字M。<br><img src="https://ws1.sinaimg.cn/large/90b90757gy1fqmcvrswbpj20dw02tjr8.jpg" alt=""></p>
+<p>IEEE 754对有效数字M和指数E，还有一些特别规定。<br>前面说过，1≤M&lt;2，也就是说，M可以写成1.xxxxxx的形式，其中xxxxxx表示小数部分。IEEE 754规定，在计算机内部保存M时，默认这个数的第一位总是1，因此可以被舍去，只保存后面的xxxxxx部分。比如保存1.01的时候，只保存01，等到读取的时候，再把第一位的1加上去。这样做的目的，是节省1位有效数字。以32位浮点数为例，留给M只有23位，将第一位的1舍去以后，等于可以保存24位有效数字。</p>
+<p>至于指数E，情况就比较复杂。</p>
+<p>首先，E为一个无符号整数（unsigned int）。这意味着，如果E为8位，它的取值范围为0~255；如果E为11位，它的取值范围为0~2047。但是，我们知道，科学计数法中的E是可以出现负数的，所以IEEE 754规定，E的真实值必须再减去一个中间数，对于8位的E，这个中间数是127；对于11位的E，这个中间数是1023。<br>比如，2^10的E是10，所以保存成32位浮点数时，必须保存成10+127=137，即10001001。</p>
+<p>然后，指数E还可以再分成三种情况：</p>
+<p>（1）E不全为0或不全为1。这时，浮点数就采用上面的规则表示，即指数E的计算值减去127（或1023），得到真实值，再将有效数字M前加上第一位的1。</p>
+<p>（2）E全为0。这时，浮点数的指数E等于1-127（或者1-1023），有效数字M不再加上第一位的1，而是还原为0.xxxxxx的小数。这样做是为了表示±0(当尾数是0)，以及接近于0的很小的数字(尾数不为0)。</p>
+<p>（3）E全为1。这时，如果有效数字M全为0，表示±无穷大（正负取决于符号位s）；如果有效数字M不全为0，表示这个数不是一个数（NaN）。</p>
+<p>一个由C/C++编译的程序占用的内存分为以下几个部分：</p>
+<p>1、栈区（stack）—由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。<br>2、堆区（heap）—一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回收。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表。<br>3、全局区（静态区）（static），全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域，未初始化的全局变量和未初始化的静态变量在相邻的另一块区域。  程序结束后由系统释放。<br>4、文字常量区—常量字符串就是放在这里的。程序结束后由系统释放<br>5、程序代码区—存放函数体的二进制代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.cpp</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>; <span class="comment">//全局初始化区</span></span><br><span class="line"><span class="keyword">char</span> *p1; <span class="comment">//全局未初始化区</span></span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> b; <span class="comment">//栈</span></span><br><span class="line">	<span class="keyword">char</span> s[] = <span class="string">"abc"</span>; <span class="comment">//栈</span></span><br><span class="line">	<span class="keyword">char</span> *p2; <span class="comment">//栈</span></span><br><span class="line">	<span class="keyword">char</span> *p3 = <span class="string">"123456"</span>; <span class="comment">//123456\\0在常量区，p3在栈上。</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> c =<span class="number">0</span>;<span class="comment">//全局（静态）初始化区</span></span><br><span class="line">	p1 = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line">	p2 = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">20</span>);<span class="comment">//分配得来得10和20字节的区域就在堆区。</span></span><br><span class="line">	<span class="built_in">strcpy</span>(p1, <span class="string">"123456"</span>); <span class="comment">//123456\\0放在常量区，编译器可能会将它与p3所指向的"123456"优化成一个地方。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/12/03/computer-systems-a-programmers-perspective-reading-notes/" data-id="cjtvalbpi000b54muo7ahffcr" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/12/03/computer-systems-a-programmers-perspective-reading-notes/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-c-language-pointers-plus-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/02/c-language-pointers-plus-1/" class="article-date">
+  <time datetime="2013-12-02T23:57:00.000Z" itemprop="datePublished">2013-12-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/02/c-language-pointers-plus-1/">c语言指针加1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>C语言中，指针变量存储的是地址，那么我们不禁要问：将指针变量加1，那么地址变为多少？<br>比如某个指针变量p的值为<code>0x8989f580</code>，p + 1的值是多少？</p>
+<p>这就要看指针指向的变量类型了，假设int型占32位（4个字节），p是指向int型的指针，p + 1实际上是加4；如果是char型，那么p + 1实际上是加1（因为char型占1个字节）。所以总结为：p + 1 == p + sizeof(p指向的类型)。</p>
+<p>这里还有考虑一个特殊情况，那就是<code>void*</code>指针，如果p是<code>void *</code>指针，那么p + 1还是将地址值加1，而<code>sizeof(void *)</code>却是4。下面例子可以说明：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">void</span> *p;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, p);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, p + <span class="number">1</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">void</span> *));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<p>895f0230<br>895f0231<br>4</p>
+<p>我们知道<code>malloc()</code>和<code>calloc()</code>函数返回的都是<code>void*</code>指针，将其赋值给某个指针变量时会自动进行类型转换，所以不会出现指针不匹配的问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/12/02/c-language-pointers-plus-1/" data-id="cjtvalbpf000854mufmmiqf0t" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/12/02/c-language-pointers-plus-1/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-regular-expression-syntax" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/11/27/regular-expression-syntax/" class="article-date">
+  <time datetime="2013-11-27T18:21:00.000Z" itemprop="datePublished">2013-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Regex/">Regex</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/11/27/regular-expression-syntax/">正则表达式语法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <table><br>    <tbody><br>        <tr><br>            <th>字符</th><br>            <th>描述</th><br>        </tr><br>        <tr><br>            <th>\</th><br>            <td>将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，「<code>n</code>」匹配字符「<code>n</code>」。「<code>\n</code>」匹配一个换行符。序列「<code>\</code>」匹配「<code>\</code>」而「<code>(</code>」则匹配「<code>(</code>」。</td><br>        </tr><br>        <tr><br>            <th>^</th><br>            <td>匹配输入字符串的开始位置。如果设置了RegExp对象的Multiline属性，^也匹配「<code>\n</code>」或「<code>\r</code>」之后的位置。</td><br>        </tr><br>        <tr><br>            <th>$</th><br>            <td>匹配输入字符串的结束位置。如果设置了RegExp对象的Multiline属性，$也匹配「<code>\n</code>」或「<code>\r</code>」之前的位置。</td><br>        </tr><br>        <tr><br>            <th><em></em></th><br>            <td>匹配前面的子表达式零次或多次。例如，zo能匹配「<code>z</code>」以及「<code>zoo</code>」。<em>等价于{0,}。</em></td><br>        </tr><br>        <tr><br>            <th>+</th><br>            <td>匹配前面的子表达式一次或多次。例如，「<code>zo+</code>」能匹配「<code>zo</code>」以及「<code>zoo</code>」，但不能匹配「<code>z</code>」。+等价于{1,}。</td><br>        </tr><br>        <tr><br>            <th>?</th><br>            <td>匹配前面的子表达式零次或一次。例如，「<code>do(es)?</code>」可以匹配「<code>do</code>」或「<code>does</code>」中的「<code>do</code>」。?等价于{0,1}。</td><br>        </tr><br>        <tr><br>            <th>{<em>n</em>}</th><br>            <td><em>n</em>是一个非负整数。匹配确定的<em>n</em>次。例如，「<code>o{2}</code>」不能匹配「<code>Bob</code>」中的「<code>o</code>」，但是能匹配「<code>food</code>」中的两个o。</td><br>        </tr><br>        <tr><br>            <th>{<em>n</em>,}</th><br>            <td><em>n</em>是一个非负整数。至少匹配<em>n</em>次。例如，「<code>o{2,}</code>」不能匹配「<code>Bob</code>」中的「<code>o</code>」，但能匹配「<code>foooood</code>」中的所有o。「<code>o{1,}</code>」等价于「<code>o+</code>」。「<code>o{0,}</code>」则等价于「<code>o</code>」。</td><br>        </tr><br>        <tr><br>            <th>{<em>n</em>,<em>m</em>}</th><br>            <td><em>m</em>和<em>n</em>均为非负整数，其中<em>n</em>&lt;=<em>m</em>。最少匹配<em>n</em>次且最多匹配<em>m</em>次。例如，「<code>o{1,3}</code>」将匹配「<code>fooooood</code>」中的前三个o。「<code>o{0,1}</code>」等价于「<code>o?</code>」。请注意在逗号和两个数之间不能有空格。</td><br>        </tr><br>        <tr><br>            <th>?</th><br>            <td>当该字符紧跟在任何一个其他限制符（*,+,?，{<em>n</em>}，{<em>n</em>,}，{<em>n</em>,<em>m</em>}）后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串「<code>oooo</code>」，「<code>o+?</code>」将匹配单个「<code>o</code>」，而「<code>o+</code>」将匹配所有「<code>o</code>」。</td><br>        </tr><br>        <tr><br>            <th>.</th><br>            <td>匹配除「<code>\</code><em><code>n</code></em>」之外的任何单个字符。要匹配包括「<code>\</code><em><code>n</code></em>」在内的任何字符，请使用像「<code>(.|\n)</code>」的模式。</td><br>        </tr><br>        <tr><br>            <th>(pattern)</th><br>            <td>匹配pattern并获取这一匹配的子字符串。该子字符串用于向后引用。所获取的匹配可以从产生的Matches集合得到，在VBScript中使用SubMatches集合，在JScript中则使用$0&hellip;$9属性。要匹配圆括號字符，请使用「<code>(</code>」或「<code>)</code>」。</td><br>        </tr><br>        <tr><br>            <th>(?:pattern)</th><br>            <td>匹配pattern但不获取匹配的子字符串，也就是说这是一个非获取匹配，不存储匹配的子字符串用于向后引用。这在使用或字符「<code>(|)</code>」来组合一个模式的各个部分是很有用。例如「<code>industr(?:y|ies)</code>」就是一个比「<code>industry|industries</code>」更简略的表达式。</td><br>        </tr><br>        <tr><br>            <th>(?=pattern)</th><br>            <td>正向肯定预查，在任何匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，「<code>Windows(?=95|98|NT|2000)</code>」能匹配「<code>Windows2000</code>」中的「<code>Windows</code>」，但不能匹配「<code>Windows3.1</code>」中的「<code>Windows</code>」。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</td><br>        </tr><br>        <tr><br>            <th>(?!pattern)</th><br>            <td>正向否定预查，在任何不匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如「<code>Windows(?!95|98|NT|2000)</code>」能匹配「<code>Windows3.1</code>」中的「<code>Windows</code>」，但不能匹配「<code>Windows2000</code>」中的「<code>Windows</code>」。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始</td><br>        </tr><br>        <tr><br>            <th>(?&lt;=pattern)</th><br>            <td>反向肯定预查，与正向肯定预查类似，只是方向相反。例如，「<code>(?&lt;=95|98|NT|2000)Windows</code>」能匹配「<code>2000Windows</code>」中的「<code>Windows</code>」，但不能匹配「<code>3.1Windows</code>」中的「<code>Windows</code>」。</td><br>        </tr><br>        <tr><br>            <th>(?&lt;!pattern)</th><br>            <td>反向否定预查，与正向否定预查类似，只是方向相反。例如「<code>(?&lt;!95|98|NT|2000)Windows</code>」能匹配「<code>3.1Windows</code>」中的「<code>Windows</code>」，但不能匹配「<code>2000Windows</code>」中的「<code>Windows</code>」。</td><br>        </tr><br>        <tr><br>            <th>x|y</th><br>            <td>匹配x或y。例如，「<code>z|food</code>」能匹配「<code>z</code>」或「<code>food</code>」。「<code>(z|f)ood</code>」则匹配「<code>zood</code>」或「<code>food</code>」。</td><br>        </tr><br>        <tr><br>            <th>[xyz]</th><br>            <td>字符集合（character class）。匹配所包含的任意一个字符。例如，「<code>[abc]</code>」可以匹配「<code>plain</code>」中的「<code>a</code>」。特殊字符仅有反斜线 \ 保持特殊含义，用于转义字符。其它特殊字符如星号、加号、各种括号等均作为普通字符。脱字符 ^ 如果出现在首位则表示负值字符集合；如果出现在字符串中间就仅作为普通字符。连字符 - 如果出现在字符串中间表示字符范围描述；如果如果出现在首位则仅作为普通字符。</td><br>        </tr><br>        <tr><br>            <th>[^xyz]</th><br>            <td>排除型（negate）字符集合。匹配未列出的任意字符。例如，「<code>[^abc]</code>」可以匹配「<code>plain</code>」中的「<code>plin</code>」。</td><br>        </tr><br>        <tr><br>            <th>[a-z]</th><br>            <td>字符范围。匹配指定范围内的任意字符。例如，「<code>[a-z]</code>」可以匹配「<code>a</code>」到「<code>z</code>」范围内的任意小写字母字符。</td><br>        </tr><br>        <tr><br>            <th>[^a-z]</th><br>            <td>排除型的字符范围。匹配任何不在指定范围内的任意字符。例如，「<code>[^a-z]</code>」可以匹配任何不在「<code>a</code>」到「<code>z</code>」范围内的任意字符。</td><br>        </tr><br>        <tr><br>            <th>\b</th><br>            <td>匹配一个单词边界，也就是指单词和空格间的位置。例如，「<code>er\b</code>」可以匹配「<code>never</code>」中的「<code>er</code>」，但不能匹配「<code>verb</code>」中的「<code>er</code>」。</td><br>        </tr><br>        <tr><br>            <th>\B</th><br>            <td>匹配非单词边界。「<code>er\B</code>」能匹配「<code>verb</code>」中的「<code>er</code>」，但不能匹配「<code>never</code>」中的「<code>er</code>」。</td><br>        </tr><br>        <tr><br>            <th>\cx</th><br>            <td>匹配由x指明的控制字符。例如，\cM匹配一个Control-M或回车符。x的值必须为A-Z或a-z之一。否则，将c视为一个原义的「<code>c</code>」字符。</td><br>        </tr><br>        <tr><br>            <th>\d</th><br>            <td>匹配一个数字字符。等价于[0-9]。</td><br>        </tr><br>        <tr><br>            <th>\D</th><br>            <td>匹配一个非数字字符。等价于[^0-9]。</td><br>        </tr><br>        <tr><br>            <th>\f</th><br>            <td>匹配一个换页符。等价于\x0c和\cL。</td><br>        </tr><br>        <tr><br>            <th>\n</th><br>            <td>匹配一个换行符。等价于\x0a和\cJ。</td><br>        </tr><br>        <tr><br>            <th>\r</th><br>            <td>匹配一个回车符。等价于\x0d和\cM。</td><br>        </tr><br>        <tr><br>            <th>\s</th><br>            <td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。</td><br>        </tr><br>        <tr><br>            <th>\S</th><br>            <td>匹配任何非空白字符。等价于[^ \f\n\r\t\v]。</td><br>        </tr><br>        <tr><br>            <th>\t</th><br>            <td>匹配一个制表符。等价于\x09和\cI。</td><br>        </tr><br>        <tr><br>            <th>\v</th><br>            <td>匹配一个垂直制表符。等价于\x0b和\cK。</td><br>        </tr><br>        <tr><br>            <th>\w</th><br>            <td>匹配包括下划线的任何单词字符。等价于「<code>[A-Za-z0-9_]</code>」。</td><br>        </tr><br>        <tr><br>            <th>\W</th><br>            <td>匹配任何非单词字符。等价于「<code>[^A-Za-z0-9_]</code>」。</td><br>        </tr><br>        <tr><br>            <th>\x<em>n</em></th><br>            <td>匹配<em>n</em>，其中<em>n</em>为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，「<code>\x41</code>」匹配「<code>A</code>」。「<code>\x041</code>」则等价于「<code>\x04&amp;1</code>」。正則表达式中可以使用ASCII编码。.</td><br>        </tr><br>        <tr><br>            <th>\<em>num</em></th><br>            <td>向后引用（back-reference）一个子字符串（substring），该子字符串与正则表达式的第num个用括号围起来的子表达式（subexpression）匹配。其中num是从1开始的正整数，其上限可能是99。例如：「<code>(.)\1</code>」匹配两个连续的相同字符。</td><br>        </tr><br>        <tr><br>            <th>\<em>n</em></th><br>            <td>标识一个八进制转义值或一个向后引用。如果\<em>n</em>之前至少<em>n</em>个获取的子表达式，则<em>n</em>为向后引用。否则，如果<em>n</em>为八进制数字（0-7），则<em>n</em>为一个八进制转义值。</td><br>        </tr><br>        <tr><br>            <th>\<em>nm</em></th><br>            <td>标识一个八进制转义值或一个向后引用。如果\<em>nm</em>之前至少有<em>nm</em>个获得子表达式，则<em>nm</em>为向后引用。如果\<em>nm</em>之前至少有<em>n</em>个获取，则<em>n</em>为一个后跟文字<em>m</em>的向后引用。如果前面的条件都不满足，若<em>n</em>和<em>m</em>均为八进制数字（0-7），则\<em>nm</em>将匹配八进制转义值<em>nm</em>。</td><br>        </tr><br>        <tr><br>            <th>\<em>nml</em></th><br>            <td>如果<em>n</em>为八进制数字（0-3），且<em>m和l</em>均为八进制数字（0-7），则匹配八进制转义值<em>nm</em>l。</td><br>        </tr><br>        <tr><br>            <th>\u<em>n</em></th><br>            <td>匹配<em>n</em>，其中<em>n</em>是一个用四个十六进制数字表示的Unicode字符。例如，\u00A9匹配版权符号（&copy;）。</td><br>        </tr><br>    </tbody><br></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/11/27/regular-expression-syntax/" data-id="cjtvalbpd000754munts5o9j2" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/11/27/regular-expression-syntax/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/7/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

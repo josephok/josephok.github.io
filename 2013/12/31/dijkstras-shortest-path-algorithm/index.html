@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>最短路径算法(Dijkstra’s shortest path algorithm) | Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="算法描述： 给定一个图和一个起点，找出该起点到图中其他各顶点的最短路径。Dijkstra算法是一种贪心算法。 Dijkstra算法和Prim算法非常相似。我们可以生成一棵以起点为根的最短路径树(shortest path tree)。然后我们维护2个集合：一个集合是最短路径树中的所有顶点(假设为A)；另一个集合是其他顶点(假设为B)。通过迭代，每次在B中找一个到起点距离最短的顶点，加入到A中；当B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最短路径算法(Dijkstra’s shortest path algorithm)">
+<meta property="og:url" content="https://josephok.github.io/2013/12/31/dijkstras-shortest-path-algorithm/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="算法描述： 给定一个图和一个起点，找出该起点到图中其他各顶点的最短路径。Dijkstra算法是一种贪心算法。 Dijkstra算法和Prim算法非常相似。我们可以生成一棵以起点为根的最短路径树(shortest path tree)。然后我们维护2个集合：一个集合是最短路径树中的所有顶点(假设为A)；另一个集合是其他顶点(假设为B)。通过迭代，每次在B中找一个到起点距离最短的顶点，加入到A中；当B">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/90b90757gw1ec50hbzue9j20hl08k74j.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/90b90757gw1ec50rnhr0vj20hl08kglv.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/90b90757gw1ec50wqfo85j20hl08kmxf.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/90b90757gw1ec511amgwbj20hl08kq37.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/90b90757gw1ec511vb6c5j20hl08kq37.jpg">
+<meta property="og:updated_time" content="2019-03-30T09:24:46.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最短路径算法(Dijkstra’s shortest path algorithm)">
+<meta name="twitter:description" content="算法描述： 给定一个图和一个起点，找出该起点到图中其他各顶点的最短路径。Dijkstra算法是一种贪心算法。 Dijkstra算法和Prim算法非常相似。我们可以生成一棵以起点为根的最短路径树(shortest path tree)。然后我们维护2个集合：一个集合是最短路径树中的所有顶点(假设为A)；另一个集合是其他顶点(假设为B)。通过迭代，每次在B中找一个到起点距离最短的顶点，加入到A中；当B">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/90b90757gw1ec50hbzue9j20hl08k74j.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP -->
+  
+    <link rel="amphtml" href="https://josephok.github.io/2013/12/31/dijkstras-shortest-path-algorithm//amp/index.html"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-dijkstras-shortest-path-algorithm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/31/dijkstras-shortest-path-algorithm/" class="article-date">
+  <time datetime="2013-12-31T01:39:00.000Z" itemprop="datePublished">2013-12-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      最短路径算法(Dijkstra’s shortest path algorithm)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>算法描述：</p>
+<p>给定一个图和一个起点，找出该起点到图中其他各顶点的最短路径。Dijkstra算法是一种<a href="http://en.wikipedia.org/wiki/Greedy_algorithm" target="_blank" rel="noopener">贪心算法</a>。</p>
+<p>Dijkstra算法和<a href="http://en.wikipedia.org/wiki/Prim%27s_algorithm" target="_blank" rel="noopener">Prim算法</a>非常相似。我们可以生成一棵以起点为根的最短路径树(shortest path tree)。然后我们维护2个集合：一个集合是最短路径树中的所有顶点(假设为A)；另一个集合是其他顶点(假设为B)。<br>通过迭代，每次在B中找一个到起点距离最短的顶点，加入到A中；当B为空集时，算法结束。</p>
+<p>下面是具体的算法：</p>
+<p>(1) 创建一个sptSet (最短路径树集合)，初始化该集合为空集。<br>(2) 给图中所有顶点赋值一个距离，初始化起点为0，其他顶点为INFINITE(无穷大&#8734;)<br>(3)只要sptSet没有包含所有顶点：<br>a)从B中选一个顶点u, u的距离值最小。<br>b)将u加入sptSet.<br>c)更新u的邻接顶点的距离值，对于每一个邻接顶点v, 如果u的距离值加上边u-v的权值小于v的距离值，那么就更新v的距离值。(更新为u的距离值加上u-v的权值)</p>
+<p>来看一个具体的例子:</p>
+<p>选取顶点0为起始点。sptSet现在是空集，各顶点的距离值分别是{0, &#8734;, &#8734;, &#8734;, &#8734;, &#8734;, &#8734;, &#8734;}<br>顶点0加入到sptSet集合中，sptSet为{0}，然后更新顶点0的邻接顶点1和7，此时1的距离值为4, 7的距离值为8。<br>sptSet中的顶点显示为绿色：(&#8734;的顶点未予显示)<br>选取距离值最小但不在sptSet集合中的顶点，因为1的距离值最小，所以将1加入sptSet中，现在sptSet变为{0, 1}。更新1的邻接顶点的距离值：2的距离值变为4+8=12<br> 现在继续选取距离值最小但不在sptSet集合中的顶点，此时7为最小，所以选取7，sptSet变为{0, 1, 7}。接着更新7的邻接顶点：6的距离值变为8+1=9，8的距离值变为8+7=15<br>现在选取顶点6，sptSet变为{0, 1, 7, 6}。接着更新6的邻接顶点：5的距离值变为9+2=11，8的距离值为9+6=15<br>现在选取顶点5，sptSet变为{0, 1, 7, 6, 5}，更新5的邻接顶点：2为11+4=15&gt;12故不更新，3为11+14=25，4为11+10=21<br><img src="http://ww3.sinaimg.cn/large/90b90757gw1ec50hbzue9j20hl08k74j.jpg" alt=""><br>现在选取顶点2，sptSet变为{0, 1, 7, 6, 5, 2}，更新2的邻接顶点：3为12+7=19\&lt;25 故更新3的距离值为19，8为12+2=14\<15 故更新8的距离值为14，5为12+4="16">11故不更新。<br><img src="https://ww1.sinaimg.cn/large/90b90757gw1ec50rnhr0vj20hl08kglv.jpg" alt=""><br>现在选取顶点8，sptSet变为{0, 1, 7, 6, 5, 2, 8}，8的邻接顶点：2, 7, 6不用更新。<br><img src="https://ww1.sinaimg.cn/large/90b90757gw1ec50wqfo85j20hl08kmxf.jpg" alt=""><br>现在选取顶点3，sptSet变为{0, 1, 7, 6, 5, 2, 8, 3}，3的邻接顶点2, 5, 4不用更新。<br><img src="http://ww3.sinaimg.cn/large/90b90757gw1ec511amgwbj20hl08kq37.jpg" alt=""><br>最后选取顶点4，sptSet变为{0, 1, 7, 6, 5, 2, 8, 3, 4}，此时已经包含图中所有顶点，故为最终结果。<br><img src="https://ww1.sinaimg.cn/large/90b90757gw1ec511vb6c5j20hl08kq37.jpg" alt=""></15></p>
+<p>C语言实现：<br>我们使用一个boolean数组sptSet[]表示SPT中的顶点，如果stpSet[v]=true, 则顶点v在SPT中。数组dist[]存贮所有顶点的最短路径值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A C / C++ program for Dijkstra's single source shortest path algorithm.</span></span><br><span class="line"><span class="comment">// The program is for adjacency matrix representation of the graph</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;<span class="literal">false</span>, <span class="literal">true</span>&#125;<span class="keyword">bool</span>;</span><br><span class="line"><span class="comment">// Number of vertices in the graph</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> V 9</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// A utility function to find the vertex with minimum distance value, from</span></span><br><span class="line"><span class="comment">// the set of vertices not yet included in shortest path tree</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(<span class="keyword">int</span> dist[], <span class="keyword">bool</span> sptSet[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">// Initialize min value</span></span><br><span class="line">   <span class="keyword">int</span> min = INT_MAX, min_index;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; V; v++)</span><br><span class="line">     <span class="keyword">if</span> (sptSet[v] == <span class="literal">false</span> &amp;&amp; dist[v] &lt;= min)</span><br><span class="line">         min = dist[v], min_index = v;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> min_index;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// A utility function to print the constructed distance array</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printSolution</span><span class="params">(<span class="keyword">int</span> dist[], <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"Vertex   Distance from Source\n"</span>);</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++)</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d \t\t %d\n"</span>, i, dist[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Funtion that implements Dijkstra's single source shortest path algorithm</span></span><br><span class="line"><span class="comment">// for a graph represented using adjacency matrix representation</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> graph[V][V], <span class="keyword">int</span> src)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> dist[V];     <span class="comment">// The output array.  dist[i] will hold the shortest</span></span><br><span class="line">                      <span class="comment">// distance from src to i</span></span><br><span class="line"></span><br><span class="line">     <span class="keyword">bool</span> sptSet[V]; <span class="comment">// sptSet[i] will true if vertex i is included in shortest</span></span><br><span class="line">                     <span class="comment">// path tree or shortest distance from src to i is finalized</span></span><br><span class="line"></span><br><span class="line">     <span class="comment">// Initialize all distances as INFINITE and stpSet[] as false</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++)</span><br><span class="line">        dist[i] = INT_MAX, sptSet[i] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Distance of source vertex from itself is always 0</span></span><br><span class="line">     dist[src] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// Find shortest path for all vertices</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> count = <span class="number">0</span>; count &lt; V<span class="number">-1</span>; count++)</span><br><span class="line">     &#123;</span><br><span class="line">       <span class="comment">// Pick the minimum distance vertex from the set of vertices not</span></span><br><span class="line">       <span class="comment">// yet processed. u is always equal to src in first iteration.</span></span><br><span class="line">       <span class="keyword">int</span> u = minDistance(dist, sptSet);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// Mark the picked vertex as processed</span></span><br><span class="line">       sptSet[u] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// Update dist value of the adjacent vertices of the picked vertex.</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; V; v++)</span><br><span class="line"></span><br><span class="line">         <span class="comment">// Update dist[v] only if is not in sptSet, there is an edge from</span></span><br><span class="line">         <span class="comment">// u to v, and total weight of path from src to  v through u is</span></span><br><span class="line">         <span class="comment">// smaller than current value of dist[v]</span></span><br><span class="line">         <span class="keyword">if</span> (!sptSet[v] &amp;&amp; graph[u][v] &amp;&amp; dist[u] != INT_MAX</span><br><span class="line">                                       &amp;&amp; dist[u]+graph[u][v] &lt; dist[v])</span><br><span class="line">            dist[v] = dist[u] + graph[u][v];</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// print the constructed distance array</span></span><br><span class="line">     printSolution(dist, V);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// driver program to test above function</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">/* Let us create the example graph discussed above */</span></span><br><span class="line">   <span class="keyword">int</span> graph[V][V] = &#123;&#123;<span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">0</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">4</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">11</span>, <span class="number">0</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">14</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">14</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">6</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">8</span>, <span class="number">11</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">7</span>&#125;,</span><br><span class="line">                      &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">0</span>&#125;</span><br><span class="line">                     &#125;;</span><br><span class="line"></span><br><span class="line">    dijkstra(graph, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Vertex   Distance from Source</span><br><span class="line">0                0</span><br><span class="line">1                4</span><br><span class="line">2                12</span><br><span class="line">3                19</span><br><span class="line">4                21</span><br><span class="line">5                11</span><br><span class="line">6                9</span><br><span class="line">7                8</span><br><span class="line">8                14</span><br></pre></td></tr></table></figure>
+<p>时间复杂度是\( O(V^2)\)，Dijkstra算法不适用于带负权值的图。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2013/12/31/dijkstras-shortest-path-algorithm/" data-id="cjtvalbpv000o54mu0wssno9w" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2013/12/31/dijkstras-shortest-path-algorithm/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/01/16/yupoo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          来自又拍
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/12/09/modular-exponentiation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">同余幂求解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  var disqus_url = 'https://josephok.github.io/2013/12/31/dijkstras-shortest-path-algorithm/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

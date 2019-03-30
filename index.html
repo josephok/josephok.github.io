@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习技术过程中的笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Passion of life">
+<meta property="og:url" content="https://josephok.github.io/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="学习技术过程中的笔记">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Passion of life">
+<meta name="twitter:description" content="学习技术过程中的笔记">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Speed-up-Python-program-with-Rust" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/30/Speed-up-Python-program-with-Rust/" class="article-date">
+  <time datetime="2019-03-30T08:23:03.000Z" itemprop="datePublished">2019-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>Python</code>具有开发快速的特点，但是在运行效率上比静态编译型语言慢不少，我们今天要介绍的<code>Rust</code>就是其中一种。</p>
+<pre><code>Rust是一种安全、并发、实用的编程语言，有着惊人的运行速度，能够防止段错误，并保证线程安全，使每个人都能够构建可靠、高效的软件。
+</code></pre><p>当我们的<code>Python</code>程序出现性能瓶颈时，可以从如下几个方面优化：</p>
+<ol>
+<li>优化算法，使用更高效率的算法来提升性能；</li>
+<li>使用并发，如多线程程序；</li>
+<li>使用编译型语言编写扩展；</li>
+<li>优化网络、磁盘、数据库等。</li>
+</ol>
+<p>性能优化是个大命题，我们需要从多个方面着手考虑，今天我介绍的是第3种方法，并且选择<code>Rust</code>语言。我们将编写一个<code>so</code>扩展供<code>Python</code>端调用。<br>这里不会讲<code>Rust</code>的入门，具体规范可以看官方文档或者中文文档：<a href="https://rustlang-cn.org/" target="_blank" rel="noopener">https://rustlang-cn.org/</a></p>
+<p>我们选择<a href="https://github.com/postmanlabs/httpbin" target="_blank" rel="noopener">Httpbin</a>作为基准程序，进行修改然后对比效果。</p>
+<h1 id="1-原始代码"><a href="#1-原始代码" class="headerlink" title="1. 原始代码"></a>1. 原始代码</h1><p>为了简单，我稍微修改了<code>view_get</code>，使之只返回客户端的请求方法。如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"method"</span>: <span class="string">"GET"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码如下：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># httpbin/core.py</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route("/get", methods=("GET",))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">view_get</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""The request's query parameters.</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    tags:</span></span><br><span class="line"><span class="string">      - HTTP Methods</span></span><br><span class="line"><span class="string">    produces:</span></span><br><span class="line"><span class="string">      - application/json</span></span><br><span class="line"><span class="string">    responses:</span></span><br><span class="line"><span class="string">      200:</span></span><br><span class="line"><span class="string">        description: The request's query parameters.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> jsonify(get_dict(<span class="string">"method"</span>))</span><br></pre></td></tr></table></figure></p>
+<h1 id="2-测试一下原始代码性能："><a href="#2-测试一下原始代码性能：" class="headerlink" title="2. 测试一下原始代码性能："></a>2. 测试一下原始代码性能：</h1><p>使用<a href="https://github.com/wg/wrk" target="_blank" rel="noopener">wrk</a>进行benchmark测试：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wrk http://127.0.0.1:5000/get -c 400 -t 10</span><br><span class="line"></span><br><span class="line">Running 10s <span class="built_in">test</span> @ http://127.0.0.1:5000/get</span><br><span class="line">  10 threads and 400 connections</span><br><span class="line">  Thread Stats   Avg      Stdev     Max   +/- Stdev</span><br><span class="line">    Latency   314.77ms  121.47ms   1.98s    95.24%</span><br><span class="line">    Req/Sec    54.09     37.46   200.00     64.29%</span><br><span class="line">  4355 requests <span class="keyword">in</span> 10.04s, 1.00MB <span class="built_in">read</span></span><br><span class="line">  Socket errors: connect 0, <span class="built_in">read</span> 0, write 0, timeout 9</span><br><span class="line">Requests/sec:    433.98</span><br><span class="line">Transfer/sec:    101.71KB</span><br></pre></td></tr></table></figure></p>
+<p>可以看出：平均时延为315ms左右，RPS为434左右。</p>
+<h1 id="3-使用rust-cpython编写扩展"><a href="#3-使用rust-cpython编写扩展" class="headerlink" title="3. 使用rust-cpython编写扩展"></a>3. 使用<a href="https://github.com/dgrunwald/rust-cpython" target="_blank" rel="noopener">rust-cpython</a>编写扩展</h1><p>首先新建一个<code>lib</code>类型的项目，比如名字为<code>handle</code>：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo new handle --lib</span><br></pre></td></tr></table></figure></p>
+<p>这样就在当前项目下新建了一个目录：<code>handle</code>，我们需要编辑<code>handle/Cargo.toml</code>：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[package]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">"handle"</span></span><br><span class="line"><span class="attr">version</span> = <span class="string">"0.1.0"</span></span><br><span class="line"><span class="attr">authors</span> = [<span class="string">"Joseph &lt;josephok@qq.com&gt;"</span>]</span><br><span class="line"><span class="attr">edition</span> = <span class="string">"2018"</span></span><br><span class="line"></span><br><span class="line"><span class="section">[lib]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">"handle"</span></span><br><span class="line"><span class="attr">crate-type</span> = [<span class="string">"cdylib"</span>]</span><br><span class="line"></span><br><span class="line"><span class="section">[dependencies.cpython]</span></span><br><span class="line"><span class="attr">version</span> = <span class="string">"0.2"</span></span><br><span class="line"><span class="attr">features</span> = [<span class="string">"extension-module"</span>]</span><br></pre></td></tr></table></figure>
+<p>然后是编辑<code>handle/src/lib.rs</code>:</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[macro_use]</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">crate</span> cpython;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> cpython::ObjectProtocol;</span><br><span class="line"><span class="keyword">use</span> cpython::&#123;PyObject, PyResult, Python&#125;;</span><br><span class="line"><span class="keyword">use</span> std::collections::HashMap;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">ret_py_dict</span></span>(py: Python, obj: PyObject) -&gt; PyResult&lt;HashMap&lt;&amp;<span class="symbol">'static</span> <span class="built_in">str</span>, <span class="built_in">String</span>&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut</span> response = HashMap::new();</span><br><span class="line">    response.insert(<span class="string">"method"</span>, obj.getattr(py, <span class="string">"method"</span>)?.extract(py)?);</span><br><span class="line"></span><br><span class="line">    <span class="literal">Ok</span>(response)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">py_module_initializer!(handle, init_handle, PyInit_handle, |py, m| &#123;</span><br><span class="line">    m.add(py, <span class="string">"ret_py_dict"</span>, py_fn!(py, ret_py_dict(val: PyObject)))?;</span><br><span class="line"></span><br><span class="line">    <span class="literal">Ok</span>(())</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这里的<code>handle</code>是模块名，<code>ret_py_dict</code>就是模块的方法，供<code>Python</code>调用，使用方法：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> handle</span><br><span class="line">handle.ret_py_dict(...)</span><br></pre></td></tr></table></figure></p>
+<p>然后需要编译此模块，我们使用<code>Makefile</code>编写编译规则：<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">build:</span></span><br><span class="line">        <span class="comment"># 编译</span></span><br><span class="line">	cd handle &amp;&amp; cargo build --release</span><br><span class="line">        <span class="comment"># 将so文件拷贝到Python代码目录</span></span><br><span class="line">	cp handle/target/release/libhandle.so httpbin/handle.so</span><br></pre></td></tr></table></figure></p>
+<p>执行<code>make</code>命令编译并将<code>so</code>文件拷贝到指定目录。</p>
+<h1 id="4-Python端调用方法"><a href="#4-Python端调用方法" class="headerlink" title="4. Python端调用方法"></a>4. <code>Python</code>端调用方法</h1><p>编写一个<code>view_get1</code>方法：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> handle</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route("/get1", methods=("GET",))</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">view_get1</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""The request's query parameters.</span></span><br><span class="line"><span class="string">    ---</span></span><br><span class="line"><span class="string">    tags:</span></span><br><span class="line"><span class="string">      - HTTP Methods</span></span><br><span class="line"><span class="string">    produces:</span></span><br><span class="line"><span class="string">      - application/json</span></span><br><span class="line"><span class="string">    responses:</span></span><br><span class="line"><span class="string">      200:</span></span><br><span class="line"><span class="string">        description: The request's query parameters.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    resp = handle.ret_py_dict(request)</span><br><span class="line">    <span class="keyword">return</span> jsonify(resp)</span><br></pre></td></tr></table></figure>
+<p>与我们的原始函数唯一区别是：<code>jsonify</code>函数的参数，即响应内容是由扩展模块产生，类型都是<code>dict</code>。</p>
+<p><code>curl</code>响应为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl localhost:5000/get1</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"method"</span>: <span class="string">"GET"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果一致。</p>
+<h1 id="5-测试使用了扩展的性能"><a href="#5-测试使用了扩展的性能" class="headerlink" title="5. 测试使用了扩展的性能"></a>5. 测试使用了扩展的性能</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wrk http://127.0.0.1:5000/get1 -c 400 -t 10</span><br><span class="line"></span><br><span class="line">Running 10s <span class="built_in">test</span> @ http://127.0.0.1:5000/get1</span><br><span class="line">  10 threads and 400 connections</span><br><span class="line">  Thread Stats   Avg      Stdev     Max   +/- Stdev</span><br><span class="line">    Latency   247.73ms  101.96ms   1.91s    96.28%</span><br><span class="line">    Req/Sec    80.17     53.34   272.00     59.49%</span><br><span class="line">  5482 requests <span class="keyword">in</span> 10.09s, 1.25MB <span class="built_in">read</span></span><br><span class="line">  Socket errors: connect 0, <span class="built_in">read</span> 0, write 0, timeout 4</span><br><span class="line">Requests/sec:    543.49</span><br><span class="line">Transfer/sec:    127.38KB</span><br></pre></td></tr></table></figure>
+<p>可以看出：平均时延为248ms左右，RPS为544左右。<br>比原始版本：时延低70ms，RPS高110，效果比较明显，这里仅仅改写了获取对象属性的方式。</p>
+<h1 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h1><p>如果想继续优化，可以考虑改写<code>jsonify</code>函数。在这里我们提出了一个优化<code>Python</code>程序性能(Latency, RPS)的方案。前文也说到过，优化性能应该先从代码结构、算法方面做优化，当语言成为瓶颈时，使用<code>Rust</code>编写扩展实为一种好的方式。</p>
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p><a href="https://developers.redhat.com/blog/2017/11/16/speed-python-using-rust/" target="_blank" rel="noopener">https://developers.redhat.com/blog/2017/11/16/speed-python-using-rust/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2019/03/30/Speed-up-Python-program-with-Rust/" data-id="cjtvalbrk002u54muv4nev1dn" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2019/03/30/Speed-up-Python-program-with-Rust/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rust/">Rust</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-golang-time" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/01/golang-time/" class="article-date">
+  <time datetime="2018-12-01T09:32:34.000Z" itemprop="datePublished">2018-12-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/01/golang-time/">Golang时间处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-将日期转换为Unix时间戳"><a href="#1-将日期转换为Unix时间戳" class="headerlink" title="1. 将日期转换为Unix时间戳"></a>1. 将日期转换为Unix时间戳</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Time.Unix()</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	log.Println(time.Now().Unix())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2-将Unix时间戳转换为日期时间"><a href="#2-将Unix时间戳转换为日期时间" class="headerlink" title="2. 将Unix时间戳转换为日期时间"></a>2. 将Unix时间戳转换为日期时间</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	timestamp := time.Now().Unix()</span><br><span class="line">	t := time.Unix(timestamp, <span class="number">0</span>)</span><br><span class="line">	log.Println(t)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2018/12/01/golang-time/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2018/12/01/golang-time/" data-id="cjtvalbrj002s54mud2gebr8l" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2018/12/01/golang-time/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time/">time</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/" class="article-date">
+  <time datetime="2018-04-22T05:40:43.000Z" itemprop="datePublished">2018-04-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Miscellaneous/">Miscellaneous</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>是用Nodejs实现的一个静态网站生成器。简单好用，我们可以使用它来生成我们的博客站点。</p>
+<h2 id="1-安装Hexo"><a href="#1-安装Hexo" class="headerlink" title="1. 安装Hexo"></a>1. 安装Hexo</h2><p>首先你必须安装Nodejs环境，如果没有安装的话，请参考其官方文档自行安装。<br>使用一行命令即可安装Hexo:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h2 id="2-生成站点文件"><a href="#2-生成站点文件" class="headerlink" title="2. 生成站点文件"></a>2. 生成站点文件</h2><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;dir&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;dir&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>这里的<dir>替换成你自己的目录，比如我这里是<code>blog</code>。</dir></p>
+<h2 id="3-配置Hexo"><a href="#3-配置Hexo" class="headerlink" title="3. 配置Hexo"></a>3. 配置Hexo</h2><p>具体网站配置可以参考这里：<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/configuration.html</a><br>改成你自己想要的配置。</p>
+<h2 id="4-写文章"><a href="#4-写文章" class="headerlink" title="4. 写文章"></a>4. 写文章</h2><p>你可以执行下列命令来创建一篇新文章。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure></p>
+<p>您可以在命令中指定文章的布局（layout），默认为 <code>post</code>，可以通过修改 <code>_config.yml</code> 中的 <code>default_layout</code> 参数来指定默认布局。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/" data-id="cjtvalbrh002p54muh4sxa61y" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github-Pages/">Github Pages</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Travis-CI/">Travis CI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Tornado-source-code-analysis-IOLoop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/" class="article-date">
+  <time datetime="2016-08-14T14:33:57.000Z" itemprop="datePublished">2016-08-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="https://ws1.sinaimg.cn/large/90b90757gy1fql867ghr9j20xc0gowf7.jpg" rel="gallery_cjtvalbrg002n54mun259ecb9">
+        <img src="https://ws1.sinaimg.cn/large/90b90757gy1fql867ghr9j20xc0gowf7.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0. 简介"></a>0. 简介</h1><p><a href="https://github.com/tornadoweb/tornado" target="_blank" rel="noopener">Tornado</a>是一个用Python语言写成的Web服务器兼Web应用框架，由FriendFeed公司在自己的网站FriendFeed中使用，被Facebook收购以后框架以开源软件形式开放给大众。</p>
+<p>tornado最大的特点就是其支持异步IO，所以它有着优异的性能。下表是和一些其他Web框架与服务器的对比:(处理器为 AMD Opteron, 主频2.4GHz, 4核) (来源<a href="https://zh.wikipedia.org/wiki/Tornado" target="_blank" rel="noopener">wikipedia</a>)</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2016/08/14/Tornado-source-code-analysis-IOLoop/" data-id="cjtvalbrg002n54mun259ecb9" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2016/08/14/Tornado-source-code-analysis-IOLoop/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tornado/">Tornado</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bash-shortcuts" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/06/06/bash-shortcuts/" class="article-date">
+  <time datetime="2014-06-06T06:37:00.000Z" itemprop="datePublished">2014-06-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Shell/">Shell</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>生活在 Bash shell 中，熟记以下快捷键，将极大的提高你的命令行操作效率。</p>
+<h2 id="编辑命令"><a href="#编辑命令" class="headerlink" title="编辑命令"></a>编辑命令</h2><p>Ctrl + a ：移到命令行首<br>Ctrl + e ：移到命令行尾<br>Ctrl + f ：按字符前移（右向）<br>Ctrl + b ：按字符后移（左向）<br>ESC + f ：按单词前移（右向）<br>Alt + b ：按单词后移（左向）<br>Ctrl + xx：在命令行首和光标之间移动<br>Ctrl + u ：从光标处删除至命令行首<br>Ctrl + k ：从光标处删除至命令行尾<br>Ctrl + w ：从光标处删除至字首<br>Alt + d ：从光标处删除至字尾<br>Ctrl + d ：删除光标处的字符<br>Ctrl + h ：删除光标前的字符<br>Ctrl + y ：粘贴至光标后<br>Alt + c ：从光标处更改为首字母大写的单词<br>Alt + u ：从光标处更改为全部大写的单词<br>Alt + l ：从光标处更改为全部小写的单词<br>Ctrl + t ：交换光标处和之前的字符<br>Alt + t ：交换光标处和之前的单词<br>Alt + Backspace：与 Ctrl + w 相同类似，分隔符有些差别</p>
+<h2 id="重新执行命令"><a href="#重新执行命令" class="headerlink" title="重新执行命令"></a>重新执行命令</h2><p>Ctrl + r：逆向搜索命令历史<br>Ctrl + g：从历史搜索模式退出<br>Ctrl + p：历史中的上一条命令<br>Ctrl + n：历史中的下一条命令<br>Alt + .：使用上一条命令的最后一个参数</p>
+<h2 id="控制命令"><a href="#控制命令" class="headerlink" title="控制命令"></a>控制命令</h2><p>Ctrl + l：清屏<br>Ctrl + o：执行当前命令，并选择上一条命令<br>Ctrl + s：阻止屏幕输出<br>Ctrl + q：允许屏幕输出<br>Ctrl + c：终止命令<br>Ctrl + z：挂起命令</p>
+<h2 id="Bang-命令"><a href="#Bang-命令" class="headerlink" title="Bang (!) 命令"></a>Bang (!) 命令</h2><p><code>!!</code>：执行上一条命令<br><code>!blah</code>：执行最近的以 blah 开头的命令，如 !ls<br><code>!blah:p</code>：仅打印输出，而不执行<br><code>!$</code>：上一条命令的最后一个参数，与 Alt + . 相同<br><code>!$:p</code>：打印输出 !$ 的内容<br><code>!*</code>：上一条命令的所有参数<br><code>!*:p</code>：打印输出 !* 的内容<br><code>^blah</code>：删除上一条命令中的 blah<br><code>^blah^foo</code>：将上一条命令中的 blah 替换为 foo<br><code>^blah^foo^</code>：将上一条命令中所有的 blah 都替换为 foo</p>
+<p>友情提示：</p>
+<p>以上介绍的大多数 Bash 快捷键仅当在 emacs 编辑模式时有效，若你将 Bash 配置为 vi 编辑模式，那将遵循 vi 的按键绑定。Bash 默认为 emacs 编辑模式。如果你的 Bash 不在 emacs 编辑模式，可通过 set -o emacs 设置。<br>^S、^Q、^C、^Z 是由终端设备处理的，可用 stty 命令设置。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/06/06/bash-shortcuts/" data-id="cjtvalbre002l54mup2b4pw4i" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/06/06/bash-shortcuts/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习技术过程中的笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Passion of life">
+<meta property="og:url" content="https://josephok.github.io/page/2/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="学习技术过程中的笔记">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Passion of life">
+<meta name="twitter:description" content="学习技术过程中的笔记">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-prim-algorithm-of-minimum-spanning-tree" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/05/10/prim-algorithm-of-minimum-spanning-tree/" class="article-date">
+  <time datetime="2014-05-10T00:59:00.000Z" itemprop="datePublished">2014-05-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/05/10/prim-algorithm-of-minimum-spanning-tree/">Prim算法求最小生成树</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如下所示的无向网络包含7个顶点和12条边，边权重之和为243。<br><img src="https://ww1.sinaimg.cn/large/90b90757gy1fqjicwpd9qg20al07qa9w.jpg" alt=""></p>
+<p>这个网络还可以用如下的矩阵来表示：</p>
+<p><img src="https://ww1.sinaimg.cn/large/90b90757gw1eg9ad81a4bj208207mwer.jpg" alt=""></p>
+<p>但是，在保证网络上所有点之间连通性的前提下，可以将某些边去除掉，从而实现该网络的优化。能够做到最多节省的网络如下所示。其权重和为93，与原网络相比共节省了243 − 93 = 150。</p>
+<p><img src="https://ww1.sinaimg.cn/large/90b90757gy1fqjifpxq5vg20ap080glf.jpg" alt=""></p>
+<p><a href="http://projecteuler.net/project/network.txt" target="_blank" rel="noopener">network.txt</a>包含一个拥有四十个顶点的网络，以矩阵形式给出。求在保证连通性的前提下，通过去除边可以做到的最多节省。</p>
+<p>这里可以使用Prim算法求出最小生成树，然后求出其权重和。</p>
+<h2 id="Prim算法描述"><a href="#Prim算法描述" class="headerlink" title="Prim算法描述"></a>Prim算法描述</h2><p>从单一顶点开始，Prim算法按照以下步骤逐步扩大树中所含顶点的数目，直到遍及连通图的所有顶点。</p>
+<ol>
+<li>输入：一个加权连通图，其中顶点集合为V，边集合为E；</li>
+<li>初始化：Vnew = {x}，其中x为集合V中的任一节点（起始点），Enew = {}；</li>
+<li>重复下列操作，直到Vnew = V：</li>
+</ol>
+<p>a) 在集合E中选取权值最小的边（u, v），其中u为集合Vnew中的元素，而v则不是<br>    （如果存在有多条满足前述条件即具有相同权值的边，则可任意选取其中之一）；<br>b) 将v加入集合Vnew中，将（u, v）加入集合Enew中；</p>
+<ol start="4">
+<li>输出：使用集合Vnew和Enew来描述所得到的最小生成树。</li>
+</ol>
+<p>具体实现如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构造图</span></span><br><span class="line"><span class="comment"># 顶点由'1', '2', '3', ... '40'构成</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_gragh</span><span class="params">()</span>:</span></span><br><span class="line">    graph = dict()</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'network.txt'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        lines = f.read().splitlines()</span><br><span class="line">        <span class="keyword">for</span> vh, line <span class="keyword">in</span> enumerate(lines, start=<span class="number">1</span>):</span><br><span class="line">            g = dict()</span><br><span class="line">            <span class="keyword">for</span> vs, v <span class="keyword">in</span> enumerate(line.split(<span class="string">','</span>), start=<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    g[str(vs)] = int(v)</span><br><span class="line">                <span class="keyword">except</span> ValueError:</span><br><span class="line">                    g[str(vs)] = <span class="keyword">None</span></span><br><span class="line">            graph[str(vh)] = g</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> graph</span><br><span class="line"></span><br><span class="line"><span class="comment"># test gragh</span></span><br><span class="line"><span class="comment"># 由字典表示，两个顶点权重值可以表示为：如A和B的权重为graph['A']['B']</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">graph = &#123;</span></span><br><span class="line"><span class="string">    'A': &#123;'B': 16, 'C': 12, 'D': 21&#125;,</span></span><br><span class="line"><span class="string">    'B': &#123;'A': 16, 'D': 17, 'E': 20&#125;,</span></span><br><span class="line"><span class="string">    'C': &#123;'A': 12, 'D': 28, 'F': 31&#125;,</span></span><br><span class="line"><span class="string">    'D': &#123;'A': 21, 'B': 17, 'C': 28, 'E': 18, 'F': 19, 'G': 23&#125;,</span></span><br><span class="line"><span class="string">    'E': &#123;'B': 20, 'D': 18, 'G': 11&#125;,</span></span><br><span class="line"><span class="string">    'F': &#123;'C': 31, 'D': 19, 'G': 27&#125;,</span></span><br><span class="line"><span class="string">    'G': &#123;'D': 23, 'E': 11, 'F': 27&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 求权重和</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_weight</span><span class="params">(graph, duplicate=True)</span>:</span></span><br><span class="line">    sum_ = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> graph:</span><br><span class="line">        <span class="keyword">for</span> vs <span class="keyword">in</span> graph[v]:</span><br><span class="line">            <span class="keyword">if</span> graph[v][vs] != <span class="keyword">None</span>:</span><br><span class="line">                sum_ += graph[v][vs]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果计算两遍，则除以2</span></span><br><span class="line">    <span class="keyword">if</span> duplicate:</span><br><span class="line">        <span class="keyword">return</span> sum_ // <span class="number">2</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> sum_</span><br><span class="line"></span><br><span class="line">graph = build_gragh()</span><br><span class="line"></span><br><span class="line"><span class="comment"># prim算法求最小生成树</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prim_tree</span><span class="params">(graph)</span>:</span></span><br><span class="line">    <span class="comment"># 所有顶点</span></span><br><span class="line">    vertes = list(graph.keys())</span><br><span class="line">    <span class="comment"># 选中顶点</span></span><br><span class="line">    selected = set()</span><br><span class="line">    <span class="comment"># 将第一个顶点加入</span></span><br><span class="line">    selected.add(vertes[<span class="number">0</span>])</span><br><span class="line">    <span class="comment"># 移除已选顶点</span></span><br><span class="line">    vertes.pop(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    new_graph = defaultdict(dict)</span><br><span class="line">    <span class="comment"># 只要还有未选中顶点，则循环</span></span><br><span class="line">    <span class="keyword">while</span> vertes:</span><br><span class="line">        <span class="comment"># 假设最小权重为1000</span></span><br><span class="line">        tmp = <span class="number">1000</span></span><br><span class="line">        <span class="keyword">for</span> u <span class="keyword">in</span> selected:</span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> vertes:</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    <span class="keyword">if</span> graph[u][v] != <span class="keyword">None</span> <span class="keyword">and</span> graph[u][v] &lt; tmp:</span><br><span class="line">                        tmp = graph[u][v]</span><br><span class="line">                        choose_u = u</span><br><span class="line">                        choose_v = v</span><br><span class="line"></span><br><span class="line">                <span class="keyword">except</span> KeyError:</span><br><span class="line">                    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">        selected.add(choose_v)</span><br><span class="line">        vertes.remove(choose_v)</span><br><span class="line">        new_graph[choose_u][choose_v] = tmp</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> new_graph</span><br><span class="line"></span><br><span class="line">print(<span class="string">"before: "</span>)</span><br><span class="line">sum1 = sum_weight(graph, duplicate=<span class="keyword">True</span>)</span><br><span class="line">print(sum1)</span><br><span class="line">print(<span class="string">"after:"</span>)</span><br><span class="line"><span class="comment"># 最小生成树中各条边权重只算一次，所以这里duplicate为False</span></span><br><span class="line">sum2 = sum_weight(prim_tree(graph), duplicate=<span class="keyword">False</span>)</span><br><span class="line">print(sum2)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"saving: &#123;&#125;"</span>.format(sum1 - sum2))</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ time python3 solve.py</span><br><span class="line">before:</span><br><span class="line">261832</span><br><span class="line">after:</span><br><span class="line">2153</span><br><span class="line">saving: 259679</span><br><span class="line"></span><br><span class="line">real	0m0.067s</span><br><span class="line">user	0m0.060s</span><br><span class="line">sys	0m0.004s</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/05/10/prim-algorithm-of-minimum-spanning-tree/" data-id="cjtvalbrd002i54mu993f6zme" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/05/10/prim-algorithm-of-minimum-spanning-tree/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python-new" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/05/03/python-new/" class="article-date">
+  <time datetime="2014-05-03T22:10:00.000Z" itemprop="datePublished">2014-05-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/05/03/python-new/">Python __new__解释</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python实例化对象操作过程，首先是调用<code>__new__()</code>方法创建实例，然后调用<code>__init__()</code>方法初始化对象。一般情况下，定义类时不需要显式的重写<code>__new__()</code>方法；但是某些情况下，比如继承immutable类型(如int, str, tuple, frozenset)时，因无法在<code>__init__()</code>中修改其元素，所以需要重写<code>__new__()</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span><span class="params">(tuple)</span>:</span></span><br><span class="line">		<span class="comment">#第一个参数是类型</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, x, y)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> tuple.__new__(cls, (x, y))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">distance</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> math.sqrt((self[<span class="number">0</span>]-other[<span class="number">0</span>]) ** <span class="number">2</span> + (self[<span class="number">1</span>]-other[<span class="number">1</span>]) ** <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Point(&#123;0&#125;, &#123;1&#125;)"</span>.format(self[<span class="number">0</span>], self[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">p = Point(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">p2 = Point(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">p3 = Point(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">print(p.distance(p2))</span><br><span class="line">print(p2.distance(p3))</span><br><span class="line">print(repr(p))</span><br></pre></td></tr></table></figure>
+<p><code>__new__()</code>返回某个类的实例对象，而<code>__init__()</code>不返回任何值，仅做初始化操作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/05/03/python-new/" data-id="cjtvalbrb002g54mualwon3w1" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/05/03/python-new/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-triangles-contain-origin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/29/triangles-contain-origin/" class="article-date">
+  <time datetime="2014-04-29T03:50:00.000Z" itemprop="datePublished">2014-04-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/29/triangles-contain-origin/">判断某点是否在三角形内部</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Project Euler第102题：</p>
+<blockquote>
+<p>Three distinct points are plotted at random on a Cartesian plane, for which -1000 ≤ x, y ≤ 1000, such that a triangle is formed.</p>
+</blockquote>
+<blockquote>
+<p>Consider the following two triangles:</p>
+</blockquote>
+<blockquote>
+<p>A(-340,495), B(-153,-910), C(835,-947)</p>
+</blockquote>
+<blockquote>
+<p>X(-175,41), Y(-421,-714), Z(574,-645)</p>
+</blockquote>
+<blockquote>
+<p>It can be verified that triangle ABC contains the origin, whereas triangle XYZ does not.</p>
+</blockquote>
+<blockquote>
+<p>Using triangles.txt (right click and ‘Save Link/Target As…’), a 27K text file containing the co-ordinates of one thousand “random” triangles, find the number of triangles for which the interior contains the origin.</p>
+</blockquote>
+<blockquote>
+<p>NOTE: The first two examples in the file represent the triangles in the example given above.</p>
+</blockquote>
+<p>大致意思是给定3个点A, B, C，判断A, B, C组成的三角形是否包含原点P(0, 0)，或者说原点是否在三角形ABC的内部。<br>解答这道题的思路是判断ABC的面积是否等于PAB, PBC, PAC三个面积之和。</p>
+<p><img src="https://ww4.sinaimg.cn/large/90b90757gw1efwprg17zjj20dd0a3jrr.jpg" alt=""><br>P在三角形内部</p>
+<p><img src="https://ww1.sinaimg.cn/large/90b90757gw1efwq0l6wrzj20em0ahmxl.jpg" alt=""><br>P在三角形外部</p>
+<p>如何计算三角形面积？<br>在这里，三个点A, B, C分别用坐标表示。如A(-340,495), B(-153,-910), C(835,-947)，<a href="http://en.wikipedia.org/wiki/Triangle#Using_coordinates" target="_blank" rel="noopener">维基百科</a>上给出了计算公式：</p>
+<p>$$<br>T = \frac{1}{2} \big| (x_A - x_C) (y_B - y_A) - (x_A - x_B) (y_C - y_A) \big|<br>$$<br>其中，$x_A$表示$A$的$x$坐标，$y_B$表示$B$的$y$坐标…</p>
+<p>Python实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'triangles.txt'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        lines = f.read().splitlines()</span><br><span class="line"></span><br><span class="line">    counts = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">        points = line.split(<span class="string">','</span>)</span><br><span class="line">        points = [int(point) <span class="keyword">for</span> point <span class="keyword">in</span> points]</span><br><span class="line">        A = points[:<span class="number">2</span>]</span><br><span class="line">        B = points[<span class="number">2</span>:<span class="number">4</span>]</span><br><span class="line">        C = points[<span class="number">4</span>:]</span><br><span class="line">        P = (<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> area(A, B, C) == area(P, B, C) + area(P, A, C) + area(P, A, B):</span><br><span class="line">            counts += <span class="number">1</span></span><br><span class="line">    print(counts)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求面积，根据上面的公式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">area</span><span class="params">(A, B, C)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> abs((A[<span class="number">0</span>]-C[<span class="number">0</span>]) * (B[<span class="number">1</span>]-A[<span class="number">1</span>]) - (A[<span class="number">0</span>]-B[<span class="number">0</span>]) * (C[<span class="number">1</span>]-A[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ time python solve.py</span><br><span class="line">228</span><br><span class="line"></span><br><span class="line">real	0m0.038s</span><br><span class="line">user	0m0.036s</span><br><span class="line">sys	0m0.000s</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/04/29/triangles-contain-origin/" data-id="cjtvalbra002e54musawyl1w5" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/04/29/triangles-contain-origin/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-currying" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/24/currying/" class="article-date">
+  <time datetime="2014-04-24T01:43:00.000Z" itemprop="datePublished">2014-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/24/currying/">函数柯里化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>柯里化是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。</p>
+<ul>
+<li>Python中函数柯里化：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"><span class="comment"># 原函数：</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">(a, b, c)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> do_something_with_a_b_c</span><br><span class="line"></span><br><span class="line"><span class="comment"># 柯里化：</span></span><br><span class="line">func2 = functools.partial(func1, <span class="number">1</span>, <span class="number">2</span>) <span class="comment"># 固定参数a,b</span></span><br><span class="line"><span class="comment"># 使用：func2(c)</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/04/24/currying/" data-id="cjtvalbr9002b54muyccy2ki8" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/04/24/currying/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-feng-yan-si" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/20/feng-yan-si/" class="article-date">
+  <time datetime="2014-04-20T21:52:00.000Z" itemprop="datePublished">2014-04-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/诗词/">诗词</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/20/feng-yan-si/">冯延巳诗词欣赏</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>冯延巳 （903–960）又名延嗣，字正中，五代广陵（今江苏省扬州市）人。在南唐做过宰相，生活过得很优裕、舒适。他的词多写闲情逸致辞，文人的气息很浓，对北宋初期的词人有比较大的影响。宋初《钓矶立谈》评其“学问渊博，文章颖发，辩说纵横”，其词集名《阳春集》。</p>
+<p><strong>南乡子</strong><br>细雨湿流光，芳草年年与恨长。烟锁凤楼无限事，茫茫，鸾镜鸳衾两断肠。<br>魂梦任悠扬，睡起杨花满绣床。薄幸不来门半掩，斜阳，负你残春泪几行。</p>
+<p><strong>鹊踏枝</strong><br>谁道闲情抛弃久？每到春来，惆怅还依旧。日日花前常病酒，不辞镜里未颜瘦。<br>河畔青芜堤上柳，为问新愁，何事年年有？独立小桥风满袖，平林新月人归后。</p>
+<p><strong>采桑子</strong><br>花前失却游春侣，独自寻芳。满目悲凉。纵有笙歌亦断肠。　<br>林间戏蝶帘间燕，各自双双。忍更思量，绿树青苔半夕阳。</p>
+<p><strong>忆江南</strong><br>去岁迎春楼上月。正是西窗，夜凉时节。玉人贪睡坠钗云。粉销妆薄见天真。<br>人非风月长依旧。破镜尘筝，一梦经年瘦。今宵帘幕飏花阴。空余枕泪独伤心。</p>
+<p><strong>鹊踏枝</strong><br>六曲阑干偎碧树，杨柳风轻，展尽黄金缕。谁把钿筝移玉柱？穿帘海燕又飞去。<br>满眼游丝兼落絮，红杏开时，一霎清明雨。浓睡觉来莺乱语，惊残好梦无寻处。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/04/20/feng-yan-si/" data-id="cjtvalbr7002954mujcer6fi5" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/04/20/feng-yan-si/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

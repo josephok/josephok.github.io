@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>二叉堆简单实现 | Passion of life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="二叉堆的定义  二叉堆是一棵完全二叉树。二叉堆满足堆特性：父节点的键值总是保持固定的序关系于任何一个子节点的键值，且每个节点的左子树和右子树都是一个二叉堆。当父节点的键值总是大于或等于任何一个子节点的键值时为最大堆。 当父节点的键值总是小于或等于任何一个子节点的键值时为最小堆。 这里我们实现 最小二叉堆堆 。  二叉堆的基本操作  下图是一个最小二叉堆，使用数组形式表示：数组索引从1开始。  插">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉堆简单实现">
+<meta property="og:url" content="https://josephok.github.io/2014/03/16/simple-binary-heap-implementation/index.html">
+<meta property="og:site_name" content="Passion of life">
+<meta property="og:description" content="二叉堆的定义  二叉堆是一棵完全二叉树。二叉堆满足堆特性：父节点的键值总是保持固定的序关系于任何一个子节点的键值，且每个节点的左子树和右子树都是一个二叉堆。当父节点的键值总是大于或等于任何一个子节点的键值时为最大堆。 当父节点的键值总是小于或等于任何一个子节点的键值时为最小堆。 这里我们实现 最小二叉堆堆 。  二叉堆的基本操作  下图是一个最小二叉堆，使用数组形式表示：数组索引从1开始。  插">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/90b90757gy1fqmd74hh7dj20ew0a5js7.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/90b90757gy1fqmd7r0zi0j20fj0onwgs.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/90b90757gy1fqmd7r0zi0j20fj0onwgs.jpg">
+<meta property="og:updated_time" content="2019-03-30T09:24:46.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二叉堆简单实现">
+<meta name="twitter:description" content="二叉堆的定义  二叉堆是一棵完全二叉树。二叉堆满足堆特性：父节点的键值总是保持固定的序关系于任何一个子节点的键值，且每个节点的左子树和右子树都是一个二叉堆。当父节点的键值总是大于或等于任何一个子节点的键值时为最大堆。 当父节点的键值总是小于或等于任何一个子节点的键值时为最小堆。 这里我们实现 最小二叉堆堆 。  二叉堆的基本操作  下图是一个最小二叉堆，使用数组形式表示：数组索引从1开始。  插">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/90b90757gy1fqmd74hh7dj20ew0a5js7.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Passion of life" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- AMP -->
+  
+    <link rel="amphtml" href="https://josephok.github.io/2014/03/16/simple-binary-heap-implementation//amp/index.html"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Passion of life</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I am a dreamer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/books">Books</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://josephok.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-simple-binary-heap-implementation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/03/16/simple-binary-heap-implementation/" class="article-date">
+  <time datetime="2014-03-16T18:37:00.000Z" itemprop="datePublished">2014-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      二叉堆简单实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>二叉堆的定义</li>
+</ul>
+<p>二叉堆是一棵完全二叉树。二叉堆满足堆特性：父节点的键值总是保持固定的序关系于任何一个子节点的键值，且每个节点的左子树和右子树都是一个二叉堆。<br>当父节点的键值总是大于或等于任何一个子节点的键值时为最大堆。 当父节点的键值总是小于或等于任何一个子节点的键值时为最小堆。</p>
+<p>这里我们实现 <strong>最小二叉堆堆</strong> 。</p>
+<ul>
+<li>二叉堆的基本操作</li>
+</ul>
+<p>下图是一个最小二叉堆，使用数组形式表示：数组索引从1开始。<br><img src="https://ws1.sinaimg.cn/large/90b90757gy1fqmd74hh7dj20ew0a5js7.jpg" alt=""></p>
+<ol>
+<li>插入新元素</li>
+</ol>
+<p><img src="https://ws1.sinaimg.cn/large/90b90757gy1fqmd7r0zi0j20fj0onwgs.jpg" alt=""></p>
+<p>比如插入<code>7</code>，首先将<code>7</code>加在数组的末尾，然后与其父节点比较，如果小于父节点则与之交换，直到大于父节点或到达树的根部。</p>
+<ol start="2">
+<li>删除最小元素</li>
+</ol>
+<p><img src="https://ws1.sinaimg.cn/large/90b90757gy1fqmd7r0zi0j20fj0onwgs.jpg" alt=""></p>
+<p>首先移除根部的元素。然后将最后一个元素移到根部，再向下过滤，遇到比它小的元素则交换，直到到达叶子节点或者没有比它更小的元素。</p>
+<ul>
+<li>二叉堆实现</li>
+</ul>
+<figure class="highlight python"><figcaption><span>binary_heap</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">BinaryHeap类：</span></span><br><span class="line"><span class="string">方法：</span></span><br><span class="line"><span class="string">delete_min：删除最小元素，时间复杂度为O(logN)</span></span><br><span class="line"><span class="string">insert: 插入元素，时间复杂度为O(logN)</span></span><br><span class="line"><span class="string">find_min: 返回最小元素，时间复杂度为O(1)</span></span><br><span class="line"><span class="string">is_empty: 判断是否为空</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinaryHeap</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, *args)</span>:</span></span><br><span class="line">		i = len(args) // <span class="number">2</span></span><br><span class="line">		self.size = len(args)</span><br><span class="line">		<span class="comment"># index从1开始</span></span><br><span class="line">		self.items = [<span class="keyword">None</span>] + list(args)</span><br><span class="line">		<span class="keyword">while</span> i &gt; <span class="number">0</span>:</span><br><span class="line">			self.percolate_down(i)</span><br><span class="line">			i -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">percolate_down</span><span class="params">(self, i)</span>:</span></span><br><span class="line">		<span class="keyword">while</span> i * <span class="number">2</span> &lt;= self.size:</span><br><span class="line">			min_child_index = self.min_child(i)</span><br><span class="line">			<span class="keyword">if</span> self.items[i] &gt; self.items[min_child_index]:</span><br><span class="line">				self.items[i], self.items[min_child_index] = self.items[min_child_index], self.items[i]</span><br><span class="line">			i = min_child_index</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">min_child</span><span class="params">(self, i)</span>:</span></span><br><span class="line">		<span class="keyword">if</span> <span class="number">2</span> * i + <span class="number">1</span> &gt; self.size:</span><br><span class="line">			<span class="keyword">return</span> <span class="number">2</span> * i</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">if</span> self.items[<span class="number">2</span>*i] &lt; self.items[<span class="number">2</span>*i+<span class="number">1</span>]:</span><br><span class="line">				<span class="keyword">return</span> <span class="number">2</span> * i</span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				<span class="keyword">return</span> <span class="number">2</span> * i + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">percolate_up</span><span class="params">(self, i)</span>:</span></span><br><span class="line">		<span class="keyword">while</span> i // <span class="number">2</span> &gt; <span class="number">0</span>:</span><br><span class="line">			<span class="keyword">if</span> self.items[i] &lt; self.items[i // <span class="number">2</span>]:</span><br><span class="line">				self.items[i], self.items[i // <span class="number">2</span>] = self.items[i // <span class="number">2</span>], self.items[i]</span><br><span class="line">			i //= <span class="number">2</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">delete_min</span><span class="params">(self)</span>:</span></span><br><span class="line">		min_value = self.items[<span class="number">1</span>]</span><br><span class="line">		self.items[<span class="number">1</span>] = self.items[self.size]</span><br><span class="line">		self.size -= <span class="number">1</span></span><br><span class="line">		self.items.pop()</span><br><span class="line">		self.percolate_down(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> min_value</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, data)</span>:</span></span><br><span class="line">		self.size += <span class="number">1</span></span><br><span class="line">		self.items.append(data)</span><br><span class="line">		self.percolate_up(self.size)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">find_min</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> self.items[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> self.size == <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># test</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	binary_heap = BinaryHeap(<span class="number">9</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment"># find_min</span></span><br><span class="line">	<span class="comment"># will print The minimum data of this Binary Heap is 2</span></span><br><span class="line">	print(<span class="string">"The minimum data of this Binary Heap is &#123;0&#125;"</span>.format(binary_heap.find_min()))</span><br><span class="line"></span><br><span class="line">	<span class="comment"># delete min</span></span><br><span class="line">	binary_heap.delete_min()</span><br><span class="line">	<span class="comment"># will print The minimum data of this Binary Heap is 3</span></span><br><span class="line">	print(<span class="string">"The minimum data of this Binary Heap is &#123;0&#125;"</span>.format(binary_heap.find_min()))</span><br><span class="line"></span><br><span class="line">	<span class="comment"># insert 1</span></span><br><span class="line">	<span class="comment"># will print The minimum data of this Binary Heap is 1</span></span><br><span class="line">	binary_heap.insert(<span class="number">1</span>)</span><br><span class="line">	print(<span class="string">"The minimum data of this Binary Heap is &#123;0&#125;"</span>.format(binary_heap.find_min()))</span><br><span class="line"></span><br><span class="line">	print(binary_heap.is_empty()) <span class="comment"># False</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">		binary_heap.delete_min()</span><br><span class="line"></span><br><span class="line">	print(binary_heap.is_empty()) <span class="comment"># True</span></span><br><span class="line">	print(binary_heap.items) <span class="comment"># [None]</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://josephok.github.io/2014/03/16/simple-binary-heap-implementation/" data-id="cjtvalbqr001n54mu2j1d1xxv" class="article-share-link">Share</a>
+      
+        <a href="https://josephok.github.io/2014/03/16/simple-binary-heap-implementation/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/03/20/character-encoding-and-byte/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          字符编码与字节
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/03/14/dom-interchangeable-with-jquery-object/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">DOM与jQuery对象互换</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Apache/">Apache</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Miscellaneous/">Miscellaneous</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Regex/">Regex</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/诗词/">诗词</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding-Pages/">Coding Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Pages/">Github Pages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rust/">Rust</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tornado/">Tornado</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Travis-CI/">Travis CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/Coding-Pages/" style="font-size: 10px;">Coding Pages</a> <a href="/tags/Github-Pages/" style="font-size: 10px;">Github Pages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Rust/" style="font-size: 10px;">Rust</a> <a href="/tags/Tornado/" style="font-size: 10px;">Tornado</a> <a href="/tags/Travis-CI/" style="font-size: 10px;">Travis CI</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/time/" style="font-size: 10px;">time</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">六月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">五月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/30/Speed-up-Python-program-with-Rust/">使用Rust加速Python</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/01/golang-time/">Golang时间处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/22/Write-blogs-with-Hexo-and-deploy-to-Github-Pages-and-Coding-Pages-with-Travis-CI/">用Hexo写博客并用Travis CI部署到Github Pages和Coding Pages</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/14/Tornado-source-code-analysis-IOLoop/">Tornado源码解析之IOLoop</a>
+          </li>
+        
+          <li>
+            <a href="/2014/06/06/bash-shortcuts/">Bash 快捷键</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Joseph<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/books" class="mobile-nav-link">Books</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'yonggao';
+  
+  var disqus_url = 'https://josephok.github.io/2014/03/16/simple-binary-heap-implementation/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+      tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+      TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+      messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
